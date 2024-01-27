@@ -1,0 +1,233 @@
+/* colours */
+:root{
+  --primary: #FFE9D2;
+  --secondary: #FFE1C4;
+  --title: #FF8816;
+}
+
+/* layout styles */
+nav{
+  background: var(--primary);
+  border-bottom: 10px solid var(--secondary);
+  text-align: center;
+  font-size: 18px;
+}
+nav a{
+  text-transform: uppercase;
+  color: var(--title);
+}
+nav a span{
+  font-weight: bold;
+}
+nav .sidenav-trigger{
+  margin: 0;
+}
+
+.display a{
+  margin-top: 20px;
+  color: #FF8816;
+  font-size: 16px;
+  text-align: center;
+}
+.card-panel.display{
+  border-radius: 8px;
+  padding: 10px;
+  box-shadow: 0px 1px 3px rgba(90,90,90,0.1);
+  background-color: #FFE9D2;
+  display: grid;
+  position: relative;
+}
+.display-title{
+  font-weight: bold;
+}
+
+/* form-styles */
+.add-btn{
+  background: var(--title) !important;
+}
+input{
+  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+}
+.side-form button{
+  background: var(--title);
+  box-shadow: 1px 1px 3px rgba(90,90,90,0.2);
+}
+form .input-field{
+  margin-top: 30px;
+}
+
+.container {
+  position: relative;
+  width: 100%;
+  max-width: 405px;
+}
+
+.container1 {
+  position: relative;
+  width: 100%;
+  max-width: 405px;
+  display: block;
+  margin: 0 auto;
+}
+
+.container2 {
+  position: relative;
+  width: 100%;
+  max-width: 405px;
+  display: block;
+  margin: 0 auto;
+}
+
+.container img {
+  width: 100%;
+  height: 91%;
+}
+
+.container1 img {
+  width: 100%;
+  height: 91%;
+  
+}
+
+.container2 img {
+  width: 100%;
+  height: 92%;
+}
+
+.container #btn1 {
+  position: absolute;
+  top: 97%;
+  left: 20%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0px 1px 5px rgba(90,90,90,0.8);
+  background-color: #FFE1C4;
+  color: #FF8816;
+  font-size: 16px;
+  padding: 7px 15px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.container #btn2 {
+  position: absolute;
+  top: 97%;
+  left: 54%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0px 1px 5px rgba(90,90,90,0.8);
+  background-color: #FFE1C4;
+  color: #FF8816;
+  font-size: 16px;
+  padding: 7px 17px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.container1 #btn3 {
+  position: absolute;
+  top: 97%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0px 1px 5px rgba(90,90,90,0.8);
+  background-color: #FFE1C4;
+  color: #FF8816;
+  font-size: 16px;
+  padding: 7px 15px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.container2 #btn4 {
+  position: absolute;
+  top: 86%;
+  left: 89%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0px 1px 5px rgba(90,90,90,0.8);
+  background-color: #FFE1C4;
+  color: #FF8816;
+  font-size: 16px;
+  padding: 14px 14px;
+  border: none;
+  cursor: pointer;
+  border-radius: 50px;
+  text-align: center;
+}
+
+.container2 #btn5 {
+  position: absolute;
+  top: 95%;
+  left: 74%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0px 1px 5px rgba(90,90,90,0.9);
+  background-color: #FFE1C4;
+  color: #FF8816;
+  font-size: 16px;
+  padding: 7px 15px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.container2 #btn6 {
+  position: absolute;
+  top: 95%;
+  left: 90%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0px 1px 5px rgba(90,90,90,0.9);
+  background-color: #FFE1C4;
+  color: #FF8816;
+  font-size: 16px;
+  padding: 7px 15px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.container #btn7 {
+  position: absolute;
+  top: 83%;
+  left: 4%;
+  background-color: white;
+  color: #A9A9A9;
+  font-size: 27px;
+  padding-right: 5px;
+  font-weight: bold;
+}
+
+.container2 #btn10 {
+  position: absolute;
+  top: 0%;
+  left: 17%;
+  background-color: white;
+  color: #585858;
+  font-size: 18px;
+  padding-left: 13px;
+  font-weight: bold;
+}
+
+.container2 #btn11 {
+  position: absolute;
+  top: 21%;
+  left: 92%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0px 1px 5px rgba(90,90,90,0.9);
+  background-color: #FFE1C4;
+  color: #FF8816;
+  padding: 8px 8px;
+  border: none;
+  cursor: pointer;
+  border-radius: 50px;
+  text-align: center;
+}
+
