@@ -1,20 +1,20 @@
-const staticCacheName = "site-staticv3";
-const dynamicCacheName = "site-dynamicv3";
+const staticCacheName = "site-staticv1";
+const dynamicCacheName = "site-dynamicv1";
 const assets = [
-  "/public",
-  "/public/index.html",
-  "/public/js/app.js",
-  "/public/js/ui.js",
-  "/public/js/page.js",
-  "/public/js/materialize.min.js",
-  "/public/js/sweetalert2.min.js",
-  "/public/css/styles.css",
-  "/public/css/materialize.min.css",
-  "/public/css/sweetalert2.min.css",
-  "/public/img/logo.png",
+  "",
+  "/index.html",
+  "/js/app.js",
+  "/js/ui.js",
+  "/js/page.js",
+  "/js/materialize.min.js",
+  "/js/sweetalert2.min.js",
+  "/css/styles.css",
+  "/css/materialize.min.css",
+  "/css/sweetalert2.min.css",
+  "/img/logo.png",
   "https://fonts.googleapis.com/icon?family=Material+Icons",
   "https://fonts.gstatic.com/s/materialicons/v47/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2",
-  "/public/pages/fallback.html",
+  "/pages/fallback.html",
   "https://unpkg.com/leaflet@1.8.0/dist/leaflet.css",
   "https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css",
   "https://unpkg.com/leaflet@1.8.0/dist/leaflet.js",
@@ -80,7 +80,7 @@ self.addEventListener("fetch", (evt) => {
         })
         .catch(() => {
           if (evt.request.url.indexOf(".html") > -1) {
-            return caches.match("/public/pages/fallback.html");
+            return caches.match("/pages/fallback.html");
           }
         })
     );

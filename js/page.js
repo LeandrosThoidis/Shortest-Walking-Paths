@@ -1,6 +1,6 @@
 document.getElementById("image2").src =
   "/public/img/route/" + value + "/step/1.jpeg";
-document.getElementById("btn4").href = "/public/pages/route_preview.html?" + value;
+document.getElementById("btn4").href = "/pages/route_preview.html?" + value;
 
 function right() {
   step = Number(step) + 1;
