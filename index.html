@@ -155,13 +155,13 @@
   var routingControl; // Declare routingControl globally
 
 // Live location marker
-if (!navigator.geolocation) {
-    console.log("Your browser doesn't support geolocation feature!");
+// Remove the setInterval part and just call once on page load
+if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(getPosition, handleGeolocationError, { enableHighAccuracy: true });
 } else {
-    setInterval(() => {
-        navigator.geolocation.getCurrentPosition(getPosition, handleGeolocationError, { enableHighAccuracy: true });
-    }, 5000);
+    console.log("Your browser doesn't support geolocation feature!");
 }
+
 
 var HumanIcon = L.icon({
     iconUrl: 'img/icons/walking.png',
