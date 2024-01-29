@@ -1,0 +1,263 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>The Shortest Possible Path</title>
+  <link rel="shortcut icon" href="/img/logo.png" />
+
+
+  <!-- Materialize icons, CSS & JS -->
+  <link type="text/css" href="../css/materialize.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link type="text/css" href="../css/styles.css" rel="stylesheet">
+  <script type="text/javascript" src="../js/materialize.min.js"></script>
+  <script src="../js/sweetalert2.min.js"></script>
+  <link rel="stylesheet" href="../css/sweetalert2.min.css">
+  <link rel="stylesheet" href="../css/mainpagesweetalert.css">
+  <link rel="manifest" href="../manifest.json">
+  
+  
+    <!-- Leaflet Routing Machine CSS &JS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
+
+    <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+
+  <!-- iOS support -->
+  <link rel="apple-touch-icon" href="/img/icons/icon-96x96.png">
+  <meta name="apple-mobile-web-app-status-bar" content="#FFE1C4">
+  <meta name="theme-color" content="#FFE1C4">
+
+  <link href="/img/icons/splash-640x1136.png"
+    media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)"
+    rel="apple-touch-startup-image" />
+  <link href="/img/icons/splash-750x1334.png"
+    media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)"
+    rel="apple-touch-startup-image" />
+  <link href="/img/icons/splash-1242x2208.png"
+    media="(device-width: 621px) and (device-height: 1104px) and (-webkit-device-pixel-ratio: 3)"
+    rel="apple-touch-startup-image" />
+  <link href="/img/icons/splash-1125x2436.png"
+    media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)"
+    rel="apple-touch-startup-image" />
+  <link href="/img/icons/splash-828x1792.png"
+    media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2)"
+    rel="apple-touch-startup-image" />
+  <link href="/img/icons/splash-1242x2688.png"
+    media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3)"
+    rel="apple-touch-startup-image" />
+  <link href="/img/icons/splash-1536x2048.png"
+    media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2)"
+    rel="apple-touch-startup-image" />
+  <link href="/img/icons/splash-1668x2224.png"
+    media="(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2)"
+    rel="apple-touch-startup-image" />
+  <link href="/img/icons/splash-1668x2388.png"
+    media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2)"
+    rel="apple-touch-startup-image" />
+  <link href="/img/icons/splash-2048x2732.png"
+    media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)"
+    rel="apple-touch-startup-image" />
+</head>
+
+
+
+<body class="grey lighten-4">
+  <nav class="z-depth-0">
+    <div class="nav-wrapper container" style="width: 93%; display: flex; align-items: center; justify-content: space-between;">
+      <span class="left grey-text text-darken-1">
+        <i class="material-icons sidenav-trigger" style="margin-right: 10px;" data-target="side-menu">menu</i>
+      </span>
+      <a href="#" style="display: flex; align-items: center; margin-left: -10px;">
+        <span style ="font-size: 1.35rem;">The Shortest Possible Path</span>
+        <i class="material-icons" style="margin-left: 5px; color: blue;">verified</i>
+      </a>
+    </div>
+    <div class="location-update-container">
+      <button id="centerMap" class="waves-effect waves-light btn green">Center Map on Me</button>
+      <button id="updateLocation" class="waves-effect waves-light btn green">Update My Location</button>
+    </div>       
+  </nav>
+  
+
+  <!-- Side Nav -->
+  <ul id="side-menu" class="sidenav side-menu">
+    <li style="background-color: #FFE1C4;height:7.3%"><a class="subheader"
+        style="font-size: 17px;color: #FF8816;">Offline Travel Navigation</a></li>
+    <li><a href="/pages/recommendation/Departments.html" class="waves-effect"><i
+          class="material-icons">location_city</i>Departments</a></li>
+    <li><a href="/pages/recommendation/Cafe-restaurants.html" class="waves-effect"><i
+          class="material-icons">restaurant</i>Cafe-Restaurants</a></li>
+    <li>
+      <div class="divider"></div>
+    </li>
+    <li><a href="/pages/about.html" class="waves-effect">
+        <i class="material-icons">info</i>About</a></li>
+  </ul>
+  
+  
+  <div id="map" style="width: 100%; height: 91%;"></div>
+
+  <script>
+    // Initialize the map
+    var map = L.map('map').setView([38.2892, 21.7853], 16); // University of Patras coordinate
+    map.zoomControl.setPosition('topright');
+
+    // OSM layer
+    var osmLayer = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    //Blue icons 
+    var markers = [
+        { coordinates: [38.28962, 21.79132], popupText: 'Κεντρική βιβλιοθήκη και Κέντρο ενημέρωσης' },
+        { coordinates: [38.29022, 21.78636], popupText: 'Συνεδριακό Κέντρο' },
+        { coordinates: [38.28570, 21.79006], popupText: 'Φοιτητική Εστία' },
+        { coordinates: [38.28204, 21.78855], popupText: 'Πανεπιστημιακό Γυμναστήριο Πατρών' },
+        { coordinates: [38.2861, 21.7866], popupText: 'Πανεπιστήμιο Πατρών-Πρυτανεία' },
+    ];
+
+    markers.forEach(marker => {
+        var singleMarker = L.marker(marker.coordinates).addTo(map);
+        singleMarker.bindPopup(marker.popupText);
+
+        // Show popup on hover
+        singleMarker.on('mouseover', function (e) {
+            this.openPopup();
+        });
+
+        // Hide popup on mouseout
+        singleMarker.on('mouseout', function (e) {
+            this.closePopup();
+        });
+    });
+
+
+    // Define a green icon
+    var greenIcon = L.icon({
+        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
+        shadowUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-shadow.png',
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41]
+    });
+
+    // Green icon to Hospital
+    var singleMarker = L.marker([38.29486, 21.79567], { icon: greenIcon }).addTo(map);
+    singleMarker.bindPopup('Rio Hospital').openPopup();
+    </script>
+
+
+<script>
+  var routingControl; // Declare routingControl globally
+
+// Live location marker
+if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(getPosition, handleGeolocationError, { enableHighAccuracy: true });
+} else {
+    console.log("Your browser doesn't support geolocation feature!");
+}
+
+
+var HumanIcon = L.icon({
+    iconUrl: 'img/icons/walking.png',
+    iconSize: [40, 40]
+});
+
+var marker, circle, lastPosition = { lat: null, long: null };
+
+  // Haversine formula to calculate distance
+  function calculateDistance(lat1, long1, lat2, long2) {
+    var R = 6371e3; // Earth's radius in meters
+    var φ1 = lat1 * Math.PI / 180;
+    var φ2 = lat2 * Math.PI / 180;
+    var Δφ = (lat2 - lat1) * Math.PI / 180;
+    var Δλ = (long2 - long1) * Math.PI / 180;
+
+    var a = Math.sin(Δφ / 2) * Math.sin(Δφ / 2) +
+            Math.cos(φ1) * Math.cos(φ2) *
+            Math.sin(Δλ / 2) * Math.sin(Δλ / 2);
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+    return R * c; // Distance in meters
+  }
+
+  function getPosition(position) {
+    var lat = position.coords.latitude;
+    var long = position.coords.longitude;
+    var accuracy = position.coords.accuracy;
+
+    if (marker) {
+        map.removeLayer(marker);
+    }
+
+    if (circle) {
+        map.removeLayer(circle);
+    }
+
+    circle = L.circle([lat, long], { radius: accuracy }).addTo(map);
+    marker = L.marker([lat, long], { icon: HumanIcon }).addTo(map);
+  
+}
+
+
+  function handleGeolocationError(error) {
+    console.log("Error getting geolocation:", error.message);
+  }
+
+
+var routing = L.Routing.control({
+    waypoints: [
+        L.latLng(38.2892, 21.7853), // University of Patras coordinate
+        // Add other waypoints as needed
+    ],
+    routeWhileDragging: true,
+    router: L.Routing.mapbox('pk.eyJ1IjoibGVhbmRyb3M5OSIsImEiOiJjbHJwOXNkamMwMjRiMm5vZnNvYnJ5YWs5In0.3pVImyDmcZpHdaH5BfbRfw'), // Use Mapbox as the router
+    profile: 'mapbox/walking' // Set the profile to walking
+}).addTo(map);
+
+
+// Assign the control to the routingControl variable
+routingControl = routing.getPlan();
+
+map.on('click', function (e) {
+    console.log(e);
+    var newMarker = L.marker([e.latlng.lat, e.latlng.lng]).addTo(map);
+
+    // Update the routing control waypoints
+    routing.setWaypoints([
+        L.latLng(38.2892, 21.7853), // University of Patras coordinate
+        L.latLng(e.latlng.lat, e.latlng.lng)
+    ]);
+
+    routingControl.on('routesfound', function (e) {
+        var routes = e.routes;
+        console.log(routes);
+
+        e.routes[0].coordinates.forEach(function (coord, index) {
+            setTimeout(function () {
+                marker.setLatLng([coord.lat, coord.lng]);
+            }, 100 * index);
+        });
+    });
+});
+
+
+
+</script> 
+
+  <script src="/js/app.js"></script>
+  <script src="/js/ui.js"></script>
+
+
+</body>
+
+</html>
+
+
+
+
