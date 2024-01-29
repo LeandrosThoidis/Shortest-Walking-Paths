@@ -231,3 +231,18 @@ form .input-field{
   text-align: center;
 }
 
+.location-update-container {
+  position: absolute;
+  bottom: 40px; 
+  right: 10px;  
+  z-index: 1000; 
+  display: flex;
+  flex-direction: column;
+  gap: 10px; 
+}
+
+.location-update-container .btn.green {
+  background-color: #4CAF50;
+}
+
+
