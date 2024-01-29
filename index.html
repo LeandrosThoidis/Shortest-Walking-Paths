@@ -76,9 +76,11 @@
         <i class="material-icons" style="margin-left: 5px; color: blue;">verified</i>
       </a>
     </div>
+    <div class="location-update-container">
+      <button id="centerMap" class="waves-effect waves-light btn green">Center Map on Me</button>
+      <button id="updateLocation" class="waves-effect waves-light btn green">Update My Location</button>
+    </div>       
   </nav>
-
-
   
 
   <!-- Side Nav -->
@@ -108,7 +110,6 @@
     var osmLayer = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
-
 
     //Blue icons 
     var markers = [
@@ -155,7 +156,6 @@
   var routingControl; // Declare routingControl globally
 
 // Live location marker
-// Remove the setInterval part and just call once on page load
 if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(getPosition, handleGeolocationError, { enableHighAccuracy: true });
 } else {
@@ -191,35 +191,25 @@ var marker, circle, lastPosition = { lat: null, long: null };
     var long = position.coords.longitude;
     var accuracy = position.coords.accuracy;
 
-    if (lastPosition.lat !== null && lastPosition.long !== null) {
-      var distance = calculateDistance(lat, long, lastPosition.lat, lastPosition.long);
-      if (distance < 10) { // Threshold distance in meters
-        return; // Don't update if the change in position is less than the threshold
-      }
-    }
-
-    lastPosition = { lat: lat, long: long }; // Update last known position
-
     if (marker) {
-      map.removeLayer(marker);
+        map.removeLayer(marker);
     }
 
     if (circle) {
-      map.removeLayer(circle);
+        map.removeLayer(circle);
     }
 
     circle = L.circle([lat, long], { radius: accuracy }).addTo(map);
     marker = L.marker([lat, long], { icon: HumanIcon }).addTo(map);
-    map.fitBounds(circle.getBounds());
-  }
+  
+}
+
 
   function handleGeolocationError(error) {
     console.log("Error getting geolocation:", error.message);
   }
 
-// Initialize the routing control
-// Initialize the routing control for walking
-// Initialize the routing control for walking
+
 var routing = L.Routing.control({
     waypoints: [
         L.latLng(38.2892, 21.7853), // University of Patras coordinate
