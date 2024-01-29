@@ -43,9 +43,11 @@
                 <span style="font-size: 1.35rem; margin-left:15px">Departments</span>
             </a>
         </div>
+        <div class="location-update-container">
+            <button id="centerMap" class="waves-effect waves-light btn green">Center Map on Me</button>
+            <button id="updateLocation" class="waves-effect waves-light btn green">Update My Location</button>
+        </div>       
     </nav>
-</body>
-
 
 <!-- Side nav -->
 <ul id="side-menu" class="sidenav side-menu">
@@ -150,18 +152,19 @@ greenMarker.bindPopup('Rio Hospital');
   var routingControl; // Declare routingControl globally
 
 // Live location marker
-// Remove the setInterval part and just call once on page load
-if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(getPosition, handleGeolocationError, { enableHighAccuracy: true });
-} else {
+if (!navigator.geolocation) {
     console.log("Your browser doesn't support geolocation feature!");
+} else {
+    setInterval(() => {
+        navigator.geolocation.getCurrentPosition(getPosition, handleGeolocationError, { enableHighAccuracy: true });
+    }, 5000);
 }
 
 var HumanIcon = L.icon({
     iconUrl: '../../img/icons/walking.png',
     iconSize: [40, 40]
 });
-    
+
 var marker, circle, lastPosition = { lat: null, long: null };
 
   // Haversine formula to calculate distance
@@ -180,40 +183,30 @@ var marker, circle, lastPosition = { lat: null, long: null };
     return R * c; // Distance in meters
   }
 
-  function getPosition(position) {
+function getPosition(position) {
     var lat = position.coords.latitude;
     var long = position.coords.longitude;
     var accuracy = position.coords.accuracy;
 
-    if (lastPosition.lat !== null && lastPosition.long !== null) {
-      var distance = calculateDistance(lat, long, lastPosition.lat, lastPosition.long);
-      if (distance < 10) { // Threshold distance in meters
-        return; // Don't update if the change in position is less than the threshold
-      }
-    }
-
-    lastPosition = { lat: lat, long: long }; // Update last known position
-
     if (marker) {
-      map.removeLayer(marker);
+        map.removeLayer(marker);
     }
 
     if (circle) {
-      map.removeLayer(circle);
+        map.removeLayer(circle);
     }
 
     circle = L.circle([lat, long], { radius: accuracy }).addTo(map);
     marker = L.marker([lat, long], { icon: HumanIcon }).addTo(map);
-    map.fitBounds(circle.getBounds());
-  }
+  
+}
+
 
   function handleGeolocationError(error) {
     console.log("Error getting geolocation:", error.message);
   }
 
-// Initialize the routing control
-// Initialize the routing control for walking
-// Initialize the routing control for walking
+
 var routing = L.Routing.control({
     waypoints: [
         L.latLng(38.2892, 21.7853), // University of Patras coordinate
@@ -249,8 +242,6 @@ map.on('click', function (e) {
         });
     });
 });
-
-
 
 </script> 
 
