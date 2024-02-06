@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Cafe-Restaurants</title>
-    <link rel="shortcut icon" href="../img/logo.png" />
+    <link rel="shortcut icon" href="../../img/logo.png" />
 
   <!-- Materialize icons, CSS & JS -->
   <link type="text/css" href="../../css/materialize.min.css" rel="stylesheet">
@@ -19,14 +19,14 @@
 
 
  <!-- Leaflet Routing Machine CSS &JS -->
- <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css" />
+ <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
  <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
 
- <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"></script>
+ <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
  <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
 
 <!-- iOS support -->
-<link rel="apple-touch-icon" href="../img/icons/icon-96x96.png">
+<link rel="apple-touch-icon" href="../../img/icons/icon-96x96.png">
 <meta name="apple-mobile-web-app-status-bar" content="#FFE1C4">
 <meta name="theme-color" content="#FFE1C4">
 </head>
@@ -42,17 +42,24 @@
                 <span style="font-size: 1.35rem; margin-left:15px">Cafe-Restaurants</span>
             </a>
         </div>
-        <div class="location-update-container">
-                <button id="centerMap" class="waves-effect waves-light btn green">Center Map on Me</button>
-                <button id="updateLocation" class="waves-effect waves-light btn green">Update My Location</button>
-        </div>       
-    </nav>
+        <div class="location-container">
+          <button id="findMe" class="waves-effect waves-light btn green">Find me</button>
+        </div> 
+        <div class="From-To-container">
+          <input id="currentLocation" type="text" placeholder="Current Location" class="input-field" />
+          <input id="destinationLocation" type="text" placeholder="Destination" class="input-field" />
+          <button id="findShortestPath" onclick="setRoute()">Find Shortest Path</button>
+        </div>          
+      </nav>
 
 <!-- Side nav -->
 <ul id="side-menu" class="sidenav side-menu">
     <li style="background-color: #FFE1C4;height:7.3%"><a class="subheader"
-        style="font-size: 17px;color: #FF8816;">Offline Travel Navigation</a></li>
-    <li><a href="/index.html" class="waves-effect"><i class="material-icons">home</i>Home</a></li>
+        style="font-size: 17px;color: #FF8816;">Campus Navigation</a></li>
+
+
+    <li><a href="/index.html" class="waves-effect">
+        <i class="material-icons">home</i>Home</a></li>
 
     <li><a href="/pages/recommendation/Departments.html" class="waves-effect"><i
             class="material-icons">location_city</i>Departments</a></li>
@@ -90,12 +97,12 @@ var redIcon = L.icon({
 // Define an array of red markers with coordinates and popup text
 var redMarkers = [
     { coordinates: [38.28700, 21.786467], popupText: 'Πάρκο Ειρήνης' },
-    { coordinates: [38.28677, 21.78559], popupText: 'Octagon' },
+    { coordinates: [38.28678,21.78558], popupText: 'Octagon' },
     { coordinates: [38.28597, 21.78575], popupText: 'Coffee Island' },
-    { coordinates: [38.28677, 21.78559], popupText: 'Εστιατόριο Φοιτητικής Εστίας' },
-    { coordinates: [38.28590, 21.78985], popupText: 'Καφετέρια CEID' },
-    { coordinates: [38.29036, 21.79488], popupText: 'Cafetiero' },
+    { coordinates: [38.28593,21.78975], popupText: 'Εστιατόριο Φοιτητικής Εστίας' },
+    { coordinates: [38.29041,21.79482], popupText: 'Καφετέρια CEID' },
     { coordinates: [38.28912, 21.78741], popupText: 'Κυλικείο Μηχανολόγων' },
+    { coordinates: [38.29089,21.78852], popupText: 'Κυλικείο Χημικού' },
 ];
 
 // Add each red marker to the map
@@ -133,107 +140,9 @@ greenMarker.bindPopup('Rio Hospital');
 
 </script>
 
-
-<script>
-  var routingControl; // Declare routingControl globally
-
-// Live location marker
-if (!navigator.geolocation) {
-    console.log("Your browser doesn't support geolocation feature!");
-} else {
-    setInterval(() => {
-        navigator.geolocation.getCurrentPosition(getPosition, handleGeolocationError, { enableHighAccuracy: true });
-    }, 5000);
-}
-
-var HumanIcon = L.icon({
-    iconUrl: '../../img/icons/walking.png',
-    iconSize: [40, 40]
-});
-
-var marker, circle, lastPosition = { lat: null, long: null };
-
-  // Haversine formula to calculate distance
-  function calculateDistance(lat1, long1, lat2, long2) {
-    var R = 6371e3; // Earth's radius in meters
-    var φ1 = lat1 * Math.PI / 180;
-    var φ2 = lat2 * Math.PI / 180;
-    var Δφ = (lat2 - lat1) * Math.PI / 180;
-    var Δλ = (long2 - long1) * Math.PI / 180;
-
-    var a = Math.sin(Δφ / 2) * Math.sin(Δφ / 2) +
-            Math.cos(φ1) * Math.cos(φ2) *
-            Math.sin(Δλ / 2) * Math.sin(Δλ / 2);
-    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-
-    return R * c; // Distance in meters
-  }
-
-function getPosition(position) {
-    var lat = position.coords.latitude;
-    var long = position.coords.longitude;
-    var accuracy = position.coords.accuracy;
-
-    if (marker) {
-        map.removeLayer(marker);
-    }
-
-    if (circle) {
-        map.removeLayer(circle);
-    }
-
-    circle = L.circle([lat, long], { radius: accuracy }).addTo(map);
-    marker = L.marker([lat, long], { icon: HumanIcon }).addTo(map);
-  
-}
-
-
-  function handleGeolocationError(error) {
-    console.log("Error getting geolocation:", error.message);
-  }
-
-
-var routing = L.Routing.control({
-    waypoints: [
-        L.latLng(38.2892, 21.7853), // University of Patras coordinate
-        // Add other waypoints as needed
-    ],
-    routeWhileDragging: true,
-    router: L.Routing.mapbox('pk.eyJ1IjoibGVhbmRyb3M5OSIsImEiOiJjbHJwOXNkamMwMjRiMm5vZnNvYnJ5YWs5In0.3pVImyDmcZpHdaH5BfbRfw'), // Use Mapbox as the router
-    profile: 'mapbox/walking' // Set the profile to walking
-}).addTo(map);
-
-
-// Assign the control to the routingControl variable
-routingControl = routing.getPlan();
-
-map.on('click', function (e) {
-    console.log(e);
-    var newMarker = L.marker([e.latlng.lat, e.latlng.lng]).addTo(map);
-
-    // Update the routing control waypoints
-    routing.setWaypoints([
-        L.latLng(38.2892, 21.7853), // University of Patras coordinate
-        L.latLng(e.latlng.lat, e.latlng.lng)
-    ]);
-
-    routingControl.on('routesfound', function (e) {
-        var routes = e.routes;
-        console.log(routes);
-
-        e.routes[0].coordinates.forEach(function (coord, index) {
-            setTimeout(function () {
-                marker.setLatLng([coord.lat, coord.lng]);
-            }, 100 * index);
-        });
-    });
-});
-
-</script> 
-
-
-<script src="/js/app.js"></script>
 <script src="/js/ui.js"></script>
+<script src="/js/app.js"></script>
+
 
 
 </body>
