@@ -231,18 +231,60 @@ form .input-field{
   text-align: center;
 }
 
-.location-update-container {
+.location-container {
   position: absolute;
-  bottom: 40px; 
-  right: 10px;  
+  top: 79px; 
+  left: 415px;  
   z-index: 1000; 
   display: flex;
   flex-direction: column;
   gap: 10px; 
 }
 
-.location-update-container .btn.green {
+.location-container .btn.green {
   background-color: #4CAF50;
 }
+
+.From-To-container {
+  position: absolute;
+  top: 70px;
+  left: 10px; 
+  z-index: 500; 
+  background: white;
+  padding: 8px; 
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  width: 400px; 
+  font-size: 0.5rem; /* Smaller font size for the container */
+}
+
+.From-To-container .input-field {
+  margin-bottom: 5px;
+  width: 150px; /* Adjust width to make the input fields smaller */
+}
+
+.From-To-container button {
+  margin-top: 5px;
+  background-color: #4CAF50; 
+  color: white; 
+  border: none; 
+  border-radius: 4px; 
+  padding: 6px 12px; 
+  font-size: 1rem; 
+  cursor: pointer; 
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3); 
+}
+
+/* Add hover effect for the button */
+.From-To-container button:hover {
+  background-color: #45a049; 
+}
+
+/* Make the toast message smaller */
+#toast-container .toast {
+  font-size: 0.8rem; 
+  border-radius: 25px; 
+}
+
 
 

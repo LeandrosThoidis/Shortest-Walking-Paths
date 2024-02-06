@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
     if (!navigator.onLine) {
       Swal.fire({
         title: "You've lost your network connection",
-        text: "Please switch to Offline mode for a better user experience.",
+        text: "You can't find more paths but you can preview the latest.",
         icon: "warning",
         confirmButtonColor: "#3085d6",
         confirmButtonText: "OK",

@@ -20,10 +20,10 @@
 
 
  <!-- Leaflet Routing Machine CSS &JS -->
- <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css" />
+ <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
  <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
 
- <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"></script>
+ <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
  <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
 
 <!-- iOS support -->
@@ -206,16 +206,6 @@ function getPosition(position) {
     console.log("Error getting geolocation:", error.message);
   }
 
-
-var routing = L.Routing.control({
-    waypoints: [
-        L.latLng(38.2892, 21.7853), // University of Patras coordinate
-        // Add other waypoints as needed
-    ],
-    routeWhileDragging: true,
-    router: L.Routing.mapbox('pk.eyJ1IjoibGVhbmRyb3M5OSIsImEiOiJjbHJwOXNkamMwMjRiMm5vZnNvYnJ5YWs5In0.3pVImyDmcZpHdaH5BfbRfw'), // Use Mapbox as the router
-    profile: 'mapbox/walking' // Set the profile to walking
-}).addTo(map);
 
 
 // Assign the control to the routingControl variable
