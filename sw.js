@@ -1,5 +1,5 @@
-const staticCacheName = "site-staticv7";
-const dynamicCacheName = "site-dynamicv7";
+const staticCacheName = "site-staticv1";
+const dynamicCacheName = "site-dynamicv1";
 const assets = [
   "",
   "/index.html",
@@ -15,9 +15,9 @@ const assets = [
   "https://fonts.googleapis.com/icon?family=Material+Icons",
   "https://fonts.gstatic.com/s/materialicons/v47/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2",
   "/pages/fallback.html",
-  "https://unpkg.com/leaflet@1.8.0/dist/leaflet.css",
+  "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css",
+  "https://unpkg.com/leaflet@1.9.4/dist/leaflet.js",
   "https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css",
-  "https://unpkg.com/leaflet@1.8.0/dist/leaflet.js",
   "https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"
 ];
 
