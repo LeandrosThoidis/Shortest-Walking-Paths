@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>The Shortest Possible Path</title>
+  <title>The Shortest Path</title>
   <link rel="shortcut icon" href="/img/logo.png" />
 
 
@@ -95,7 +95,7 @@
   <!-- Side Nav -->
   <ul id="side-menu" class="sidenav side-menu">
     <li style="background-color: #FFE1C4;height:7.3%"><a class="subheader"
-        style="font-size: 17px;color: #FF8816;">Offline Travel Navigation</a></li>
+        style="font-size: 17px;color: #FF8816;">Campus Navigation</a></li>
     <li><a href="/pages/recommendation/Departments.html" class="waves-effect"><i
           class="material-icons">location_city</i>Departments</a></li>
     <li><a href="/pages/recommendation/Cafe-restaurants.html" class="waves-effect"><i
@@ -109,6 +109,8 @@
 
 
   <div id="map" style="width: 100%; height: 91%;"></div>
+  </div>
+  
 
   <script>
     // Initialize the map
@@ -166,275 +168,10 @@
     
     </script>
 
-<script>
-
-function decodePolyline(encoded) {
-  var points = [];
-  var index = 0, lat = 0, lng = 0, shift = 0, result = 0, byte = null, latitude_change, longitude_change,
-      factor = Math.pow(10, 5); // The factor to divide the result by
-
-  while (index < encoded.length) {
-    byte = null;
-    shift = 0;
-    result = 0;
-
-    do {
-      byte = encoded.charCodeAt(index++) - 63;
-      result |= (byte & 0x1f) << shift;
-      shift += 5;
-    } while (byte >= 0x20);
-
-    latitude_change = ((result & 1) ? ~(result >> 1) : (result >> 1));
-    shift = result = 0;
-
-    do {
-      byte = encoded.charCodeAt(index++) - 63;
-      result |= (byte & 0x1f) << shift;
-      shift += 5;
-    } while (byte >= 0x20);
-
-    longitude_change = ((result & 1) ? ~(result >> 1) : (result >> 1));
-
-    lat += latitude_change;
-    lng += longitude_change;
-
-    points.push([(lat / factor).toFixed(5), (lng / factor).toFixed(5)]);
-  }
-  return points.map(point => [parseFloat(point[0]), parseFloat(point[1])]);
-}
-
-const knownLocations = {
-  'συνεδριακό': [38.29022, 21.78636],
-  'συνεδριακό κέντρο': [38.29022, 21.78636],
-
-  'Νοσοκομείο': [38.2943,21.7957],
-  'Νοσοκομέιο Ρίο': [38.2943,21.7957],
-  'Βοήθεια': [38.2943,21.7957],
-
-  'Βιβλιοθήκη': [38.28962, 21.79132],
-  'Κεντρική βιβλιοθήκη': [38.28962, 21.79132],
-  'Κέντρο Ενημέρωσης': [38.28962, 21.79132],
-
-  'Πρυτανεία': [38.2861, 21.7866],
-  'Κτίριο Α': [38.2861, 21.7866],
-
-  'Φοιτητική Εστία': [38.28570, 21.79006],
-  'Εστία': [38.28570, 21.79006],
-  'Λέσχη Σίτησης': [38.28570, 21.79006],
-
-  'Πανεπιστημιακό Γυμναστήριο': [38.28204, 21.78855],
-  'Γήπεδο': [38.28204, 21.78855],
-
-  'Τμήμα Μηχανικών Ηλεκτρονικών Υπολογιστών και Πληροφορικής': [38.29019, 21.79503],
-  'Ceid': [38.29019, 21.79503],
-  'ΗΥ': [38.29019, 21.79503],
-
-  'Ιατρική Σχολή': [38.29382, 21.79399],
-
-  'Φαρμακευτική': [38.29237, 21.79257],
-  'Τμήμα Φαρμακευτικής': [38.29237, 21.79257],
-
-  'Γεωλογία': [38.29181, 21.78994],
-  'Τμήμα Γεωλογίας': [38.29181, 21.78994],
-
-  'Φυσικό': [38.29127, 21.78883],
-  'Τμήμα Φυσικής': [38.29127, 21.78883],
-
-  'Χημικό': [38.29069, 21.78781],
-  'Τμήμα Χημείας': [38.29069, 21.78781],
-
-  'Μαθηματικό': [38.29052, 21.79012],
-  'Τμήμα Μαθηματικών': [38.29052, 21.79012],
-
-  'Βιολογικό': [38.29009, 21.78974],
-  'Τμήμα Βιολογίας': [38.29009, 21.78974],
-
-  'Τμήμα Χημικών Μηχανικών': [38.28962, 21.78827],
-  'Χημικοί Μηχανικοί': [38.28962, 21.78827],
-  'Χηνικών Μηχανικών': [38.28962, 21.78827],
-
-  'Σχολή Μηχανολόγων Μηχανικών & Αεροναυπηγικής': [38.28920, 21.78749],
-  'Μηχανολόγοι': [38.28920, 21.78749],
-  'Αεροναυπηγοί': [38.28920, 21.78749],
-  'Μηχανολόγων': [38.28920, 21.78749],
-
-  'Τμήμα Πολιτικών Μηχανικών': [38.28888, 21.79048],
-  'Πολιτικοί Μηχανικοί' : [38.28888, 21.79048],
-
-  'Παιδαγωγικό Τμήμα Δημοτικής Εκπαίδευσης': [38.28848, 21.78736],
-  'Παιδαγωγικό' : [38.28848, 21.78736],
-
-  'Τμήμα Ηλεκτρολόγων Μηχανικών & Τεχνολογίας Υπολογιστών': [38.28787, 21.78927],
-  'Ηλέκτρολόγοι': [38.28787, 21.78927],
-
-  'Τμήμα Λογοθεραπίας': [38.28825, 21.78336],
-  'Λογοθεραπία' : [38.28825, 21.78336],
-
-  'Τμήμα Οικονομικών Επιστημών': [38.28693, 21.78195],
-  'Οικονομικό' : [38.28693, 21.78195],
-
-  'Τμήμα Διοίκησης Επιχειρήσεων': [38.28680, 21.78412],
-  'Διοίκηση' : [38.28680, 21.78412],
-
-  'Τμήμα Θεατρικών Σπουδών': [38.28468, 21.78410],
-  'Θεατρολογία' : [38.28468, 21.78410],
-
-  'Τμήμα Φιλοσοφίας': [38.28494, 21.78462],
-  'Φιλοσοφία' : [38.28494, 21.78462],
-
-  'Τμήμα Επιστήμης Υλικών': [38.28336, 21.78695],
-  'Επιστήμη Υλικών' : [38.28336, 21.78695],
-
-  'Τμήμα Φυσικοθεραπείας': [38.28462, 21.78795],
-  'Φυσικοθεραπεία' : [38.28462, 21.78795],
-
-  'Τμήμα Αρχιτεκτόνων': [38.28590, 21.78438],
-  'Αρχιτέκτονες' : [38.28590, 21.78438],
-
-  'Πάρκο Ειρήνης': [38.28700, 21.786467],
-  'Πάρκο' : [38.28700, 21.786467],
-
-  'Οκτάγωνο': [38.28678,21.78558],
-  'Octagon' : [38.28678,21.78558],
-
-  'Coffee Island': [38.28597, 21.78575],
-  'Coffee': [38.28597, 21.78575],
-
-  'Εστιατόριο Φοιτητικής Εστίας': [38.28593,21.78975],
-  'Εστιατόριο': [38.28593,21.78975],
-
-  'Καφετέρια CEID': [38.28590, 21.78985],
-
-  'Cafetiero': [38.29036, 21.79488],
-
-  'Κυλικείο Μηχανολόγων': [38.28912, 21.78741],
- 
-};
-
-
-
-// Helper function to remove accents/diacritics
-function removeAccents(str) {
-  return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-}
-
-// Normalize the location key for consistent matching
-function normalizeLocationKey(location) {
-  return removeAccents(location.trim().toLowerCase().replace(/\s/g, ''));
-}
-
-// location name to geographic coordinates
-function geocodeLocation(inputId, callback) {
-  var locationInput = document.getElementById(inputId).value;
-  var normalizedInput = normalizeLocationKey(locationInput);
-
-  // Check if the location is a known location
-  var matchedLocationKey = Object.keys(knownLocations).find(function (knownLocation) {
-    return normalizeLocationKey(knownLocation) === normalizedInput;
-  });
-
-  if (matchedLocationKey) {
-    // Call the callback function with the coordinates from the known locations
-    callback(knownLocations[matchedLocationKey]);
-  } else {
-    // Instead of showing the error here, we pass null to the callback
-    if(inputId= 'currentLocation'){
-    M.toast({html: `Current location not found within the University of Patras: "${locationInput}"`, classes: 'rounded'});
-    }
-    else{
-     M.toast({html: `Destination is not found within the University of Patras: "${locationInput}"`, classes: 'rounded'});
-    }
-    callback(null);
-  }
-}
-
-
-
-
-let currentPolyline = null;
-
-//Graphhopper+Polyline
-function drawRoute(from, to) {
-  if (!from || !to) {
-    // Display error message if either from or to coordinates are null
-    M.toast({html: 'One or both locations are invalid. Please enter valid locations within the University of Patras.', classes: 'rounded'});
-    return;
-  }
-  const key = '7040f51d-1186-4818-ad37-765e602f8e32'; // Replace with your actual GraphHopper API key, ensure there are no extra spaces or characters
-  const queryUrl = `https://graphhopper.com/api/1/route?point=${from.join(',')}&point=${to.join(',')}&vehicle=foot&key=${key}`;
-
-  fetch(queryUrl)
-    .then(response => response.json())
-    .then(data => {
-      // Remove the previous route if it exists
-      if (currentPolyline) {
-        map.removeLayer(currentPolyline);
-        currentPolyline = null;
-      }
-      
-      // Check if the GraphHopper API returned the expected data
-      if (data.paths && data.paths.length > 0 && data.paths[0].points) {
-        // Use your custom decodePolyline function
-        const points = decodePolyline(data.paths[0].points);
-        currentPolyline = L.polyline(points, { color: 'blue' }).addTo(map);
-        map.fitBounds(currentPolyline.getBounds());
-
-        // Displaying distance and instructions
-        if (data.paths[0].distance) {
-          const distance = (data.paths[0].distance / 1000).toFixed(2); // Convert meters to kilometers and round to 2 decimal places
-          let instructionsHtml = `<strong>Total Distance:</strong> ${distance} km<br><strong>Instructions:</strong><ul>`;
-          if (data.paths[0].instructions) {
-            data.paths[0].instructions.forEach(instruction => {
-              instructionsHtml += `<li>${instruction.text} - ${(instruction.distance / 1000).toFixed(2)} km</li>`; // Convert meters to kilometers for instructions
-            });
-            instructionsHtml += '</ul>';
-          } else {
-            instructionsHtml += '<li>No detailed instructions provided by the API.</li></ul>';
-          }
-
-          // Use Materialize toast to display instructions
-          M.toast({html: instructionsHtml, classes: 'rounded instructions-toast', displayLength: 100000}); // Display for 100 seconds
-        } else {
-          M.toast({html: 'Distance information is not available.', classes: 'rounded'});
-        }
-      } else {
-        console.error('GraphHopper response is missing paths:', data);
-        M.toast({html: 'Error: GraphHopper response is missing paths.', classes: 'rounded'}); // Using Materialize toast for styling
-      }
-    })
-    .catch(error => {
-      console.error('Error fetching GraphHopper route:', error);
-      M.toast({html: `Error fetching route: ${error.message}`, classes: 'rounded'}); // Using Materialize toast for styling
-    });
-}
-
-
-
-
-
-function setRoute() {
-  let fromCoords = null;
-  let toCoords = null;
-
-  geocodeLocation('currentLocation', function(coords) {
-    fromCoords = coords;
-    if (toCoords) {
-      drawRoute(fromCoords, toCoords);
-    }
-  });
-
-  geocodeLocation('destinationLocation', function(coords) {
-    toCoords = coords;
-    if (fromCoords) {
-      drawRoute(fromCoords, toCoords);
-    }
-  });
-}
-
-</script> 
 
   <script src="/js/ui.js"></script>
   <script src="/js/app.js"></script>
+
 
 
 </body>
