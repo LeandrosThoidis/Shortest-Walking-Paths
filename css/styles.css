@@ -23,32 +23,6 @@ nav .sidenav-trigger{
   margin: 0;
 }
 
-@media screen and (max-width: 768px) {
-  nav .sidenav-trigger {
-    margin-top: -4px; /* Less negative margin on mobile for visibility */
-  }
-}
-
-
-.display a{
-  margin-top: 20px;
-  color: #FF8816;
-  font-size: 16px;
-  text-align: center;
-}
-.card-panel.display{
-  border-radius: 8px;
-  padding: 10px;
-  box-shadow: 0px 1px 3px rgba(90,90,90,0.1);
-  background-color: #FFE9D2;
-  display: grid;
-  position: relative;
-}
-.display-title{
-  font-weight: bold;
-}
-
-
 .side-form button{
   background: var(--title);
   box-shadow: 1px 1px 3px rgba(90,90,90,0.2);
@@ -120,7 +94,6 @@ form .input-field{
 
 /* styles.css */
 .instructions-container {
-  position: absolute;
   top: 20px;
   right: 20px;
   max-width: 300px;
@@ -133,28 +106,77 @@ form .input-field{
   font-size: 14px;
 }
 
+nav-wrapper container{
+  position: left;
+  display: flex;
+}
 
 @media screen and (max-width: 768px) {
+  .map{
+    width: 100%; /* Set the map width to 100% */
+    height: auto; /* Let the height adjust automatically */
+    zoom:0.7;
+  }
+  nav .sidenav-trigger {
+    margin-top: -4px; /* Less negative margin on mobile for visibility */
+  }
+
   nav {
-    font-size: 16px; /* Slightly smaller on phones */
+    font-size: 4vw; /* Responsive font size */
   }
   .display a, .From-To-container button, #toast-container .toast {
-    font-size: 14px; /* Adjust font size for readability */
+    font-size: 3.5vw; /* Larger font size for readability on phones */
   }
   .From-To-container, .location-container {
-    top: 60px; /* Adjust positioning for visibility */
-    width: 95%; /* Use percentage for full-width on smaller screens */
-    left: 50%;
-    transform: translateX(-50%); /* Center align the container */
+    top: 8%; /* Positioning from the top */
+    width: 70%; /* Full width with a little margin */
+    left: 3%; /* Center horizontally */
   }
   .instructions-container {
-    font-size: 12px; /* Adjust for smaller screens */
-    padding: 10px;
-    top: 10px;
-    right: 10px;
-    max-width: 90%;
+    font-size: 3vw; /* Increased font size for better readability */
+    padding: 2%; /* Increased padding */
+    bottom: auto; /* Adjust positioning */
+    top: 75%; /* New positioning to ensure visibility */
+    right: 5%;
+    max-width: 90%; /* Increased to use more screen width */
+    background: #fff;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    border-radius: 8px;
+    overflow: auto;
+    position: fixed; /* Ensure it stays in a fixed position while scrolling */
+    transform: translateY(-50%); /* Center vertically */
+    z-index: 1050; /* Ensure it's above other elements */
   }
+  .location-container {
+    position: absolute;
+    top: 9%; /* Position below the nav */
+    width: 25%;
+    left: 74%; /* Center horizontally */
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 1vw; /* Responsive gap */
+  }
+  nav{
+  background: var(--primary);
+  border-bottom: 10px solid var(--secondary);
+  text-align: center;
+  font-size: 18px;
 }
+.nav-wrapper .container {
+  margin-left: 0; 
+  width: 93%;
+
+}
+nav-wrapper container{
+  position: absolute;
+  display: flex;
+  left: 90%;
+}
+
+}
+
+
 
 
 

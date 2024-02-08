@@ -1,5 +1,5 @@
-const staticCacheName = "site-staticv1";
-const dynamicCacheName = "site-dynamicv1";
+const staticCacheName = "site-staticv8";
+const dynamicCacheName = "site-dynamicv8";
 const assets = [
   "",
   "/index.html",
@@ -10,6 +10,7 @@ const assets = [
   "/css/styles.css",
   "/css/materialize.min.css",
   "/css/sweetalert2.min.css",
+  "/css/mainpagesweetalert.css",
   "/img/logo.png",
   "https://fonts.googleapis.com/icon?family=Material+Icons",
   "https://fonts.gstatic.com/s/materialicons/v47/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2",

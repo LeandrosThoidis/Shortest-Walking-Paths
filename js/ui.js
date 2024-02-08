@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
     if (!navigator.onLine) {
       Swal.fire({
         title: "You've lost your network connection",
-        text: "You can't find more paths but you can preview the latest.",
+        text: "But thats ok its a pwa",
         icon: "warning",
         confirmButtonColor: "#3085d6",
         confirmButtonText: "OK",

@@ -4,8 +4,10 @@ function handleGeolocationError(error) {
 }
 
 var HumanIcon = L.icon({
-  iconUrl: '../img/icons/walking.png',
-  iconSize: [40, 40]
+  iconUrl: '../../img/icons/walking.png',
+  iconSize: [32, 32], 
+  iconAnchor: [16, 32], 
+  popupAnchor: [0, -32] 
 });
 
 var marker, circle;
@@ -23,6 +25,7 @@ function getPosition(position) {
   if (circle) {
       map.removeLayer(circle);
   }
+  marker = L.marker([lat, long], { icon: HumanIcon }).addTo(map);
 
   circle = L.circle([lat, long], { radius: accuracy }).addTo(map);
   marker = L.marker([lat, long], { icon: HumanIcon }).addTo(map);
@@ -130,7 +133,7 @@ const knownLocations = {
 
   'Τμήμα Χημικών Μηχανικών': [38.28962, 21.78827],
   'Χημικοί Μηχανικοί': [38.28962, 21.78827],
-  'Χηνικών Μηχανικών': [38.28962, 21.78827],
+  'Χημικών Μηχανικών': [38.28962, 21.78827],
 
   'Σχολή Μηχανολόγων Μηχανικών & Αεροναυπηγικής': [38.28920, 21.78749],
   'Μηχανολόγοι': [38.28920, 21.78749],
@@ -162,6 +165,7 @@ const knownLocations = {
   'Φιλοσοφία' : [38.28494, 21.78462],
 
   'Τμήμα Επιστήμης Υλικών': [38.28336, 21.78695],
+  'Τμήμα Επιστήμης των Υλικών': [38.28336, 21.78695],
   'Επιστήμη Υλικών' : [38.28336, 21.78695],
 
   'Τμήμα Φυσικοθεραπείας': [38.28462, 21.78795],
@@ -218,13 +222,41 @@ function geocodeLocation(inputId) {
   }
 }
 
+// Define animationInterval in the global scope
+var animationInterval;
 
+function animateMarker(polyline, duration) {
+  if (animationInterval) clearInterval(animationInterval);
+
+  let latlngs = polyline.getLatLngs();
+  let length = latlngs.length;
+  let i = 0;
+
+  // Place the marker at the starting point of the polyline
+  marker.setLatLng(latlngs[0]);
+  
+  animationInterval = setInterval(function() {
+    // Move the marker to the next point
+    marker.setLatLng(latlngs[i]);
+    // Increment the index to reference the next point on the polyline
+    i++;
+    // If we've reached the end of the polyline, clear the interval to stop the animation
+    if (i >= length) clearInterval(animationInterval);
+  }, duration / length);
+}
 
 
 let currentPolyline = null;
+
 function drawRoute(from, to) {
   const key = '7040f51d-1186-4818-ad37-765e602f8e32'; // Use your actual GraphHopper API key
   const queryUrl = `https://graphhopper.com/api/1/route?point=${from.join(',')}&point=${to.join(',')}&vehicle=foot&key=${key}`;
+
+  if (marker) {
+    map.removeLayer(marker); // Remove the previous marker if it exists
+  }
+
+  marker = L.marker(from, {icon: HumanIcon}).addTo(map);
 
   fetch(queryUrl)
     .then(response => response.json())
@@ -238,6 +270,8 @@ function drawRoute(from, to) {
         const points = decodePolyline(data.paths[0].points);
         currentPolyline = L.polyline(points, { color: 'blue' }).addTo(map);
         map.fitBounds(currentPolyline.getBounds());
+
+        animateMarker(currentPolyline, 10000);
 
         if (data.paths[0].distance) {
           const distance = data.paths[0].distance; // Keep distance in meters
@@ -272,7 +306,6 @@ function drawRoute(from, to) {
             console.log('No detailed instructions provided by the API.');
           }
         } else {
-          // This Swal.fire is kept as per your requirement for other errors
           Swal.fire({
             title: 'Error',
             text: 'Distance information is not available.',
@@ -297,7 +330,6 @@ function drawRoute(from, to) {
       });
     });
 }
-
 
 
 function setRoute() {
