@@ -1,3 +1,4 @@
+
 function handleGeolocationError(error) {
   console.log("Error getting geolocation:", error.message);
 }

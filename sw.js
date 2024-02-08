@@ -1,11 +1,10 @@
-const staticCacheName = "site-staticv7";
-const dynamicCacheName = "site-dynamicv7";
+const staticCacheName = "site-staticv1";
+const dynamicCacheName = "site-dynamicv1";
 const assets = [
   "",
   "/index.html",
   "/js/app.js",
   "/js/ui.js",
-  "/js/page.js",
   "/js/materialize.min.js",
   "/js/sweetalert2.min.js",
   "/css/styles.css",
@@ -17,8 +16,6 @@ const assets = [
   "/pages/fallback.html",
   "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css",
   "https://unpkg.com/leaflet@1.9.4/dist/leaflet.js",
-  "https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css",
-  "https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"
 ];
 
 // cache size limit function

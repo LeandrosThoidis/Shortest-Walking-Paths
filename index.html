@@ -28,9 +28,6 @@
   crossorigin="">
   </script>
 
- <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
- <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
-
   <!-- iOS support -->
   <link rel="apple-touch-icon" href="/img/icons/icon-96x96.png">
   <meta name="apple-mobile-web-app-status-bar" content="#FFE1C4">
@@ -115,9 +112,6 @@
   <script>
     // Initialize the map
     var map = L.map('map').setView([38.2892, 21.7853], 16);
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-     }).addTo(map);
     map.zoomControl.setPosition('topright');
 
     // OSM layer
