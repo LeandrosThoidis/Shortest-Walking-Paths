@@ -10,12 +10,13 @@ const assets = [
   "/css/styles.css",
   "/css/materialize.min.css",
   "/css/sweetalert2.min.css",
+  "/css/mainpagesweetalert.css",
   "/img/logo.png",
   "https://fonts.googleapis.com/icon?family=Material+Icons",
   "https://fonts.gstatic.com/s/materialicons/v47/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2",
   "/pages/fallback.html",
-  "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css",
-  "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"
+  "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css",
+  "https://unpkg.com/leaflet@1.9.4/dist/leaflet.js",
 ];
 
 // cache size limit function
