@@ -18,12 +18,15 @@
   <link rel="stylesheet" href="../css/mainpagesweetalert.css">
   <link rel="manifest" href="../manifest.json">
 
- <!-- Leaflet CSS from cdnjs -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css" crossorigin=""/>
+ <!-- Leaflet & Routing Machine CSS &JS -->
+ <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+  crossorigin=""/>
 
-<!-- Leaflet JavaScript from cdnjs -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js" crossorigin=""></script>
-
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+  integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+  crossorigin="">
+  </script>
 
   <!-- iOS support -->
   <link rel="apple-touch-icon" href="/img/icons/icon-96x96.png">
@@ -66,15 +69,19 @@
 
 <body class="grey lighten-4">
   <nav class="z-depth-0">
-    <div class="nav-wrapper container" style="width: 93%; display: flex; align-items: center; justify-content: space-between;">
-      <span class="left grey-text text-darken-1">
-        <i class="material-icons sidenav-trigger" style="margin-right: 10px;" data-target="side-menu">menu</i>
-      </span>
-      <a href="#" style="display: flex; align-items: center; margin-left: -10px;">
-        <span style ="font-size: 1.35rem;">The Shortest Possible Path</span>
-        <i class="material-icons" style="margin-left: 5px; color: blue;">verified</i>
-      </a>
-    </div>
+      <div class="nav-wrapper container" style="width: 93%; display: flex; align-items: center;">
+          <span class="left grey-text text-darken-1" style="display: flex; align-items: center;">
+              <i class="material-icons sidenav-trigger" data-target="side-menu">menu</i>
+              <span style="font-size: 1.65rem; margin-left: 10px; color: #FF8816; font-weight: bold">The Shortest Possible Path</span>
+              <i class="material-icons" style="margin-left: 20px; color: blue">verified</i>
+              
+          </span>
+      </div>
+  </nav>
+
+  
+
+
     <div class="location-container">
       <button id="findMe" class="waves-effect waves-light btn green">Find me</button>
     </div> 
@@ -122,7 +129,7 @@
         { coordinates: [38.29022, 21.78636], popupText: 'Συνεδριακό Κέντρο' },
         { coordinates: [38.28570, 21.79006], popupText: 'Φοιτητική Εστία' },
         { coordinates: [38.28204, 21.78855], popupText: 'Πανεπιστημιακό Γυμναστήριο Πατρών' },
-        { coordinates: [38.2861, 21.7866], popupText: 'Πανεπιστήμιο Πατρών-Πρυτανεία' },
+        { coordinates: [38.2861, 21.7866], popupText: 'Πρυτανεία' },
     ];
 
     markers.forEach(marker => {
@@ -168,7 +175,3 @@
 </body>
 
 </html>
-
-
-
-
