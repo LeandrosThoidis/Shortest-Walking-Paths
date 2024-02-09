@@ -70,15 +70,18 @@ form .input-field{
 }
 
 .From-To-container button {
+  box-sizing: border-box; 
   margin-top: 5px;
   background-color: #4CAF50; 
   color: white; 
-  border: none; 
   border-radius: 4px; 
   padding: 6px 12px; 
   font-size: 1rem; 
   cursor: pointer; 
   box-shadow: 0 2px 4px rgba(0,0,0,0.3); 
+  position: relative; 
+  left: 50%; 
+  transform: translateX(-50%);
 }
 
 /* Add hover effect for the button */
@@ -114,48 +117,48 @@ nav-wrapper container{
 @media screen and (max-width: 768px) {
   .map{
     width: 100%; 
-    height: auto; /* Let the height adjust automatically */
+    height: auto; 
     zoom:0.7;
   }
   nav .sidenav-trigger {
-    margin-top: -4px; /* Less negative margin on mobile for visibility */
+    margin-top: -4px; 
   }
 
   nav {
-    font-size: 4vw; /* Responsive font size */
+    font-size: 4vw; 
   }
   .display a, .From-To-container button, #toast-container .toast {
-    font-size: 3.5vw; /* Larger font size for readability on phones */
+    font-size: 3.5vw; 
   }
   .From-To-container, .location-container {
-    top: 8%; /* Positioning from the top */
-    width: 70%; /* Full width with a little margin */
-    left: 3%; /* Center horizontally */
+    top: 8%; 
+    width: 70%; 
+    left: 3%; 
   }
   .instructions-container {
-    font-size: 3vw; /* Increased font size for better readability */
-    padding: 2%; /* Increased padding */
-    bottom: auto; /* Adjust positioning */
-    top: 75%; /* New positioning to ensure visibility */
+    font-size: 3vw; 
+    padding: 2%; 
+    bottom: auto; 
+    top: 75%; 
     right: 5%;
-    max-width: 90%; /* Increased to use more screen width */
+    max-width: 90%; 
     background: #fff;
     box-shadow: 0 1px 2px rgba(0,0,0,0.2);
     border-radius: 8px;
     overflow: auto;
-    position: fixed; /* Ensure it stays in a fixed position while scrolling */
-    transform: translateY(-50%); /* Center vertically */
-    z-index: 1050; /* Ensure it's above other elements */
+    position: fixed; 
+    transform: translateY(-50%); 
+    z-index: 1050; 
   }
   .location-container {
     position: absolute;
-    top: 9%; /* Position below the nav */
+    top: 9%; 
     width: 25%;
-    left: 74%; /* Center horizontally */
+    left: 74%; 
     z-index: 1000;
     display: flex;
     flex-direction: column;
-    gap: 1vw; /* Responsive gap */
+    gap: 1vw; 
   }
   nav{
   background: var(--primary);
@@ -175,3 +178,4 @@ nav-wrapper container{
 }
 
 }
+
