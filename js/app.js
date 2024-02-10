@@ -277,16 +277,25 @@ function suggestLocations(inputId) {
   }, 300); // Adjust debounce time as needed
 }
 
-// Function to display suggestions - implement according to your app's UI
+document.addEventListener('DOMContentLoaded', function() {
+  // Attach event listeners directly to input fields for capturing input
+  document.getElementById('currentLocation').addEventListener('input', () => suggestLocations('currentLocation'));
+  document.getElementById('destinationLocation').addEventListener('input', () => suggestLocations('destinationLocation'));
+});
+
+// suggestLocations function remains as you've defined it
+
 function displaySuggestions(suggestions, inputId) {
-  const suggestionBox = document.getElementById(inputId + 'Suggestions');
-  suggestionBox.innerHTML = '';
+  const suggestionBoxId = inputId + 'Suggestions';
+  const suggestionBox = document.getElementById(suggestionBoxId);
+  suggestionBox.innerHTML = ''; // Clear existing suggestions
   suggestions.forEach(suggestion => {
     const option = document.createElement('option');
     option.value = suggestion;
     suggestionBox.appendChild(option);
   });
 }
+
 // Simplify event listener setup and ensure compatibility with mobile devices
 document.querySelectorAll('#currentLocation, #destinationLocation').forEach(input => {
   input.addEventListener('input', () => suggestLocations(input.id));
@@ -300,9 +309,6 @@ function setupSelectionHandler(inputId) {
   });
 }
 
-// Initialize the setup for both input fields
-setupSelectionHandler('currentLocationSuggestions');
-setupSelectionHandler('destinationLocationSuggestions');
 
 function getLevenshteinDistance(a, b) {
   const matrix = Array.from({ length: a.length + 1 }, () => Array(b.length + 1).fill(0));
