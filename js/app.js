@@ -252,67 +252,57 @@ function geocodeLocation(inputId) {
   }
 }
 
+let debounceTimeout;
 function suggestLocations(inputId) {
-  const inputElement = document.getElementById(inputId);
-  const userInput = normalizeLocationKey(inputElement.value.trim()); // Trim input to ignore only whitespace
+  clearTimeout(debounceTimeout);
+  debounceTimeout = setTimeout(() => {
+    const inputElement = document.getElementById(inputId);
+    const userInput = normalizeLocationKey(inputElement.value.trim());
 
-  if (userInput.length === 0) { // Check if input is empty
-    displaySuggestions([], inputId); // Clear suggestions if input is empty
-    return; // Exit the function to avoid unnecessary processing
-  }
-
-  let suggestions = [];
-  Object.keys(knownLocations).forEach(location => {
-    const normalizedLocation = normalizeLocationKey(location);
-    const distance = getLevenshteinDistance(userInput,normalizedLocation);
-    if (distance <= 4) { // Adjust threshold as needed
-      suggestions.push(location);
+    if (userInput.length === 0) {
+      displaySuggestions([], inputId);
+      return;
     }
-  });
 
-  displaySuggestions(suggestions, inputId);
+    let suggestions = [];
+    Object.keys(knownLocations).forEach(location => {
+      const normalizedLocation = normalizeLocationKey(location);
+      const distance = getLevenshteinDistance(userInput,normalizedLocation);
+      if (distance <= 4) {
+        suggestions.push(location);
+      }
+    });
+
+    displaySuggestions(suggestions, inputId);
+  }, 300); // Adjust debounce time as needed
 }
 
 // Function to display suggestions - implement according to your app's UI
 function displaySuggestions(suggestions, inputId) {
-  const suggestionBox = document.getElementById(inputId + 'Suggestions'); // Assuming an element exists for suggestions
-  suggestionBox.innerHTML = ''; // Clear previous suggestions
+  const suggestionBox = document.getElementById(inputId + 'Suggestions');
+  suggestionBox.innerHTML = '';
   suggestions.forEach(suggestion => {
     const option = document.createElement('option');
     option.value = suggestion;
     suggestionBox.appendChild(option);
   });
 }
+// Simplify event listener setup and ensure compatibility with mobile devices
+document.querySelectorAll('#currentLocation, #destinationLocation').forEach(input => {
+  input.addEventListener('input', () => suggestLocations(input.id));
+});
 
-// Event listener for input fields
-document.getElementById('currentLocation').addEventListener('input', () => suggestLocations('currentLocation'));
-document.getElementById('destinationLocation').addEventListener('input', () => suggestLocations('destinationLocation'));
-
-//function to end suggestion when clicked or left
-function clearDatalistIfMatch(inputId, datalistId) {
-  const inputElement = document.getElementById(inputId);
-  const datalistElement = document.getElementById(datalistId);
-
-  // Enhanced to clear suggestions on selecting a match
-  inputElement.addEventListener('change', () => {
-    const value = inputElement.value;
-    const options = datalistElement.options;
-
-    for (let i = 0; i < options.length; i++) {
-      if (options[i].value === value) {
-        datalistElement.innerHTML = ''; // Clear the datalist
-        break;
-      }
-    }
-  });
-
-  // Consider adding a blur event listener to handle cases when the input loses focus
-  inputElement.addEventListener('blur', () => {
-    setTimeout(() => { datalistElement.innerHTML = ''; }, 100); // Delay clearing to ensure selection works
+function setupSelectionHandler(inputId) {
+  const suggestionBox = document.getElementById(inputId + 'Suggestions');
+  suggestionBox.addEventListener('change', () => {
+    document.getElementById(inputId).value = suggestionBox.value;
+    suggestionBox.innerHTML = ''; // Clear suggestions after selection
   });
 }
 
-
+// Initialize the setup for both input fields
+setupSelectionHandler('currentLocationSuggestions');
+setupSelectionHandler('destinationLocationSuggestions');
 
 function getLevenshteinDistance(a, b) {
   const matrix = Array.from({ length: a.length + 1 }, () => Array(b.length + 1).fill(0));
