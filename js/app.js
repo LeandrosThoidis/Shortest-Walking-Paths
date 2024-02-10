@@ -137,6 +137,8 @@ const knownLocations = {
   'Χημικών Μηχανικών': [38.28962, 21.78827],
 
   'Σχολή Μηχανολόγων Μηχανικών & Αεροναυπηγικής': [38.28920, 21.78749],
+  'Τμήμα Μηχανολόγων Μηχανικών & Αεροναυπηγικής': [38.28920, 21.78749],
+  'Τμήμα Μηχανολόγων Μηχανικών': [38.28920, 21.78749],
   'Μηχανολόγοι': [38.28920, 21.78749],
   'Αεροναυπηγοί': [38.28920, 21.78749],
   'Μηχανολόγων': [38.28920, 21.78749],
@@ -170,6 +172,7 @@ const knownLocations = {
   'Τμήμα Επιστήμης Υλικών': [38.28336, 21.78695],
   'Τμήμα Επιστήμης των Υλικών': [38.28336, 21.78695],
   'Επιστήμη Υλικών' : [38.28336, 21.78695],
+  'επιστήμη υλικών' : [38.28336, 21.78695],
 
   'Τμήμα Φυσικοθεραπείας': [38.28487,21.78773],
   'Φυσικοθεραπεία' : [38.28487,21.78773],
@@ -251,18 +254,22 @@ function geocodeLocation(inputId) {
 
 function suggestLocations(inputId) {
   const inputElement = document.getElementById(inputId);
-  const userInput = normalizeLocationKey(inputElement.value);
-  let suggestions = [];
+  const userInput = normalizeLocationKey(inputElement.value.trim()); // Trim input to ignore only whitespace
 
+  if (userInput.length === 0) { // Check if input is empty
+    displaySuggestions([], inputId); // Clear suggestions if input is empty
+    return; // Exit the function to avoid unnecessary processing
+  }
+
+  let suggestions = [];
   Object.keys(knownLocations).forEach(location => {
     const normalizedLocation = normalizeLocationKey(location);
     const distance = getLevenshteinDistance(userInput,normalizedLocation);
-    if (distance <= 4) { // Threshold can be adjusted
+    if (distance <= 4) { // Adjust threshold as needed
       suggestions.push(location);
     }
   });
 
-  // Display suggestions (implementation depends on your UI)
   displaySuggestions(suggestions, inputId);
 }
 
@@ -286,20 +293,24 @@ function clearDatalistIfMatch(inputId, datalistId) {
   const inputElement = document.getElementById(inputId);
   const datalistElement = document.getElementById(datalistId);
 
-  inputElement.addEventListener('input', () => {
+  // Enhanced to clear suggestions on selecting a match
+  inputElement.addEventListener('change', () => {
     const value = inputElement.value;
     const options = datalistElement.options;
 
     for (let i = 0; i < options.length; i++) {
       if (options[i].value === value) {
-        // Clear the datalist options if the input matches one of them
-        datalistElement.innerHTML = '';
-        break; // Exit the loop as we found a match
+        datalistElement.innerHTML = ''; // Clear the datalist
+        break;
       }
     }
   });
-}
 
+  // Consider adding a blur event listener to handle cases when the input loses focus
+  inputElement.addEventListener('blur', () => {
+    setTimeout(() => { datalistElement.innerHTML = ''; }, 100); // Delay clearing to ensure selection works
+  });
+}
 
 
 
