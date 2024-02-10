@@ -1,10 +1,28 @@
 /* colours */
+html, body {
+  background-color: #FFE1C4;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* This ensures that padding and borders are included in the total width and height */
+}
+
 :root{
   --primary: #FFE9D2;
   --secondary: #FFE1C4;
   --title: #FF8816;
 }
 
+.map {
+  position: relative;
+  width: 100%; 
+  height: 100vh; 
+  transform-origin: center center; 
+}
 /* layout styles */
 nav{
   background: var(--primary);
@@ -89,24 +107,20 @@ form .input-field{
   background-color: #45a049; 
 }
 
+.instructions-container {
+  position: absolute;
+  bottom: 13%;
+  right: 3%;
+  padding: 10px;
+  background-color: rgba(200, 204, 255, 0.8); 
+  border-radius: 5px;
+  z-index:1001;
+}
+
 /* Make the toast message smaller */
 #toast-container .toast {
   font-size: 0.8rem; 
   border-radius: 25px; 
-}
-
-/* styles.css */
-.instructions-container {
-  top: 20px;
-  right: 20px;
-  max-width: 300px;
-  padding: 20px;
-  background-color: rgba(255, 255, 255, 0.95);
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  z-index: 1000;
-  border: 1px solid #ccc;
-  font-size: 14px;
 }
 
 nav-wrapper container{
@@ -115,11 +129,6 @@ nav-wrapper container{
 }
 
 @media screen and (max-width: 768px) {
-  .map{
-    width: 100%; 
-    height: auto; 
-    zoom:0.7;
-  }
   nav .sidenav-trigger {
     margin-top: -4px; 
   }
@@ -135,31 +144,25 @@ nav-wrapper container{
     width: 70%; 
     left: 3%; 
   }
+
   .instructions-container {
-    font-size: 3vw; 
-    padding: 2%; 
-    bottom: auto; 
-    top: 75%; 
-    right: 5%;
-    max-width: 90%; 
-    background: #fff;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.2);
-    border-radius: 8px;
-    overflow: auto;
-    position: fixed; 
-    transform: translateY(-50%); 
-    z-index: 1050; 
   }
-  .location-container {
-    position: absolute;
-    top: 9%; 
-    width: 25%;
-    left: 74%; 
-    z-index: 1000;
-    display: flex;
-    flex-direction: column;
-    gap: 1vw; 
-  }
+    
+
+.instructions-container ul {
+  display: none;
+}
+
+.location-container {
+  position: absolute;
+  top: 9%; 
+  width: 25%;
+  left: 74%; 
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 1vw; 
+}
   nav{
   background: var(--primary);
   border-bottom: 10px solid var(--secondary);

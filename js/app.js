@@ -34,9 +34,7 @@ function getPosition(position) {
 
 //
 function decodePolyline(encoded) {
-  // Initialize an array to hold the decoded latitude and longitude points.
   var points = [];
-  // Initialize variables for processing the encoded string.
   var index = 0, lat = 0, lng = 0, shift = 0, result = 0, byte = null, latitude_change, longitude_change,
       factor = Math.pow(10, 5); // The factor is used to convert the decoded values back to their original scale.
 
@@ -99,9 +97,9 @@ const knownLocations = {
   'Πρυτανεία': [38.2861, 21.7866],
   'Κτίριο Α': [38.2861, 21.7866],
 
-  'Φοιτητική Εστία': [38.28570, 21.79006],
-  'Εστία': [38.28570, 21.79006],
-  'Λέσχη Σίτησης': [38.28570, 21.79006],
+  'Φοιτητική Εστία': [38.28620,21.78970],
+  'Εστία': [38.28620,21.78970],
+  'Λέσχη Σίτησης': [38.28620,21.78970],
 
   'Πανεπιστημιακό Γυμναστήριο': [38.28204, 21.78855],
   'Γήπεδο': [38.28204, 21.78855],
@@ -111,13 +109,16 @@ const knownLocations = {
   'Ceid': [38.29019, 21.79503],
   'ΗΥ': [38.29019, 21.79503],
 
-  'Ιατρική Σχολή': [38.29382, 21.79399],
+  'Ιατρική Σχολή': [38.29386,21.79361],
+  'Ιατρική': [38.29386,21.79361],
+  'Τμήμα Ιατρικής': [38.29386,21.79361],
 
   'Φαρμακευτική': [38.29237, 21.79257],
   'Τμήμα Φαρμακευτικής': [38.29237, 21.79257],
 
   'Γεωλογία': [38.29181, 21.78994],
   'Τμήμα Γεωλογίας': [38.29181, 21.78994],
+  'Γεωλογικό': [38.29181, 21.78994],
 
   'Φυσικό': [38.29127, 21.78883],
   'Τμήμα Φυσικής': [38.29127, 21.78883],
@@ -142,6 +143,7 @@ const knownLocations = {
 
   'Τμήμα Πολιτικών Μηχανικών': [38.28888, 21.79048],
   'Πολιτικοί Μηχανικοί' : [38.28888, 21.79048],
+  'Πολιτικών Μηχανικών': [38.28888, 21.79048],
 
   'Παιδαγωγικό Τμήμα Δημοτικής Εκπαίδευσης': [38.28848, 21.78736],
   'Παιδαγωγικό' : [38.28848, 21.78736],
@@ -157,6 +159,7 @@ const knownLocations = {
 
   'Τμήμα Διοίκησης Επιχειρήσεων': [38.28680, 21.78412],
   'Διοίκηση' : [38.28680, 21.78412],
+  'Διοίκηση Επιχειρήσεων' : [38.28680, 21.78412],
 
   'Τμήμα Θεατρικών Σπουδών': [38.28468, 21.78410],
   'Θεατρολογία' : [38.28468, 21.78410],
@@ -168,11 +171,19 @@ const knownLocations = {
   'Τμήμα Επιστήμης των Υλικών': [38.28336, 21.78695],
   'Επιστήμη Υλικών' : [38.28336, 21.78695],
 
-  'Τμήμα Φυσικοθεραπείας': [38.28462, 21.78795],
-  'Φυσικοθεραπεία' : [38.28462, 21.78795],
+  'Τμήμα Φυσικοθεραπείας': [38.28487,21.78773],
+  'Φυσικοθεραπεία' : [38.28487,21.78773],
+
+  'Τμήμα Ιστορίας-Αρχαιολογίας': [38.28487,21.78773],
+  'Ιστορία' : [38.28487,21.78773],
+  'Αρχαιολογία' : [38.28487,21.78773],
+  'Ιστορία και Αρχαιολογία' : [38.28487,21.78773],
+
 
   'Τμήμα Αρχιτεκτόνων': [38.28590, 21.78438],
   'Αρχιτέκτονες' : [38.28590, 21.78438],
+  'Αρχιτεκτονική' : [38.28590, 21.78438],
+  'Αρχιτεκτόνων' : [38.28590, 21.78438],
 
   'Πάρκο Ειρήνης': [38.28700, 21.786467],
   'Πάρκο' : [38.28700, 21.786467],
@@ -183,9 +194,9 @@ const knownLocations = {
   'Coffee Island': [38.28597, 21.78575],
   'Coffee': [38.28597, 21.78575],
 
-  'Εστιατόριο Φοιτητικής Εστίας': [38.28593,21.78975],
-  'Εστιατόριο': [38.28593,21.78975],
-  'Εστιατόριο Εστίας': [38.28593,21.78975],
+  'Εστιατόριο Φοιτητικής Εστίας': [38.28620,21.78970],
+  'Εστιατόριο': [38.28620,21.78970],
+  'Εστιατόριο Εστίας': [38.28620,21.78970],
 
   'Καφετέρια CEID': [38.29041,21.79482],
 
@@ -193,8 +204,6 @@ const knownLocations = {
 
   'Κυλικείο Χημικού': [38.29089,21.78852],
 };
-
-
 
 // Helper function to remove accents/diacritics
 function removeAccents(str) {
@@ -211,16 +220,106 @@ function geocodeLocation(inputId) {
   var locationInput = document.getElementById(inputId).value;
   var normalizedInput = normalizeLocationKey(locationInput);
 
+  // Initially, try to find an exact match
   var matchedLocationKey = Object.keys(knownLocations).find(function (knownLocation) {
     return normalizeLocationKey(knownLocation) === normalizedInput;
   });
 
+  // If an exact match is found, return it immediately
   if (matchedLocationKey) {
     return knownLocations[matchedLocationKey];
   } else {
-    return null;
+    // If no exact match, find the closest match using Levenshtein distance
+    let closestMatch = null;
+    let smallestDistance = Infinity;
+    Object.keys(knownLocations).forEach(function(knownLocation) {
+      const distance = getLevenshteinDistance(normalizedInput, normalizeLocationKey(knownLocation));
+      if (distance < smallestDistance) {
+        smallestDistance = distance;
+        closestMatch = knownLocation;
+      }
+    });
+
+    if (closestMatch && smallestDistance <= 3) { // Threshold of 3 is arbitrary; adjust as needed
+      return knownLocations[closestMatch];
+    } else {
+      // If no close matches are found, return null or handle as needed
+      return null;
+    }
   }
 }
+
+function suggestLocations(inputId) {
+  const inputElement = document.getElementById(inputId);
+  const userInput = normalizeLocationKey(inputElement.value);
+  let suggestions = [];
+
+  Object.keys(knownLocations).forEach(location => {
+    const normalizedLocation = normalizeLocationKey(location);
+    const distance = getLevenshteinDistance(userInput,normalizedLocation);
+    if (distance <= 4) { // Threshold can be adjusted
+      suggestions.push(location);
+    }
+  });
+
+  // Display suggestions (implementation depends on your UI)
+  displaySuggestions(suggestions, inputId);
+}
+
+// Function to display suggestions - implement according to your app's UI
+function displaySuggestions(suggestions, inputId) {
+  const suggestionBox = document.getElementById(inputId + 'Suggestions'); // Assuming an element exists for suggestions
+  suggestionBox.innerHTML = ''; // Clear previous suggestions
+  suggestions.forEach(suggestion => {
+    const option = document.createElement('option');
+    option.value = suggestion;
+    suggestionBox.appendChild(option);
+  });
+}
+
+// Event listener for input fields
+document.getElementById('currentLocation').addEventListener('input', () => suggestLocations('currentLocation'));
+document.getElementById('destinationLocation').addEventListener('input', () => suggestLocations('destinationLocation'));
+
+//function to end suggestion when clicked or left
+function clearDatalistIfMatch(inputId, datalistId) {
+  const inputElement = document.getElementById(inputId);
+  const datalistElement = document.getElementById(datalistId);
+
+  inputElement.addEventListener('input', () => {
+    const value = inputElement.value;
+    const options = datalistElement.options;
+
+    for (let i = 0; i < options.length; i++) {
+      if (options[i].value === value) {
+        // Clear the datalist options if the input matches one of them
+        datalistElement.innerHTML = '';
+        break; // Exit the loop as we found a match
+      }
+    }
+  });
+}
+
+
+
+
+function getLevenshteinDistance(a, b) {
+  const matrix = Array.from({ length: a.length + 1 }, () => Array(b.length + 1).fill(0));
+
+  for (let i = 0; i <= a.length; i++) matrix[i][0] = i;
+  for (let j = 0; j <= b.length; j++) matrix[0][j] = j;
+
+  for (let i = 1; i <= a.length; i++) {
+    for (let j = 1; j <= b.length; j++) {
+      const cost = a[i - 1] === b[j - 1] ? 0 : 1;
+      matrix[i][j] = Math.min(matrix[i - 1][j] + 1, matrix[i][j - 1] + 1, matrix[i - 1][j - 1] + cost);
+    }
+  }
+
+  return matrix[a.length][b.length];
+}
+
+
 
 // Define animationInterval in the global scope
 var animationInterval;
@@ -251,6 +350,9 @@ let currentPolyline = null;
 function drawRoute(from, to) {
   const key = '7040f51d-1186-4818-ad37-765e602f8e32'; // Use your actual GraphHopper API key
   const queryUrl = `https://graphhopper.com/api/1/route?point=${from.join(',')}&point=${to.join(',')}&vehicle=foot&key=${key}`;
+  
+  // Check if on a mobile device
+  var isMobile = /Mobi|Android/i.test(navigator.userAgent);
 
   if (marker) {
     map.removeLayer(marker); // Remove the previous marker if it exists
@@ -265,7 +367,7 @@ function drawRoute(from, to) {
         map.removeLayer(currentPolyline);
         currentPolyline = null;
       }
-      
+
       if (data.paths && data.paths.length > 0 && data.paths[0].points) {
         const points = decodePolyline(data.paths[0].points);
         currentPolyline = L.polyline(points, { color: 'blue' }).addTo(map);
@@ -275,42 +377,32 @@ function drawRoute(from, to) {
 
         if (data.paths[0].distance) {
           const distance = data.paths[0].distance; // Keep distance in meters
-          let instructionsHtml = `<div class="instructions"><strong>Total Distance:</strong> ${distance.toFixed(2)} m<br><strong>Instructions:</strong><ul>`;
-          
-          if (data.paths[0].instructions) {
+          let instructionsHtml = `<div class="instructions"><strong>Total Distance:</strong> ${distance.toFixed(2)} m`;
+
+          // Only add detailed instructions if not on a mobile device
+          if (!isMobile && data.paths[0].instructions) {
+            instructionsHtml += `<br><strong>Instructions:</strong><ul>`;
             data.paths[0].instructions.forEach(instruction => {
               instructionsHtml += `<li>${instruction.text} - ${(instruction.distance).toFixed(2)} m</li>`;
             });
-            instructionsHtml += '</ul></div>';
+            instructionsHtml += '</ul>';
+          }
+          
+          instructionsHtml += '</div>'; // Close the div
 
-           // Append or update instructions in the top right corner
-           const instructionsContainer = document.getElementById('instructions-container');
-             if (instructionsContainer) {
-             instructionsContainer.innerHTML = instructionsHtml;
-           } else {
-             // Append or update instructions in the top right corner
-              const instructionsContainer = document.getElementById('instructions-container');
-              if (instructionsContainer) {
-               instructionsContainer.innerHTML = instructionsHtml;
-              } else {
-                const container = document.createElement('div');
-                container.id = 'instructions-container';
-                container.classList.add('instructions-container'); // Add the class to the container
-                container.innerHTML = instructionsHtml;
-                document.body.appendChild(container);
-              }
-           }
-
-
+          const instructionsContainer = document.getElementById('instructions-container');
+          if (instructionsContainer) {
+            instructionsContainer.innerHTML = instructionsHtml;
           } else {
-            console.log('No detailed instructions provided by the API.');
+            // If the container doesn't exist, create it
+            const container = document.createElement('div');
+            container.id = 'instructions-container';
+            container.classList.add('instructions-container');
+            container.innerHTML = instructionsHtml;
+            document.body.appendChild(container);
           }
         } else {
-          Swal.fire({
-            title: 'Error',
-            text: 'Distance information is not available.',
-            icon: 'error'
-          });
+          console.log('No detailed instructions provided by the API.');
         }
       } else {
         console.error('GraphHopper response is missing paths:', data);
@@ -366,8 +458,6 @@ function setRoute() {
 
 
 //event listeners
-
-
 
 document.getElementById('findMe').addEventListener('click', function() {
   if (navigator.geolocation) {

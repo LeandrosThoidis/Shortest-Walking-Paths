@@ -6,6 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>The Shortest Path</title>
   <link rel="shortcut icon" href="/img/logo.png" />
+  <link rel="stylesheet" href="/css/styles.css">
 
 
   <!-- Materialize icons, CSS & JS -->
@@ -79,15 +80,21 @@
       </div>
   </nav>
 
-
     <div class="location-container">
       <button id="findMe" class="waves-effect waves-light btn green">Find me</button>
     </div> 
+
+    
     <div class="From-To-container">
-      <input id="currentLocation" type="text" placeholder="Current Location" class="input-field" />
-      <input id="destinationLocation" type="text" placeholder="Destination" class="input-field" />
+      <input id="currentLocation" type="text" placeholder="Current Location" class="input-field" list="currentLocationSuggestions" />
+      <datalist id="currentLocationSuggestions"></datalist>
+  
+      <input id="destinationLocation" type="text" placeholder="Destination" class="input-field" list="destinationLocationSuggestions" />
+      <datalist id="destinationLocationSuggestions"></datalist>
+  
       <button id="findShortestPath" onclick="setRoute()">Find Shortest Path</button>
-    </div>          
+  </div>
+          
   </nav>
   
 
@@ -107,21 +114,25 @@
   </ul>
 
 
-  <div id="map" style="width: 100%; height: 91%;"></div>
+  <div id="map" style="width: 100%; height: 100%;"></div>
   </div>
   
 
   <script>
     // Initialize the map
-    var map = L.map('map').setView([38.2892, 21.7853], 16);
+    var isMobile = /Mobi|Android/i.test(navigator.userAgent);
+
+  // Initialize the map with different zoom levels based on the device
+  var map = L.map('map').setView([38.2892, 21.7853], isMobile ? 15 : 16);
+  map.zoomControl.setPosition('topright');
     map.zoomControl.setPosition('topright');
 
     // OSM layer
-    var osmLayer = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
 
-    //Blue icons 
+    // Blue icons 
     var markers = [
         { coordinates: [38.28962, 21.79132], popupText: 'Κεντρική βιβλιοθήκη και Κέντρο ενημέρωσης' },
         { coordinates: [38.29022, 21.78636], popupText: 'Συνεδριακό Κέντρο' },
@@ -134,20 +145,25 @@
         var singleMarker = L.marker(marker.coordinates).addTo(map);
         singleMarker.bindPopup(marker.popupText);
 
-        // Show popup on hover
-        singleMarker.on('mouseover', function (e) {
-            this.openPopup();
-        });
+        if (!isMobile) {
+            // Show popup on hover for non-mobile devices
+            singleMarker.on('mouseover', function (e) {
+                this.openPopup();
+            });
 
-        // Hide popup on mouseout
-        singleMarker.on('mouseout', function (e) {
-            this.closePopup();
-        });
+            // Hide popup on mouseout for non-mobile devices
+            singleMarker.on('mouseout', function (e) {
+                this.closePopup();
+            });
+        } else {
+            // On mobile devices, only show popup on click
+            singleMarker.on('click', function (e) {
+                this.openPopup();
+            });
+        }
     });
 
-
-
-    // Define a green icon
+    // Define a green icon for hospital marker
     var greenIcon = L.icon({
         iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
         shadowUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-shadow.png',
@@ -157,12 +173,11 @@
         shadowSize: [41, 41]
     });
 
-    // Green icon to Hospital
-    var singleMarker = L.marker([38.29486, 21.79567], { icon: greenIcon }).addTo(map);
-    singleMarker.bindPopup('Rio Hospital').openPopup();
-
+    // Green icon marker for Rio Hospital
+    var hospitalMarker = L.marker([38.29486, 21.79567], { icon: greenIcon }).addTo(map);
+    hospitalMarker.bindPopup('Rio Hospital');
     
-    </script>
+</script>
 
 
   <script src="/js/ui.js"></script>

@@ -48,11 +48,17 @@
         <div class="location-container">
           <button id="findMe" class="waves-effect waves-light btn green">Find me</button>
         </div> 
+
         <div class="From-To-container">
-          <input id="currentLocation" type="text" placeholder="Current Location" class="input-field" />
-          <input id="destinationLocation" type="text" placeholder="Destination" class="input-field" />
-          <button id="findShortestPath" onclick="setRoute()">Find Shortest Path</button>
-        </div>          
+            <input id="currentLocation" type="text" placeholder="Current Location" class="input-field" list="currentLocationSuggestions" />
+            <datalist id="currentLocationSuggestions"></datalist>
+        
+            <input id="destinationLocation" type="text" placeholder="Destination" class="input-field" list="destinationLocationSuggestions" />
+            <datalist id="destinationLocationSuggestions"></datalist>
+        
+            <button id="findShortestPath" onclick="setRoute()">Find Shortest Path</button>
+        </div> 
+
       </nav>
 
 <!-- Side nav -->
@@ -75,11 +81,14 @@
 </ul>
 
 
-<div id="map" style="width: 100%; height: 91%;"></div>
+<div id="map" style="width: 100%; height: 100%;"></div>
 
 <script>
-   // Initialize the map
-var map = L.map('map').setView([38.2892, 21.7853], 16); // University of Patras coordinates
+
+var isMobile = /Mobi|Android/i.test(navigator.userAgent);
+
+var map = L.map('map').setView([38.2892, 21.7853], isMobile ? 15 : 16);
+map.zoomControl.setPosition('topright');
 map.zoomControl.setPosition('topright');
 
 // OSM layer
@@ -111,19 +120,22 @@ var redMarkers = [
 // Add each red marker to the map
 redMarkers.forEach(marker => {
     var redMarker = L.marker(marker.coordinates, { icon: redIcon }).addTo(map);
-    
-    // Bind popup with location name
     redMarker.bindPopup(marker.popupText);
 
-    // Show popup on hover
-    redMarker.on('mouseover', function () {
-        this.openPopup();
-    });
-
-    // Hide popup on mouseout
-    redMarker.on('mouseout', function () {
-        this.closePopup();
-    });
+    if (!isMobile) {
+        // Show popup on hover for non-mobile devices
+        redMarker.on('mouseover', function () {
+            this.openPopup();
+        });
+        redMarker.on('mouseout', function () {
+            this.closePopup();
+        });
+    } else {
+        // On mobile devices, only show popup on click
+        redMarker.on('click', function () {
+            this.openPopup();
+        });
+    }
 });
 
 
