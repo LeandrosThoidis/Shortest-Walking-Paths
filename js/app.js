@@ -295,7 +295,7 @@ function displaySuggestions(suggestions, suggestionBox) {
     };
     suggestionBox.appendChild(div);
   });
-  if (suggestions.length > 2) {
+  if (suggestions.length > 0) {
     suggestionBox.style.display = 'block'; // Show suggestions
   } else {
     suggestionBox.style.display = 'none'; // Hide suggestions if empty
