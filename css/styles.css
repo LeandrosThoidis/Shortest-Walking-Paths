@@ -128,6 +128,40 @@ nav-wrapper container{
   display: flex;
 }
 
+.suggestions-dropdown {
+  position: absolute;
+  left: 0;
+  right: 0;
+  border: 1px solid #ccc; /* Lighter border color for better blending with input fields */
+  border-top: none;
+  z-index: 1000;
+  width: calc(100% - 20px); /* Responsive width */
+  max-height: 220px; /* Enough height for touch devices, but not too large */
+  overflow-y: auto;
+  background-color: #fff; /* White to match input fields */
+  display: none; /* Initially hidden */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Subtle shadow for depth */
+  border-radius: 0 0 8px 8px; /* Rounded corners at the bottom to match input fields */
+  margin: 0 10px; /* Margin to match input fields' positioning */
+  top: 100%; /* Position right below the input field */
+}
+
+.suggestions-dropdown div {
+  padding: 12px 16px; /* Comfortable tapping area */
+  cursor: pointer;
+  font-size: 16px; /* Legible font size */
+  border-bottom: 1px solid #eee; /* Separator for individual suggestions */
+}
+
+.suggestions-dropdown div:last-child {
+  border-bottom: none; /* No separator for the last item */
+}
+
+.suggestions-dropdown div:hover, .suggestions-dropdown div:focus {
+  background-color: #f8f8f8; /* Slightly darker background for active item */
+}
+
+
 @media screen and (max-width: 768px) {
   nav .sidenav-trigger {
     margin-top: -4px; 
@@ -181,26 +215,14 @@ nav-wrapper container{
 }
 
 .suggestions-dropdown {
-  position: absolute;
-  border: 1px solid #ddd;
-  border-top: none;
-  z-index: 1000;
-  width: calc(100% - 2px); /* Adjust based on parent container */
-  max-height: 200px;
-  overflow-y: auto;
-  background-color: white;
-  display: none; /* Initially hidden */
+  width: calc(100% - 30px); /* Full width with a comfortable edge margin */
+  max-height: 250px; /* Additional height for easier scrolling on small screens */
+  margin: 0 20px; /* Increased side margins for mobile */
 }
 
 .suggestions-dropdown div {
-  padding: 10px;
-  cursor: pointer;
+  padding: 15px 20px; /* Larger padding for touch targets */
+  font-size: 18px; /* Slightly larger font size for better readability */
 }
-
-.suggestions-dropdown div:hover {
-  background-color: #f0f0f0;
-}
-
-
 }
 
