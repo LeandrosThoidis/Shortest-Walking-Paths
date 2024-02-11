@@ -215,14 +215,14 @@ nav-wrapper container{
 }
 
 .suggestions-dropdown {
-  width: calc(100% - 30px); /* Full width with a comfortable edge margin */
-  max-height: 250px; /* Additional height for easier scrolling on small screens */
-  margin: 0 20px; /* Increased side margins for mobile */
+  width: calc(100% - 20px); 
+  max-height: 250px; 
+  margin: 0 20px; 
 }
 
 .suggestions-dropdown div {
-  padding: 15px 20px; /* Larger padding for touch targets */
-  font-size: 18px; /* Slightly larger font size for better readability */
+  padding: 15px 20px; 
+  font-size: 18px;
 }
 }
 
