@@ -86,11 +86,12 @@
 
     
     <div class="From-To-container">
-      <input id="currentLocation" type="text" placeholder="Current Location" class="input-field" list="currentLocationSuggestions" />
-      <datalist id="currentLocationSuggestions"></datalist>
+      <input type="text" id="currentLocation" placeholder="Enter currentLocation" />
+      <div id="currentLocationSuggestions" class="suggestions-dropdown"></div>
   
-      <input id="destinationLocation" type="text" placeholder="Destination" class="input-field" list="destinationLocationSuggestions" />
-      <datalist id="destinationLocationSuggestions"></datalist>
+      <input type="text" id="destinationLocation" placeholder="Enter destination" />
+      <div id="destinationLocationSuggestions" class="suggestions-dropdown"></div>
+
   
       <button id="findShortestPath" onclick="setRoute()">Find Shortest Path</button>
   </div>

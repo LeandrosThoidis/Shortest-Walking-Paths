@@ -253,61 +253,62 @@ function geocodeLocation(inputId) {
 }
 
 let debounceTimeout;
+
+// Function to suggest locations based on user input
 function suggestLocations(inputId) {
   clearTimeout(debounceTimeout);
   debounceTimeout = setTimeout(() => {
     const inputElement = document.getElementById(inputId);
     const userInput = normalizeLocationKey(inputElement.value.trim());
+    const suggestionBoxId = inputId + 'Suggestions';
+    const suggestionBox = document.getElementById(suggestionBoxId);
 
     if (userInput.length === 0) {
-      displaySuggestions([], inputId);
+      suggestionBox.innerHTML = '';
       return;
     }
 
     let suggestions = [];
     Object.keys(knownLocations).forEach(location => {
       const normalizedLocation = normalizeLocationKey(location);
-      const distance = getLevenshteinDistance(userInput,normalizedLocation);
-      if (distance <= 4) {
+      if (getLevenshteinDistance(userInput, normalizedLocation) <= 4) {
         suggestions.push(location);
       }
     });
 
-    displaySuggestions(suggestions, inputId);
-  }, 300); // Adjust debounce time as needed
+    displaySuggestions(suggestions, suggestionBox);
+  }, 300);
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-  // Attach event listeners directly to input fields for capturing input
-  document.getElementById('currentLocation').addEventListener('input', () => suggestLocations('currentLocation'));
-  document.getElementById('destinationLocation').addEventListener('input', () => suggestLocations('destinationLocation'));
-});
-
-// suggestLocations function remains as you've defined it
-
-function displaySuggestions(suggestions, inputId) {
-  const suggestionBoxId = inputId + 'Suggestions';
-  const suggestionBox = document.getElementById(suggestionBoxId);
+// Function to display suggestions
+function displaySuggestions(suggestions, suggestionBox) {
   suggestionBox.innerHTML = ''; // Clear existing suggestions
   suggestions.forEach(suggestion => {
-    const option = document.createElement('option');
-    option.value = suggestion;
-    suggestionBox.appendChild(option);
+    const div = document.createElement('div');
+    div.textContent = suggestion; // Use textContent for <div>
+    div.classList.add('suggestion-item'); // Add class for styling
+    div.onclick = () => { // Attach click event handler directly
+      const inputId = suggestionBox.id.replace('Suggestions', '');
+      const inputElement = document.getElementById(inputId);
+      inputElement.value = suggestion; // Update the input field with the selected suggestion
+      suggestionBox.innerHTML = ''; // Clear suggestions after selection
+    };
+    suggestionBox.appendChild(div);
   });
+  if (suggestions.length > 0) {
+    suggestionBox.style.display = 'block'; // Show suggestions
+  } else {
+    suggestionBox.style.display = 'none'; // Hide suggestions if empty
+  }
 }
 
-// Simplify event listener setup and ensure compatibility with mobile devices
-document.querySelectorAll('#currentLocation, #destinationLocation').forEach(input => {
-  input.addEventListener('input', () => suggestLocations(input.id));
+// Initialize event listeners on DOMContentLoaded
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('#currentLocation, #destinationLocation').forEach(input => {
+    input.addEventListener('input', () => suggestLocations(input.id));
+  });
 });
 
-function setupSelectionHandler(inputId) {
-  const suggestionBox = document.getElementById(inputId + 'Suggestions');
-  suggestionBox.addEventListener('change', () => {
-    document.getElementById(inputId).value = suggestionBox.value;
-    suggestionBox.innerHTML = ''; // Clear suggestions after selection
-  });
-}
 
 
 function getLevenshteinDistance(a, b) {

@@ -180,5 +180,27 @@ nav-wrapper container{
   left: 90%;
 }
 
+.suggestions-dropdown {
+  position: absolute;
+  border: 1px solid #ddd;
+  border-top: none;
+  z-index: 1000;
+  width: calc(100% - 2px); /* Adjust based on parent container */
+  max-height: 200px;
+  overflow-y: auto;
+  background-color: white;
+  display: none; /* Initially hidden */
+}
+
+.suggestions-dropdown div {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.suggestions-dropdown div:hover {
+  background-color: #f0f0f0;
+}
+
+
 }
 
