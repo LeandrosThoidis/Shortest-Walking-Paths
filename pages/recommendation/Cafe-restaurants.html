@@ -97,9 +97,9 @@ var osmLayer = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
 
-// Define a red icon
-var redIcon = L.icon({
-    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
+// Define a orange icon
+var orangeIcon = L.icon({
+    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-orange.png',
     shadowUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-shadow.png',
     iconSize: [25, 41],
     iconAnchor: [12, 41],
@@ -107,8 +107,8 @@ var redIcon = L.icon({
     shadowSize: [41, 41]
 });
 
-// Define an array of red markers with coordinates and popup text
-var redMarkers = [
+// Define an array of orange markers with coordinates and popup text
+var orangeMarkers = [
     { coordinates: [38.28700, 21.786467], popupText: 'Πάρκο Ειρήνης' },
     { coordinates: [38.28678,21.78558], popupText: 'Octagon' },
     { coordinates: [38.28597, 21.78575], popupText: 'Coffee Island' },
@@ -118,22 +118,22 @@ var redMarkers = [
     { coordinates: [38.29089,21.78852], popupText: 'Κυλικείο Χημικού' },
 ];
 
-// Add each red marker to the map
-redMarkers.forEach(marker => {
-    var redMarker = L.marker(marker.coordinates, { icon: redIcon }).addTo(map);
-    redMarker.bindPopup(marker.popupText);
+// Add each orange marker to the map
+orangeMarkers.forEach(marker => {
+    var orangeMarker = L.marker(marker.coordinates, { icon: orangeIcon }).addTo(map);
+    orangeMarker.bindPopup(marker.popupText);
 
     if (!isMobile) {
         // Show popup on hover for non-mobile devices
-        redMarker.on('mouseover', function () {
+        orangeMarker.on('mouseover', function () {
             this.openPopup();
         });
-        redMarker.on('mouseout', function () {
+        orangeMarker.on('mouseout', function () {
             this.closePopup();
         });
     } else {
         // On mobile devices, only show popup on click
-        redMarker.on('click', function () {
+        orangeMarker.on('click', function () {
             this.openPopup();
         });
     }

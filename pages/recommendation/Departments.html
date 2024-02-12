@@ -98,9 +98,9 @@ map.zoomControl.setPosition('topright');
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
 
-    // Define a red icon
-var redIcon = L.icon({
-    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
+    // Define a blue icon
+var blueIcon = L.icon({
+    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png',
     shadowUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-shadow.png',
     iconSize: [25, 41],
     iconAnchor: [12, 41],
@@ -109,7 +109,7 @@ var redIcon = L.icon({
 });
 
 // Add markers n the University of Patras area
-var redMarkers = [
+var blueMarkers = [
   { coordinates: [38.29019, 21.79503], popupText: 'Τμήμα Μηχανικών ΗΥ & Πληροφορικής' },
   { coordinates: [38.29382, 21.79399], popupText: 'Ιατρική Σχολή' },
   { coordinates: [38.29237, 21.79257], popupText: 'Τμήμα Φαρμακευτικής' },
@@ -136,21 +136,21 @@ var redMarkers = [
 
 
 // Create markers for cafes using the same custom icon
-redMarkers.forEach(marker => {
-    var redMarker = L.marker(marker.coordinates, { icon: redIcon }).addTo(map);
-    redMarker.bindPopup(marker.popupText);
+blueMarkers.forEach(marker => {
+    var blueMarker = L.marker(marker.coordinates, { icon: blueIcon }).addTo(map);
+    blueMarker.bindPopup(marker.popupText);
 
     if (!isMobile) {
         // Show popup on hover for non-mobile devices
-        redMarker.on('mouseover', function () {
+        blueMarker.on('mouseover', function () {
             this.openPopup();
         });
-        redMarker.on('mouseout', function () {
+        blueMarker.on('mouseout', function () {
             this.closePopup();
         });
     } else {
         // On mobile devices, only show popup on click
-        redMarker.on('click', function () {
+        blueMarker.on('click', function () {
             this.openPopup();
         });
     }

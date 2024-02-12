@@ -203,6 +203,8 @@ const knownLocations = {
 
   'Τμήμα Λογοθεραπίας': [38.28825, 21.78336],
   'Λογοθεραπία' : [38.28825, 21.78336],
+  'Τμήμα Λογοθεραπείας': [38.28825, 21.78336],
+  'Λογοθεραπεία' : [38.28825, 21.78336],
 
   'Τμήμα Οικονομικών Επιστημών': [38.28693, 21.78195],
   'Οικονομικό' : [38.28693, 21.78195],
@@ -433,13 +435,13 @@ function drawRoute(from, to) {
 
         if (data.paths[0].distance) {
           const distance = data.paths[0].distance; // Keep distance in meters
-          let instructionsHtml = `<div class="instructions"><strong>Total Distance:</strong> ${distance.toFixed(2)} m`;
+          let instructionsHtml = `<div class="instructions"><strong>Total Distance:</strong> ${distance.toFixed(1)} m`;
 
           // Only add detailed instructions if not on a mobile device
           if (!isMobile && data.paths[0].instructions) {
             instructionsHtml += `<br><strong>Instructions:</strong><ul>`;
             data.paths[0].instructions.forEach(instruction => {
-              instructionsHtml += `<li>${instruction.text} - ${(instruction.distance).toFixed(2)} m</li>`;
+              instructionsHtml += `<li>${instruction.text} - ${(instruction.distance).toFixed(1)} m</li>`;
             });
             instructionsHtml += '</ul>';
           }
