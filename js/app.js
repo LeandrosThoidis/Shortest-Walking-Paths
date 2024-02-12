@@ -18,6 +18,7 @@ function getPosition(position) {
   var accuracy = position.coords.accuracy;
 
   document.getElementById('currentLocation').value = lat + ', ' + long;
+  knownLocations['currentLocation'] = [position.coords.latitude, position.coords.longitude];
 
   if (marker) {
       map.removeLayer(marker);
@@ -431,32 +432,77 @@ function drawRoute(from, to) {
     });
 }
 
+const universityBoundary = [
+  [38.2871,21.7772], 
+  [38.2993,21.7985], 
+  [38.2940,21.8042], 
+  [38.2897,21.7974], 
+  [38.2856,21.7997], 
+  [38.2793,21.7877], 
+  [38.2871,21.7772]  
+];
+
+// Check if the point is within the university boundary
+function isWithinUniversityBoundary(lat, lng) {
+  let x = lat, y = lng;
+  let inside = false;
+  for (let i = 0, j = universityBoundary.length - 1; i < universityBoundary.length; j = i++) {
+    let xi = universityBoundary[i][0], yi = universityBoundary[i][1];
+    let xj = universityBoundary[j][0], yj = universityBoundary[j][1];
+
+    let intersect = ((yi > y) != (yj > y))
+      && (x < (xj - xi) * (y - yi) / (yj - yi) + xi);
+    if (intersect) inside = !inside;
+  }
+  return inside;
+}
+
 
 function setRoute() {
   document.getElementById('findShortestPath').disabled = true; // Disable the button to prevent multiple submissions
-  let fromCoords = geocodeLocation('currentLocation');
+  
+  let fromCoords = knownLocations['currentLocation'] || geocodeLocation('currentLocation');
   let toCoords = geocodeLocation('destinationLocation');
 
+  // Check if fromCoords exist
+  if (fromCoords) {
+    // Check if fromCoords is within the university boundary
+    if (isWithinUniversityBoundary(fromCoords[0], fromCoords[1])) {
+      // If toCoords also exists, draw the route
+      if (toCoords) {
+        drawRoute(fromCoords, toCoords);
+      } else {
+        // Handle the case where the destination is not found
+        Swal.fire({
+          title: 'Error',
+          text: `Destination location not found within the University of Patras: "${document.getElementById('destinationLocation').value}"`,
+          icon: 'error'
+        });
+      }
+    } else {
+      // Handle the case where the current location is outside the university boundary
+      Swal.fire({
+        title: 'Error',
+        text: `Your current location is outside the University of Patras.`,
+        icon: 'error'
+      });
+    }
+  } else {
+    // Handle the case where the current location is not found or not provided
+    Swal.fire({
+      title: 'Error',
+      text: `Current location not found within the University of Patras: "${document.getElementById('currentLocation').value}"`,
+      icon: 'error'
+    });
+  }
+
+  // Handle the case where neither current location nor destination are found
   if (!fromCoords && !toCoords) {
     Swal.fire({
       title: 'Error',
       text: `Current location and destination not found within the University of Patras.`,
       icon: 'error'
     });
-  } else if (!fromCoords) {
-    Swal.fire({
-      title: 'Error',
-      text: `Current location not found within the University of Patras: "${document.getElementById('currentLocation').value}"`,
-      icon: 'error'
-    });
-  } else if (!toCoords) {
-    Swal.fire({
-      title: 'Error',
-      text: `Destination location not found within the University of Patras: "${document.getElementById('destinationLocation').value}"`,
-      icon: 'error'
-    });
-  } else {
-    drawRoute(fromCoords, toCoords);
   }
 
   document.getElementById('findShortestPath').disabled = false; // Re-enable the button after the checks
