@@ -155,7 +155,7 @@ const knownLocations = {
 
   'Τμήμα Μηχανικών Ηλεκτρονικών Υπολογιστών και Πληροφορικής': [38.29019, 21.79503],
   'Ceid': [38.29019, 21.79503],
-  'ΗΥ': [38.29019, 21.79503],
+  'Τμήμα ΗΥ': [38.29019, 21.79503],
 
   'Ιατρική Σχολή': [38.29386,21.79361],
   'Ιατρική': [38.29386,21.79361],
@@ -321,7 +321,7 @@ function suggestLocations(inputId) {
     let suggestions = [];
     Object.keys(knownLocations).forEach(location => {
       const normalizedLocation = normalizeLocationKey(location);
-      if (getLevenshteinDistance(userInput, normalizedLocation) <= 4) {
+      if (getLevenshteinDistance(userInput, normalizedLocation) <= 3) {
         suggestions.push(location);
       }
     });
@@ -357,6 +357,17 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('#currentLocation, #destinationLocation').forEach(input => {
     input.addEventListener('input', () => suggestLocations(input.id));
   });
+
+document.getElementById('currentLocation').addEventListener('focus', function() {
+  // Clear suggestions for the destination location when the current location field gains focus
+  document.getElementById('destinationLocationSuggestions').innerHTML = '';
+});
+
+document.getElementById('destinationLocation').addEventListener('focus', function() {
+  // Clear suggestions for the current location when the destination location field gains focus
+  document.getElementById('currentLocationSuggestions').innerHTML = '';
+});
+
 });
 
 
@@ -484,6 +495,9 @@ function drawRoute(from, to) {
 
 function setRoute() {
   document.getElementById('findShortestPath').disabled = true; // Disable the button to prevent multiple submissions
+
+  document.getElementById('currentLocationSuggestions').innerHTML = '';
+  document.getElementById('destinationLocationSuggestions').innerHTML = '';
 
   let fromCoords = knownLocations['currentLocation'] || geocodeLocation('currentLocation');
   let toCoords = geocodeLocation('destinationLocation');
