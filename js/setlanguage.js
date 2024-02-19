@@ -125,7 +125,10 @@ function updateTileLayer(lang) {
         pageTitle: {
           "index.html": "SWaP",
           "Cafe-restaurants.html": "Cafe-Restaurants",
-          "Departments.html": "Departments"
+          "Departments.html": "Departments",
+          "": "SWaP",
+          "cafe-restaurants": "Cafe-Restaurants",
+          "departments": "Departments"
         }
       },
       Ελληνικά: {
@@ -142,7 +145,10 @@ function updateTileLayer(lang) {
         pageTitle: {
           "index.html": "SWaP",
           "Cafe-restaurants.html": "Καφέ-Εστιατόρια",
-          "Departments.html": "Τμήματα"
+          "Departments.html": "Τμήματα",
+          "": "SWaP",
+          "cafe-restaurants": "Καφέ-Εστιατόρια",
+          "departments": "Τμήματα"
       }
     }
   }
