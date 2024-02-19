@@ -180,6 +180,11 @@ function updateTileLayer(lang) {
     updateNavLinkText('#side-menu li a[href="/pages/recommendation/Cafe-restaurants.html"]', translations[lang].cafeRestaurants, 'restaurant');
     updateNavLinkText('#side-menu li a[href="/pages/about.html"]', translations[lang].about, 'info');
     updateNavLinkText('#side-menu li a[href="/index.html"]', translations[lang].home, 'home'); 
+    updateNavLinkText('#side-menu li a[href="https://shortestpathapp.netlify.app/"]', translations[lang].home, 'home');
+    updateNavLinkText('#side-menu li a[href="https://shortestpathapp.netlify.app/pages/recommendation/departments"]', translations[lang].departments, 'location_city');
+    updateNavLinkText('#side-menu li a[href="https://shortestpathapp.netlify.app/pages/recommendation/cafe-restaurants"]', translations[lang].cafeRestaurants, 'restaurant');
+    updateNavLinkText('#side-menu li a[href="https://shortestpathapp.netlify.app/pages/about"]', translations[lang].about, 'info');
+    
   }
 
 function updateNavLinkText(selector, text, iconClassName) {
