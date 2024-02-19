@@ -40,7 +40,9 @@ document.addEventListener('DOMContentLoaded', () => {
         about: "About",
         home: "Home",
         pageTitle: {
-          "about.html": "About"},
+          "about.html": "About",
+          "about": "About"
+        },
         aboutPage: {
         about1:"SWaP is a navigation app that finds the shortest possible routes in the University of Patras. The application highlights all the facilities of the university allocated in the three available pages. For the shortest path search the application asks about: currentLocation and Destination. The currentLocation field, is provided with two οptions: either complete this field or press the FIND ME button which detects and displays current location on map. Finally, it is a progressive web-app, so there is the feature of cached recent routes so that the user can view them.",
         about2: "Therefore, SWaP is a useful app for both the new-year and higher-year students.",
@@ -54,7 +56,9 @@ document.addEventListener('DOMContentLoaded', () => {
         about: "Σχετικά",
         home: "Αρχική",
         pageTitle: {
-          "about.html": "Σχετικά"},
+          "about.html": "Σχετικά",
+          "about": "Σχετικά"
+        },
         aboutPage: {
         about1:"Το SWaP είναι μια εφαρμογή πλοήγησης που βρίσκει τις συντομότερες δυνατές διαδρομές στο Πανεπιστήμιο Πατρών. Η εφαρμογή αναδεικνύει όλες τις εγκαταστάσεις του πανεπιστημίου, αυτές κατανέμονται στις τρεις διαθέσιμες σελίδες. Για την αναζήτηση της συντομότερης διαδρομής η εφαρμογή ζητάει τα εξής: Τρέχουσα Τοποθεσία και Προορισμός. Για το πεδίο Τρέχουσα Τοποθεσία, παρέχονται δύο επιλογές: είτε να συμπληρωθεί το πεδίο είτε να πατηθεί το κουμπί ΒΡΕΣ ΜΕ το οποίο εντοπίζει και εμφανίζει την τρέχουσα τοποθεσία στο χάρτη. Τέλος, πρόκειται για μια προοδευτική διαδικτυακή εφαρμογή, οπότε υπάρχει η δυνατότητα προσωρινής αποθήκευσης των πρόσφατα αναζητημένων διαδρομών, ώστε ο χρήστης να μπορεί να τις βλέπει χωρίς σύνδεση στο ίντερνετ",
         about2: "Ως εκ τούτου, το SWaP είναι μια χρήσιμη εφαρμογή τόσο για τους πρωτοετείς όσο και για τους τελειόφοιτους φοιτητές.",
@@ -71,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     var contactElement = document.getElementById('contact');
     if (contactElement) {contactElement.textContent = translations[lang].aboutPage.contact;
-      
+
       var currentPage = window.location.pathname.split("/").pop(); 
       var pageTitleElement = document.getElementById('pageTitle'); 
       if (pageTitleElement && translations[lang].pageTitle[currentPage]) {
