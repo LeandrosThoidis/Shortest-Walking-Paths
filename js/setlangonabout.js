@@ -1,3 +1,5 @@
+var currentUrl = window.location.href;
+if (currentUrl.includes('about')){
 document.addEventListener('DOMContentLoaded', () => {
     var selectedLanguage = localStorage.getItem('selectedLanguage') || 'Ελληνικά';
     setLanguage(selectedLanguage); // Set the initial language
@@ -89,7 +91,6 @@ document.addEventListener('DOMContentLoaded', () => {
       updateNavLinkText('#side-menu li a[href="/pages/recommendation/Departments.html"]', translations[lang].departments, 'location_city');
       updateNavLinkText('#side-menu li a[href="/pages/recommendation/Cafe-restaurants.html"]', translations[lang].cafeRestaurants, 'restaurant');
       updateNavLinkText('#side-menu li a[href="/pages/about.html"]', translations[lang].about, 'info');
-      updateNavLinkText('#side-menu li a[href="/index.html"]', translations[lang].home, 'home');
       }
       else{ 
         document.querySelector('#side-menu li a.subheader').textContent = translations[lang].campusNavigation;
@@ -122,3 +123,5 @@ function updateNavLinkText(selector, text, iconClassName) {
     }
   }
 }
+}
+else{}
