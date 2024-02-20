@@ -75,21 +75,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
     var contactElement = document.getElementById('contact');
     if (contactElement) {contactElement.textContent = translations[lang].aboutPage.contact;
+    }
 
       var currentPage = window.location.pathname.split("/").pop(); 
       var pageTitleElement = document.getElementById('pageTitle'); 
       if (pageTitleElement && translations[lang].pageTitle[currentPage]) {
         pageTitleElement.textContent = translations[lang].pageTitle[currentPage];
       } 
-
+      if (currentUrl.includes('.html')){
       document.querySelector('#side-menu li a.subheader').textContent = translations[lang].campusNavigation;
       updateNavLinkText('#side-menu li a[href="/pages/recommendation/Departments.html"]', translations[lang].departments, 'location_city');
       updateNavLinkText('#side-menu li a[href="/pages/recommendation/Cafe-restaurants.html"]', translations[lang].cafeRestaurants, 'restaurant');
       updateNavLinkText('#side-menu li a[href="/pages/about.html"]', translations[lang].about, 'info');
-      updateNavLinkText('#side-menu li a[href="/index.html"]', translations[lang].home, 'home'); }
-
-
-}
+      updateNavLinkText('#side-menu li a[href="/index.html"]', translations[lang].home, 'home');
+      }
+      else{ 
+        document.querySelector('#side-menu li a.subheader').textContent = translations[lang].campusNavigation;
+        updateNavLinkText('#side-menu li a[href*="/"]', translations[lang].home, 'home'); // Assuming home is always present, adjust if needed
+        updateNavLinkText('#side-menu li a[href*="/departments"]', translations[lang].departments, 'location_city');
+        updateNavLinkText('#side-menu li a[href*="/cafe-restaurants"]', translations[lang].cafeRestaurants, 'restaurant');
+        updateNavLinkText('#side-menu li a[href*="/about"]', translations[lang].about, 'info');
+        }
+      }
 
 function updateNavLinkText(selector, text, iconClassName) {
   var linkElement = document.querySelector(selector);
