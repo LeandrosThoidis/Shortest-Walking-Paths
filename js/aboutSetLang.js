@@ -28,10 +28,10 @@ document.addEventListener('DOMContentLoaded', () => {
     localStorage.setItem('selectedLanguage', lang);
     const currentLangElement = document.getElementById('current-lang');
     currentLangElement.innerHTML = lang === 'Ελληνικά' ? 'Ελληνικά <span class="checked">✓</span>' : 'English <span class="checked">✓</span>';
-    updatePageContent(lang);
+    updatePageContent2(lang);
   }
 
-  function updatePageContent(lang) {
+  function updatePageContent2(lang) {
     var translations = {
       English: {
         campusNavigation: "Campus Navigation",
