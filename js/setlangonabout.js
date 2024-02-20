@@ -24,6 +24,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }, true);
   });
 
+  var currentUrl = window.location.href;
+
   function setLanguage(lang) {
     localStorage.setItem('selectedLanguage', lang);
     const currentLangElement = document.getElementById('current-lang');
