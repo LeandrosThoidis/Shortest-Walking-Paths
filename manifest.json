@@ -1,13 +1,28 @@
 
 {
-  "name": "Shortest Path",
-  "short_name": "ShrtstPath",
+  "name": "SWaP",
+  "short_name": "SWaP",
   "start_url": "/index.html",
   "display": "standalone",
   "background_color": "#FFE9D2",
   "theme_color": "#FFE1C4",
   "orientation": "portrait-primary",
   "status_bar": "#FFE9D2",
+  "screenshots": [
+    {
+      "src": "/img/paradeigma_xrhshs.png",
+      "sizes": "1920x1080",
+      "type": "image/png",
+      "description": "Desktop view of the app"
+    },
+    {
+      "src": "/img/paradeigma_xrhshs.png",
+      "sizes": "1080x1920",
+      "type": "image/png",
+      "description": "Mobile view of the app"
+    }
+  ],   
+
   "icons": [
     {
       "src": "/img/icons/icon-48x48.png",

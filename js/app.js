@@ -172,6 +172,8 @@ function geocodeLocation(inputId) {
   }
 }
 
+
+// Function to suggest locations based on user input
 let debounceTimeout;
 
 // Function to suggest locations based on user input
@@ -183,22 +185,31 @@ function suggestLocations(inputId) {
     const suggestionBoxId = inputId + 'Suggestions';
     const suggestionBox = document.getElementById(suggestionBoxId);
 
-    if (userInput.length === 0) {
-      suggestionBox.innerHTML = '';
-      return;
-    }
+    suggestionBox.innerHTML = ''; // Clear existing suggestions
+
+    let selectedLanguage = localStorage.getItem('selectedLanguage') || 'Ελληνικά';
+
+    // Corrected variable names to what was likely intended
+    let locationsObject = selectedLanguage === 'Ελληνικά' ? knownLocationsgrmona : knownLocationsenmona;
 
     let suggestions = [];
-    Object.keys(knownLocations).forEach(location => {
-      const normalizedLocation = normalizeLocationKey(location);
-      if (getLevenshteinDistance(userInput, normalizedLocation) <= 3) {
-        suggestions.push(location);
-      }
+
+    // Removed the condition that checks if userInput.length === 0 to always process suggestions
+    // If there is user input, filter locations based on Levenshtein distance or show all if no input
+    Object.keys(locationsObject).forEach(location => {
+        if (userInput.length === 0 || getLevenshteinDistance(userInput, normalizeLocationKey(location)) <= 3) {
+          suggestions.push(location);
+        }
     });
+
+    // Sort suggestions alphabetically
+    suggestions.sort((a, b) => a.localeCompare(b));
 
     displaySuggestions(suggestions, suggestionBox);
   }, 300);
 }
+
+
 
 // Function to display suggestions
 function displaySuggestions(suggestions, suggestionBox) {
@@ -226,6 +237,10 @@ function displaySuggestions(suggestions, suggestionBox) {
 document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('#currentLocation, #destinationLocation').forEach(input => {
     input.addEventListener('input', () => suggestLocations(input.id));
+    input.addEventListener('click', (e) => {
+      e.stopPropagation(); // Prevent the click from propagating to the document
+      suggestLocations(input.id);
+    });
   });
 
 document.getElementById('currentLocation').addEventListener('focus', function() {
@@ -236,6 +251,19 @@ document.getElementById('currentLocation').addEventListener('focus', function() 
 document.getElementById('destinationLocation').addEventListener('focus', function() {
   // Clear suggestions for the current location when the destination location field gains focus
   document.getElementById('currentLocationSuggestions').innerHTML = '';
+
+  document.addEventListener('click', function() {
+    document.querySelectorAll('.suggestions-dropdown').forEach(box => {
+        box.style.display = 'none';
+    });
+});
+
+// Prevent hiding when clicking within the suggestion box itself
+document.querySelectorAll('.suggestions-dropdown').forEach(box => {
+    box.addEventListener('click', function(e) {
+        e.stopPropagation();
+    });
+});
 });
 
 });
@@ -257,8 +285,6 @@ function getLevenshteinDistance(a, b) {
 
   return matrix[a.length][b.length];
 }
-
-
 
 // Define animationInterval in the global scope
 var animationInterval;
@@ -283,8 +309,10 @@ function animateMarker(polyline, duration) {
   }, duration / length);
 }
 
-
+var startMarker;
+var endMarker;
 let currentPolyline = null;
+
 
 function drawRoute(from, to) {
   const key = '7040f51d-1186-4818-ad37-765e602f8e32'; // Use your actual GraphHopper API key
@@ -360,7 +388,23 @@ function drawRoute(from, to) {
         icon: 'error'
       });
     });
-}
+
+    let selectedLanguage = localStorage.getItem('selectedLanguage') || 'Ελληνικά';
+    let startPopupText = selectedLanguage === 'Ελληνικά' ? 'Τρέχουσα τοποθεσία' : 'Current Location';
+    let endPopupText = selectedLanguage === 'Ελληνικά' ? 'Προορισμός' : 'Destination';
+  
+    // Clear existing start and end markers
+    if (startMarker) {
+      map.removeLayer(startMarker);
+    }
+    if (endMarker) {
+      map.removeLayer(endMarker);
+    }
+    startMarker = L.marker(from, {icon: redIcon}).bindPopup(startPopupText).addTo(map).openPopup();
+
+    // Add end marker with popup shown without needing a click
+    endMarker = L.marker(to, {icon: redIcon}).bindPopup(endPopupText).addTo(map).openPopup();
+  }
 
 
 function setRoute() {
@@ -392,7 +436,7 @@ function setRoute() {
       icon: 'error'
     });
   } else {
-    // If both coordinates are available, draw the route
+
     drawRoute(fromCoords, toCoords);
   }
 
@@ -421,6 +465,7 @@ document.querySelector('.leaflet-control-zoom-out').addEventListener('click', fu
   e.preventDefault();
   map.zoomOut();
 });
+
 
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", function() {

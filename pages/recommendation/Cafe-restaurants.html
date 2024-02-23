@@ -166,6 +166,17 @@ var greenIcon = L.icon({
     shadowSize: [41, 41]
 });
 
+var markerGroup = L.layerGroup().addTo(map);
+
+var redIcon = L.icon({
+        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
+        shadowUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-shadow.png',
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41]
+   });
+
 // Green icon to Hospital
 var greenMarker = L.marker([38.29486, 21.79567], { icon: greenIcon }).addTo(map);
 greenMarker.bindPopup('Rio Hospital');
