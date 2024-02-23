@@ -16,9 +16,9 @@
       "description": "Desktop view of the app"
     },
     {
-      "src": "/img/paradeigma_xrhshs.png",
+      "src": "/img/paradeigma_xrhshs_phone.jpg",
       "sizes": "1080x1920",
-      "type": "image/png",
+      "type": "image/jpeg",
       "description": "Mobile view of the app"
     }
   ],   
