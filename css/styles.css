@@ -383,5 +383,16 @@ height: 20px;
 line-height: 20px; /* Center the text vertically */
 }
 
+
+.nav-wrapper .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* Center items vertically */
+}
+.material-icons {
+  margin-left: 0; 
+}
+
 }
 
