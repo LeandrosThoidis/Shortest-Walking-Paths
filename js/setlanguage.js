@@ -200,7 +200,7 @@ function updatePageContent(lang) {
         "": "SWaP",
         "cafe-restaurants": "Cafe-Restaurants",
         "departments": "Departments",
-        "busStations": "Bus Stations"
+        "busstations": "Bus Stations"
       }
     },
     Ελληνικά: {
@@ -223,7 +223,7 @@ function updatePageContent(lang) {
         "": "SWaP",
         "cafe-restaurants": "Καφέ-Εστιατόρια",
         "departments": "Τμήματα",
-        "busStations": "Στάσεις Λεωφορείων"
+        "busstations": "Στάσεις Λεωφορείων"
     }
   }
 }
