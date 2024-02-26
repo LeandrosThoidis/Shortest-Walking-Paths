@@ -100,7 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
         updateNavLinkText('#side-menu li a[href*="/"]', translations[lang].home, 'home'); 
         updateNavLinkText('#side-menu li a[href*="/departments"]', translations[lang].departments, 'location_city');
         updateNavLinkText('#side-menu li a[href*="/cafe-restaurants"]', translations[lang].cafeRestaurants, 'restaurant');
-        updateNavLinkText('#side-menu li a[href*="/busStations.html"]', translations[lang].BusStations, 'directions_bus');
+        updateNavLinkText('#side-menu li a[href*="/busstations"]', translations[lang].BusStations, 'directions_bus');
         updateNavLinkText('#side-menu li a[href*="/about"]', translations[lang].about, 'info');
         }
       }
