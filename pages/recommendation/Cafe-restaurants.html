@@ -55,8 +55,8 @@
             </div>
             <div id="lang-options">
               <ul>
-                <li id="option-greek"><a href="#" class="de">Ελληνικά</a></li>
-                <li id="option-english"><a href="#" class="en">English</a></li>
+                <li id="option-greek"><a href="#" class="de">ΕΛ</a></li>
+                <li id="option-english"><a href="#" class="en">EN</a></li>
               </ul>
             </div>
           </div>
@@ -78,13 +78,16 @@
 <!-- Side nav -->
 <ul id="side-menu" class="sidenav side-menu">
   <li id="universitytour" style="background-color: #FFE1C4;height:7.3%"><a class="subheader"
-    style="font-size: 17px;color: #FF8816;">Περιήγηση Πανεπιστημίου</a></li>
+    style="font-size: 17px;color: #FF8816;">Σημεία Ενδιαφέροντος</a></li>
 
   <li><a href="/index.html" class="waves-effect">
       <i class="material-icons">home</i>Αρχική</a></li>
       
-      <li><a href="/pages/recommendation/Departments.html" class="waves-effect"><i
-        class="material-icons">location_city</i>Τμήματα</a></li>
+  <li><a href="/pages/recommendation/Departments.html" class="waves-effect">
+       <i class="material-icons">location_city</i>Τμήματα</a></li>
+
+    <li><a href="/pages/recommendation/BusStations.html" class="waves-effect">
+        <i class="material-icons">directions_bus</i>Στάσεις Λεωφορείου</a></li>
   <li>
       <div class="divider"></div>
   </li>
@@ -106,7 +109,7 @@ var isMobile = /Mobi|Android/i.test(navigator.userAgent);
   // Initialize the map with different zoom levels based on the device
   var map = L.map('map',{
     zoomControl: false,
-  }).setView([38.2892, 21.7853], isMobile ? 15 : 16);
+  }).setView([38.2881, 21.7922], isMobile ? 15 : 16);
 
 // OSM layer
 var osmLayer = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -165,8 +168,6 @@ var greenIcon = L.icon({
     popupAnchor: [1, -34],
     shadowSize: [41, 41]
 });
-
-var markerGroup = L.layerGroup().addTo(map);
 
 var redIcon = L.icon({
         iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',

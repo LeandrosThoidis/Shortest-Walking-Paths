@@ -99,12 +99,12 @@
 
     <div class="lang-menu">
       <div class="selected-lang" id="current-lang">
-        Ελληνικά <span class="checked">✓</span>
+        ΕΛ <span class="checked">✓</span>
       </div>
       <div id="lang-options">
         <ul>
-          <li id="option-greek"><a href="#" class="de">Ελληνικά</a></li>
-          <li id="option-english"><a href="#" class="en">English</a></li>
+          <li id="option-greek"><a href="#" class="de">ΕΛ</a></li>
+          <li id="option-english"><a href="#" class="en">EN</a></li>
         </ul>
       </div>
     </div>
@@ -129,14 +129,14 @@
   <!-- Side Nav -->
   <ul id="side-menu" class="sidenav side-menu">
     <li style="background-color: #FFE1C4;height:7.3%"><a class="subheader"
-        style="font-size: 17px;color: #FF8816;">Περιήγηση Πανεπιστημίου</a></li>
+        style="font-size: 17px;color: #FF8816;">Σημεία Ενδιαφέροντος</a></li>
     <li><a href="/pages/recommendation/Departments.html" class="waves-effect"><i
           class="material-icons">location_city</i>Τμήματα</a></li>
     <li><a href="/pages/recommendation/Cafe-restaurants.html" class="waves-effect"><i
           class="material-icons">restaurant</i>Καφέ-Εστιατόρια</a></li>
-    <li>
+      <li><a href="/pages/recommendation/BusStations.html" class="waves-effect">
+        <i class="material-icons">directions_bus</i>Στάσεις Λεωφορείου</a></li>
       <div class="divider"></div>
-    </li>
     <li><a href="/pages/about.html" class="waves-effect">
         <i class="material-icons">info</i>Σχετικά</a></li>
   </ul>
@@ -149,11 +149,15 @@
 
 
   <div id="map" style="width: 100%; height: 100%;"></div>
-  </div>
-  
 
   <script>
-    var isOnHomePage = true; 
+
+  var BussIcon = L.icon({
+  iconUrl: '../../img/icons/bus-station.png',
+  iconSize: [40, 25], 
+  iconAnchor: [16, 32], 
+  popupAnchor: [0, -32] 
+});
     
     // Initialize the map
     var isMobile = /Mobi|Android/i.test(navigator.userAgent);
@@ -230,6 +234,58 @@
     // Green icon marker for Rio Hospital
     var hospitalMarker = L.marker([38.29486, 21.79567], { icon: greenIcon }).addTo(map);
     hospitalMarker.bindPopup('Rio Hospital');
+
+    var busStopMarkers = [
+    { coordinates: [38.28576, 21.78621], popupText: 'Στάση αναχώρησης-Πρυτανεία' },
+    { coordinates: [38.28592, 21.78604], popupText: 'Στάση ανταπόκρισης τρένου-Πρυτανεία' },
+    { coordinates: [38.28600, 21.78580], popupText: 'Στάση άφιξης-Πρυτανεία' },
+    { coordinates: [38.28800, 21.78655], popupText: 'Στάση Πολυτεχείων' },
+    { coordinates: [38.28994, 21.78487], popupText: 'Στάση Συνεδριακού' },
+    { coordinates: [38.29193,21.78755], popupText: 'Στάση άφιξης Θετικών Επιστημών' },
+    { coordinates: [38.29355, 21.79058], popupText: 'Στάση άφιξης Γεωλογικού' },
+    { coordinates: [38.29440, 21.79205], popupText: 'Στάση άφιξης-Ιατρική' },
+    { coordinates: [38.29592, 21.79457], popupText: 'Στάση άφιξης Πανεπιστημιακού Νοσοκομείου' },
+    { coordinates: [38.29685, 21.79607], popupText: 'Στάση-αφετηρία αναχώρησης' },
+    { coordinates: [38.29467, 21.79204], popupText: 'Στάση αναχώρησης-Ιατρική' },
+    { coordinates: [38.29369, 21.79035], popupText: 'Στάση αναχώρησης Γεωλογικού' },
+    { coordinates: [38.29197, 21.78729], popupText: 'Σταση αναχώρησης Θετικών Επιστημών' },
+    { coordinates: [38.28962, 21.78218], popupText: 'Στάση ΟΑΕΔ' },
+    { coordinates: [38.28615,21.78611], popupText: 'Αφετηρία 612' },
+    { coordinates: [38.28697,21.78987], popupText: 'Στάση 612-Εστία' },
+    { coordinates: [38.29036,21.79458], popupText: 'Σταση 612-Μηχανικοί ΗΥ' },
+    { coordinates: [38.29009,21.79182], popupText: 'Στάση 612-Βιβλιοθήκη' },
+    { coordinates: [38.28784,21.78669], popupText: 'Σταση 612-Πολυτεχνεία' },
+    { coordinates: [38.28847,21.78416], popupText: 'Στάση 612-Λογοθεραπία' },
+  
+];
+
+busStopMarkers.forEach(function(marker) {
+    L.marker(marker.coordinates, { icon: BussIcon })
+        .bindPopup(marker.popupText)
+        .addTo(map);
+});
+
+// Define a orange icon
+var orangeIcon = L.icon({
+    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-orange.png',
+    shadowUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-shadow.png',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41]
+});
+
+var blueIcon = L.icon({
+    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png',
+    shadowUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-shadow.png',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41]
+});
+
+
+
     
 </script>
 

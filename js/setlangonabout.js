@@ -31,18 +31,19 @@ document.addEventListener('DOMContentLoaded', () => {
   function setLanguage(lang) {
     localStorage.setItem('selectedLanguage', lang);
     const currentLangElement = document.getElementById('current-lang');
-    currentLangElement.innerHTML = lang === 'Ελληνικά' ? 'Ελληνικά <span class="checked">✓</span>' : 'English <span class="checked">✓</span>';
+    currentLangElement.innerHTML = lang === 'Ελληνικά' ? 'EΛ <span class="checked">✓</span>' : 'EN <span class="checked">✓</span>';
     updatePageContent2(lang);
   }
 
   function updatePageContent2(lang) {
     var translations = {
       English: {
-        campusNavigation: "Campus Navigation",
+        campusNavigation: "Points of Interest",
         departments: "Departments",
         cafeRestaurants: "Cafe-Restaurants",
         about: "About",
         home: "Home",
+        BusStations: "Bus Stations",
         pageTitle: {
           "about.html": "About",
           "about": "About"
@@ -54,11 +55,12 @@ document.addEventListener('DOMContentLoaded', () => {
       },
       
       Ελληνικά: {
-        campusNavigation: "Περιήγηση Πανεπιστημίου",
+        campusNavigation: "Σημεία Ενδιαφέροντος",
         departments: "Τμήματα",
         cafeRestaurants: "Καφέ-Εστιατόρια",
         about: "Σχετικά",
         home: "Αρχική",
+        BusStations: "Στάσεις Λεωφορείων",
         pageTitle: {
           "about.html": "Σχετικά",
           "about": "Σχετικά"
@@ -90,6 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
       document.querySelector('#side-menu li a.subheader').textContent = translations[lang].campusNavigation;
       updateNavLinkText('#side-menu li a[href="/pages/recommendation/Departments.html"]', translations[lang].departments, 'location_city');
       updateNavLinkText('#side-menu li a[href="/pages/recommendation/Cafe-restaurants.html"]', translations[lang].cafeRestaurants, 'restaurant');
+      updateNavLinkText('#side-menu li a[href="/pages/recommendation/BusStations.html"]', translations[lang].BusStations, 'directions_bus');
       updateNavLinkText('#side-menu li a[href="/pages/about.html"]', translations[lang].about, 'info');
       }
       else{ 
@@ -97,6 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
         updateNavLinkText('#side-menu li a[href*="/"]', translations[lang].home, 'home'); 
         updateNavLinkText('#side-menu li a[href*="/departments"]', translations[lang].departments, 'location_city');
         updateNavLinkText('#side-menu li a[href*="/cafe-restaurants"]', translations[lang].cafeRestaurants, 'restaurant');
+        updateNavLinkText('#side-menu li a[href*="/busStations.html"]', translations[lang].BusStations, 'directions_bus');
         updateNavLinkText('#side-menu li a[href*="/about"]', translations[lang].about, 'info');
         }
       }

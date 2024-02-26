@@ -41,9 +41,14 @@ function getPosition(position) {
   var long = position.coords.longitude;
   var accuracy = position.coords.accuracy;
 
+  var selectedLanguage = localStorage.getItem('selectedLanguage') || 'English'; // Default to English if not set
+
+  // Determine the message based on the selected language
+  var locationMessage = selectedLanguage === 'Ελληνικά' ? 'Τρέχουσα τοποθεσία' : 'Current Location';
+
   // Check if the current location is within the university boundary
   if (isWithinUniversityBoundary(lat, long)) {
-    document.getElementById('currentLocation').value = "Your Current Location"; 
+    document.getElementById('currentLocation').value = locationMessage; 
     knownLocations['currentLocation'] = [lat, long];
 
     if (marker) {
@@ -191,17 +196,21 @@ function suggestLocations(inputId) {
 
     // Corrected variable names to what was likely intended
     let locationsObject = selectedLanguage === 'Ελληνικά' ? knownLocationsgrmona : knownLocationsenmona;
-
+    let combinedLocations = Object.assign({}, knownLocationsen, knownLocationsgr);
     let suggestions = [];
-
-    // Removed the condition that checks if userInput.length === 0 to always process suggestions
-    // If there is user input, filter locations based on Levenshtein distance or show all if no input
-    Object.keys(locationsObject).forEach(location => {
-        if (userInput.length === 0 || getLevenshteinDistance(userInput, normalizeLocationKey(location)) <= 3) {
+    if (userInput.length === 0) {
+      // If the input field is empty, use the current language-specific locations object
+      Object.keys(locationsObject).forEach(location => {
+        suggestions.push(location);
+      });
+    } else {
+      // If there is user input, use the combined locations object to filter suggestions
+      Object.keys(combinedLocations).forEach(location => {
+        if (getLevenshteinDistance(userInput, normalizeLocationKey(location)) <= 3) {
           suggestions.push(location);
         }
-    });
-
+      });
+    }
     // Sort suggestions alphabetically
     suggestions.sort((a, b) => a.localeCompare(b));
 
@@ -222,14 +231,14 @@ function displaySuggestions(suggestions, suggestionBox) {
       const inputId = suggestionBox.id.replace('Suggestions', '');
       const inputElement = document.getElementById(inputId);
       inputElement.value = suggestion; // Update the input field with the selected suggestion
-      suggestionBox.innerHTML = ''; // Clear suggestions after selection
+      suggestionBox.innerHTML = ''; 
     };
     suggestionBox.appendChild(div);
   });
   if (suggestions.length > 0) {
-    suggestionBox.style.display = 'block'; // Show suggestions
+    suggestionBox.style.display = 'block'; 
   } else {
-    suggestionBox.style.display = 'none'; // Hide suggestions if empty
+    suggestionBox.style.display = 'none'; 
   }
 }
 
@@ -238,7 +247,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('#currentLocation, #destinationLocation').forEach(input => {
     input.addEventListener('input', () => suggestLocations(input.id));
     input.addEventListener('click', (e) => {
-      e.stopPropagation(); // Prevent the click from propagating to the document
+      e.stopPropagation(); 
       suggestLocations(input.id);
     });
   });
@@ -312,6 +321,7 @@ function animateMarker(polyline, duration) {
 var startMarker;
 var endMarker;
 let currentPolyline = null;
+
 
 
 function drawRoute(from, to) {
@@ -414,7 +424,7 @@ function setRoute() {
   document.getElementById('destinationLocationSuggestions').innerHTML = '';
 
   let fromCoords = knownLocations['currentLocation'] || geocodeLocation('currentLocation');
-  let toCoords = geocodeLocation('destinationLocation');
+  let toCoords =  knownLocations['destinationLocation'] ||geocodeLocation('destinationLocation');
 
   // Check conditions and show appropriate error messages
   if (!fromCoords && !toCoords) {
@@ -440,7 +450,7 @@ function setRoute() {
     drawRoute(fromCoords, toCoords);
   }
 
-  document.getElementById('findShortestPath').disabled = false; // Re-enable the button after the checks
+  document.getElementById('findShortestPath').disabled = false; 
 }
 
 

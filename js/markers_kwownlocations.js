@@ -1,40 +1,156 @@
 var blackMarkers = [
+  { 
+      coordinates: [38.28962, 21.79132], 
+      popupText: {
+          English: 'Central Library and Information Center',
+          Ελληνικά: 'Κεντρική βιβλιοθήκη και Κέντρο ενημέρωσης'
+      }
+  },
+  { 
+      coordinates: [38.29022, 21.78636], 
+      popupText: {
+          English: 'Conference Center',
+          Ελληνικά: 'Συνεδριακό Κέντρο'
+      }
+  },
+  { 
+      coordinates: [38.28570, 21.79006], 
+      popupText: {
+          English: 'Student Dormitory',
+          Ελληνικά: 'Φοιτητική Εστία'
+      }
+  },
+  { 
+      coordinates: [38.28204, 21.78855], 
+      popupText: {
+          English: 'University of Patras Gym',
+          Ελληνικά: 'Πανεπιστημιακό Γυμναστήριο Πατρών'
+      }
+  },
+  { 
+      coordinates: [38.2861, 21.7866], 
+      popupText: {
+          English: 'Rectorate',
+          Ελληνικά: 'Πρυτανεία'
+      }
+  }];
+  if (typeof BussIcon !== 'undefined'){
+  var busStopMarkers = [
     { 
-        coordinates: [38.28962, 21.79132], 
-        popupText: {
-            English: 'Central Library and Information Center',
-            Ελληνικά: 'Κεντρική βιβλιοθήκη και Κέντρο ενημέρωσης'
-        }
+      coordinates: [38.28576, 21.78621], 
+      popupText: {
+        English: 'Departure bus stop-Rectorate', 
+        Ελληνικά: 'Στάση αναχώρησης-Πρυτανεία'
+      }
     },
     { 
-        coordinates: [38.29022, 21.78636], 
-        popupText: {
-            English: 'Conference Center',
-            Ελληνικά: 'Συνεδριακό Κέντρο'
-        }
+      coordinates: [38.28592, 21.78604], 
+      popupText: {
+        English: 'Train Response bus stop-Rectorate', 
+        Ελληνικά: 'Στάση ανταπόκρισης τρένου-Πρυτανεία'
+      }
     },
     { 
-        coordinates: [38.28570, 21.79006], 
-        popupText: {
-            English: 'Student Dormitory',
-            Ελληνικά: 'Φοιτητική Εστία'
-        }
+      coordinates: [38.28602,21.78584], 
+      popupText: {
+        English: 'Arrival bus stop-Rectorate', 
+        Ελληνικά: 'Στάση άφιξης-Πρυτανεία'
+      }
     },
     { 
-        coordinates: [38.28204, 21.78855], 
-        popupText: {
-            English: 'University of Patras Gym',
-            Ελληνικά: 'Πανεπιστημιακό Γυμναστήριο Πατρών'
-        }
+      coordinates: [38.28800, 21.78655], 
+      popupText: {
+        English: 'Polytechnic`s bus stop', 
+        Ελληνικά: 'Στάση Πολυτεχνείων'
+      }
     },
     { 
-        coordinates: [38.2861, 21.7866], 
-        popupText: {
-            English: 'Rectorate',
-            Ελληνικά: 'Πρυτανεία'
-        }
+      coordinates: [38.28994, 21.78487], 
+      popupText: {
+        English: 'Conference Center bus stop', 
+        Ελληνικά: 'Στάση Συνεδριακού'
+      }
     },
+    { 
+      coordinates: [38.29193,21.78755], 
+      popupText: {
+        English: 'Science`s arrival bus stop', 
+        Ελληνικά: 'Στάση άφιξης Θετικών Επιστημών'
+      }
+    },
+    { 
+      coordinates: [38.29355, 21.79058], 
+      popupText: {
+        English: 'Arrival bus stop of the Geology Dep', 
+        Ελληνικά: 'Στάση άφιξης Γεωλογικού'
+      }
+    },
+    { 
+      coordinates: [38.29440, 21.79205], 
+      popupText: {
+        English: 'Arrival bus stop of Medics', 
+        Ελληνικά: 'Στάση άφιξης-Ιατρική'
+      }
+    },
+    { 
+      coordinates: [38.29592, 21.79457], 
+      popupText: {
+        English: 'Arrival bus stop-University Hospital', 
+        Ελληνικά: 'Στάση άφιξης Πανεπιστημιακού Νοσοκομείου'
+      }
+    },
+    { 
+      coordinates: [38.29685, 21.79607], 
+      popupText: {
+        English: 'Departure bus stop-starting point', 
+        Ελληνικά: 'Στάση-αφετηρία αναχώρησης'
+      }
+    },
+    { 
+      coordinates: [38.29467, 21.79204], 
+      popupText: {
+        English: 'Departure bus stop-Medics', 
+        Ελληνικά: 'Στάση αναχώρησης-Ιατρική'
+      }
+    },
+    { 
+      coordinates: [38.29369, 21.79035], 
+      popupText: {
+        English: 'Departure bus stop of the Geology Dep', 
+        Ελληνικά: 'Στάση αναχώρησης Γεωλογικού'
+      }
+    },
+    { 
+      coordinates: [38.29197, 21.78729], 
+      popupText: {
+        English: 'Science`s departure bus stop', 
+        Ελληνικά: 'Σταση αναχώρησης Θετικών Επιστημών'
+      }
+    },
+    { 
+      coordinates: [38.28962, 21.78218], 
+      popupText: {
+        English: 'OAED bus stop', 
+        Ελληνικά: 'Στάση ΟΑΕΔ'
+      }
+    },
+  
+      { coordinates: [38.28615,21.78611], popupText: { English: '612 Bus starting point', Ελληνικά: 'Αφετηρία 612' } },
+      { coordinates: [38.28697,21.78987], popupText: { English: '612 Bus stop-Dormitory', Ελληνικά: 'Στάση 612-Εστία' } },
+      { coordinates: [38.29036,21.79458], popupText: { English: '612 Bus stop-CEID', Ελληνικά: 'Σταση 612-Μηχανικοί ΗΥ' } },
+      { coordinates: [38.29009,21.79182], popupText: { English: '612 Bus stop-Library', Ελληνικά: 'Στάση 612-Βιβλιοθήκη' } },
+      { coordinates: [38.28784,21.78669], popupText: { English: '612 Bus stop-Polytechnic', Ελληνικά: 'Σταση 612-Πολυτεχνεία' } },
+      { coordinates: [38.28847,21.78416], popupText: { English: '612 Bus stop-Speech Therapy', Ελληνικά: 'Στάση 612-Λογοθεραπία' } },
+    
   ];
+
+  busStopMarkers.forEach(function(marker) {
+    L.marker(marker.coordinates, { icon: BussIcon })
+      .bindPopup(marker.popupText)
+      .addTo(map);
+  });
+}
+  
   
   var orangeMarkers = [
     { 
@@ -52,7 +168,7 @@ var blackMarkers = [
         }
     },
     { 
-        coordinates: [38.28597, 21.78575], 
+        coordinates: [38.28594,21.78573], 
         popupText: {
             English: 'Coffee Island',
             Ελληνικά: 'Coffee Island'
@@ -146,7 +262,7 @@ var blackMarkers = [
       }
     },
     { 
-      coordinates: [38.28920, 21.78749], 
+      coordinates: [38.28923,21.78780], 
       popupText: {
         English: 'School of Mechanical Engineering & Aeronautics',
         Ελληνικά: 'Σχολή Μηχανολόγων Μηχανικών & Αεροναυπηγικής'
@@ -301,12 +417,12 @@ var blackMarkers = [
     'Χημικοί Μηχανικοί': [38.28962, 21.78827],
     'Χημικών Μηχανικών': [38.28962, 21.78827],
   
-    'Σχολή Μηχανολόγων Μηχανικών & Αεροναυπηγικής': [38.28920, 21.78749],
-    'Τμήμα Μηχανολόγων Μηχανικών & Αεροναυπηγικής': [38.28920, 21.78749],
-    'Τμήμα Μηχανολόγων Μηχανικών': [38.28920, 21.78749],
-    'Μηχανολόγοι': [38.28920, 21.78749],
-    'Αεροναυπηγοί': [38.28920, 21.78749],
-    'Μηχανολόγων': [38.28920, 21.78749],
+    'Σχολή Μηχανολόγων Μηχανικών & Αεροναυπηγικής': [38.28923,21.78780],
+    'Τμήμα Μηχανολόγων Μηχανικών & Αεροναυπηγικής': [38.28923,21.78780],
+    'Τμήμα Μηχανολόγων Μηχανικών': [38.28923,21.78780],
+    'Μηχανολόγοι': [38.28923,21.78780],
+    'Αεροναυπηγοί': [38.28923,21.78780],
+    'Μηχανολόγων': [38.28923,21.78780],
   
     'Τμήμα Πολιτικών Μηχανικών': [38.28888, 21.79048],
     'Πολιτικοί Μηχανικοί' : [38.28888, 21.79048],
@@ -360,9 +476,8 @@ var blackMarkers = [
   
     'Οκτάγωνο': [38.28678,21.78558],
     'Octagon' : [38.28678,21.78558],
-  
-    'Coffee Island': [38.28597, 21.78575],
-    'Coffee': [38.28597, 21.78575],
+
+    'Κόφι': [38.28594,21.78573],
   
     'Εστιατόριο Φοιτητικής Εστίας': [38.28620,21.78970],
     'Εστιατόριο': [38.28620,21.78970],
@@ -374,6 +489,28 @@ var blackMarkers = [
     'Κυλικείο Μηχανολόγων': [38.28912, 21.78741],
 
     'Κυλικείο Χημικού': [38.29089,21.78852],
+
+      'Στάση αναχώρησης-Πρυτανεία': [38.28576, 21.78621],
+      'Στάση ανταπόκρισης τρένου-Πρυτανεία': [38.28592, 21.78604],
+      'Στάση άφιξης-Πρυτανεία': [38.28602,21.78584],
+      'Στάση Πολυτεχείων': [38.28800, 21.78655],
+      'Στάση Συνεδριακού': [38.28994, 21.78487],
+      'Στάση άφιξης Θετικών Επιστημών': [38.29193,21.78755],
+      'Στάση άφιξης Γεωλογικού': [38.29355, 21.79058],
+      'Στάση άφιξης-Ιατρική': [38.29440, 21.79205],
+      'Στάση άφιξης Πανεπιστημιακού Νοσοκομείου': [38.29592, 21.79457],
+      'Στάση-αφετηρία αναχώρησης': [38.29685, 21.79607],
+      'Στάση αναχώρησης-Ιατρική': [38.29467, 21.79204],
+      'Στάση αναχώρησης Γεωλογικού': [38.29369, 21.79035],
+      'Σταση αναχώρησης Θετικών Επιστημών': [38.29197, 21.78729],
+      'Στάση ΟΑΕΔ': [38.28962, 21.78218],
+      'Αφετηρία 612': [38.28615, 21.78611],
+      'Στάση 612-Εστία': [38.28697, 21.78987],
+      'Σταση 612-Μηχανικοί ΗΥ': [38.29036, 21.79458],
+      'Στάση 612-Βιβλιοθήκη': [38.29009, 21.79182],
+      'Σταση 612-Πολυτεχνεία': [38.28784, 21.78669],
+      'Στάση 612-Λογοθεραπία': [38.28847, 21.78416]
+      
   };
 
   const knownLocationsen = {
@@ -398,7 +535,7 @@ var blackMarkers = [
     'Student canteen': [38.28620,21.78970],
 
     'University of Patras Gym': [38.28204, 21.78855],
-    'fitness center': [38.28204, 21.78855],
+    'Fitness center': [38.28204, 21.78855],
     'sports facilities': [38.28204, 21.78855],
     'stadiums': [38.28204, 21.78855],
 
@@ -436,12 +573,12 @@ var blackMarkers = [
     "Chemical Engineering": [38.28962, 21.78827],
     "Chemical Engineering Department": [38.28962, 21.78827],
 
-    'School of Mechanical & Aeronautical Engineering': [38.28920, 21.78749],
-    'Mechanical Engineering & Aeronautical School': [38.28920, 21.78749],
-    "Department of Mechanical & Aeronautical Engineering": [38.28920, 21.78749],
-    "Department of Mechanical Engineering": [38.28920, 21.78749],
-    "Mechanical Engineers": [38.28920, 21.78749],
-    "Aeronautical Engineers": [38.28920, 21.78749],
+    'School of Mechanical & Aeronautical Engineering': [38.28923,21.78780],
+    'Mechanical Engineering & Aeronautical School': [38.28923,21.78780],
+    "Department of Mechanical & Aeronautical Engineering": [38.28923,21.78780],
+    "Department of Mechanical Engineering": [38.28923,21.78780],
+    "Mechanical Engineers": [38.28923,21.78780],
+    "Aeronautical Engineers": [38.28923,21.78780],
 
     'Department of Civil Engineering': [38.28888, 21.79048],
     'Civil Engineers' : [38.28888, 21.79048],
@@ -492,8 +629,8 @@ var blackMarkers = [
 
     'Octagon' : [38.28678,21.78558],
 
-    'Coffee Island': [38.28597, 21.78575],
-    'Coffee': [38.28597, 21.78575],
+    'Coffee Island': [38.28594,21.78573],
+    'Coffee': [38.28594,21.78573],
   
     'Student Dormitory Restaurant': [38.28620,21.78970],
     'Student Restaurant': [38.28620,21.78970],
@@ -505,6 +642,28 @@ var blackMarkers = [
     'Mechanical Engineering Canteen': [38.28912, 21.78741],
 
     'Chemist`s Canteen': [38.29089,21.78852],
+
+    'Departure bus stop-Rectorate': [38.28576, 21.78621],
+    'Train Response bus stop-Rectorate': [38.28592, 21.78604],
+    'Arrival bus stop-Rectorate': [38.28602,21.78584],
+    'Polytechnic`s bus stop': [38.28800, 21.78655],
+    'Conference Center bus stop': [38.28994, 21.78487],
+    'Science`s arrival bus stop': [38.29193,21.78755],
+    'Arrival bus stop of the Geological Section': [38.29355, 21.79058],
+    'Arrival bus stop of Medics': [38.29440, 21.79205],
+    'Arrival bus stop-University Hospital': [38.29592, 21.79457],
+    'Departure bus stop-starting point': [38.29685, 21.79607],
+    'Departure bus stop-Medics': [38.29467, 21.79204],
+    'Departure bus stop of the Geological Section': [38.29369, 21.79035],
+    'Science`s departure bus stop': [38.29197, 21.78729],
+    'OAED bus stop': [38.28962, 21.78218],
+    '612 Bus starting point': [38.28615, 21.78611],
+    '612 Bus stop-Dormitory': [38.28697, 21.78987],
+    '612 Bus stop-CEID': [38.29036, 21.79458],
+    '612 Bus stop-Library': [38.29009, 21.79182],
+    '612 Bus stop-Polytechnic': [38.28784, 21.78669],
+    '612 Bus stop-Speech Therapy': [38.28847, 21.78416]
+  
   }
 
 
@@ -539,7 +698,7 @@ var blackMarkers = [
   
     'Τμήμα Χημικών Μηχανικών': [38.28962, 21.78827],
   
-    'Τμήμα Μηχανολόγων Μηχανικών & Αεροναυπηγικής': [38.28920, 21.78749],
+    'Τμήμα Μηχανολόγων Μηχανικών & Αεροναυπηγικής': [38.28923,21.78780],
 
     'Τμήμα Πολιτικών Μηχανικών': [38.28888, 21.79048],
   
@@ -569,7 +728,7 @@ var blackMarkers = [
   
     'Οκτάγωνο': [38.28678,21.78558],
   
-    'Κόφι': [38.28597, 21.78575],
+    'Κόφι': [38.28594,21.78573],
   
     'Εστιατόριο Φοιτητικής Εστίας': [38.28620,21.78970],
   
@@ -578,6 +737,27 @@ var blackMarkers = [
     'Κυλικείο Μηχανολόγων': [38.28912, 21.78741],
 
     'Κυλικείο Χημικού': [38.29089,21.78852],
+
+    'Στάση αναχώρησης-Πρυτανεία': [38.28576, 21.78621],
+    'Στάση ανταπόκρισης τρένου-Πρυτανεία': [38.28592, 21.78604],
+    'Στάση άφιξης-Πρυτανεία': [38.28602,21.78584],
+    'Στάση Πολυτεχείων': [38.28800, 21.78655],
+    'Στάση Συνεδριακού': [38.28994, 21.78487],
+    'Στάση άφιξης Θετικών Επιστημών': [38.29193,21.78755],
+    'Στάση άφιξης Γεωλογικού': [38.29355, 21.79058],
+    'Στάση άφιξης-Ιατρική': [38.29440, 21.79205],
+    'Στάση άφιξης Πανεπιστημιακού Νοσοκομείου': [38.29592, 21.79457],
+    'Στάση-αφετηρία αναχώρησης': [38.29685, 21.79607],
+    'Στάση αναχώρησης-Ιατρική': [38.29467, 21.79204],
+    'Στάση αναχώρησης Γεωλογικού': [38.29369, 21.79035],
+    'Σταση αναχώρησης Θετικών Επιστημών': [38.29197, 21.78729],
+    'Στάση ΟΑΕΔ': [38.28962, 21.78218],
+    'Αφετηρία 612': [38.28615, 21.78611],
+    'Στάση 612-Εστία': [38.28697, 21.78987],
+    'Σταση 612-Μηχανικοί ΗΥ': [38.29036, 21.79458],
+    'Στάση 612-Βιβλιοθήκη': [38.29009, 21.79182],
+    'Σταση 612-Πολυτεχνεία': [38.28784, 21.78669],
+    'Στάση 612-Λογοθεραπία': [38.28847, 21.78416]
   };
 
   const knownLocationsenmona = {
@@ -611,7 +791,7 @@ var blackMarkers = [
 
     'Department of Chemical Engineering': [38.28962, 21.78827],
 
-    "Department of Mechanical & Aeronautical Engineering": [38.28920, 21.78749],
+    "Department of Mechanical & Aeronautical Engineering": [38.28923,21.78780],
 
     'Department of Civil Engineering': [38.28888, 21.79048],
 
@@ -641,7 +821,7 @@ var blackMarkers = [
 
     'Octagon' : [38.28678,21.78558],
 
-    'Coffee Island': [38.28597, 21.78575],
+    'Coffee Island': [38.28594,21.78573],
   
     'Student Dormitory Restaurant': [38.28620,21.78970],
 
@@ -650,8 +830,29 @@ var blackMarkers = [
     'Mechanical Engineering Canteen': [38.28912, 21.78741],
 
     'Chemist`s Canteen': [38.29089,21.78852],
-  }
 
+    'Departure bus stop-Rectorate': [38.28576, 21.78621],
+    'Train Response bus stop-Rectorate': [38.28592, 21.78604],
+    'Arrival bus stop-Rectorate': [38.28602,21.78584],
+    'Polytechnic`s bus stop': [38.28800, 21.78655],
+    'Conference Center bus stop': [38.28994, 21.78487],
+    'Science`s arrival bus stop': [38.29193,21.78755],
+    'Arrival bus stop of the Geological Section': [38.29355, 21.79058],
+    'Arrival bus stop of Medics': [38.29440, 21.79205],
+    'Arrival bus stop-University Hospital': [38.29592, 21.79457],
+    'Departure bus stop-starting point': [38.29685, 21.79607],
+    'Departure bus stop-Medics': [38.29467, 21.79204],
+    'Departure bus stop of the Geological Section': [38.29369, 21.79035],
+    'Science`s departure bus stop': [38.29197, 21.78729],
+    'OAED bus stop': [38.28962, 21.78218],
+    '612 Bus starting point': [38.28615, 21.78611],
+    '612 Bus stop-Dormitory': [38.28697, 21.78987],
+    '612 Bus stop-CEID': [38.29036, 21.79458],
+    '612 Bus stop-Library': [38.29009, 21.79182],
+    '612 Bus stop-Polytechnic': [38.28784, 21.78669],
+    '612 Bus stop-Speech Therapy': [38.28847, 21.78416]
+  }
+  
   var knownLocations = Object.assign({}, knownLocationsen, knownLocationsgr);
   var markers = [...blackMarkers, ...orangeMarkers, ...blueMarkers];
 
