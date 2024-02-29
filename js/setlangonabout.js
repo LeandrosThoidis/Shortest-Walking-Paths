@@ -39,6 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
     var translations = {
       English: {
         campusNavigation: "Points of Interest",
+        subtitle: "Your 'Shortest Walking-Paths' campus assistant",
         departments: "Departments",
         cafeRestaurants: "Cafe-Restaurants",
         about: "About",
@@ -49,13 +50,14 @@ document.addEventListener('DOMContentLoaded', () => {
           "about": "About"
         },
         aboutPage: {
-        about1:"SWaP is a navigation app that finds the shortest possible routes in the University of Patras. The application highlights all the facilities of the university allocated in the three available pages. For the shortest path search the application asks about: currentLocation and Destination. The currentLocation field, is provided with two οptions: either complete this field or press the FIND ME button which detects and displays current location on map. Finally, it is a progressive web-app, so there is the feature of cached recent routes so that the user can view them.",
-        about2: "Therefore, SWaP is a useful app for both the new-year and higher-year students.",
+        about1:"SWaP is your 'Shortest Walking-Paths' campus assistant, helping you find shortest walking paths within our upatras campus. You can either let SWaP know your current location via your wireless device or manually first select / type a starting point and then your destination from the dropdown list. SWap will show you the shortest route to walk to your point of interest. Keep in mind that after your first visit, SWaP remains fully functional even if you are off-grid",
+        about2: "Enjoy SWaPing around at upatras campus!",
         contact: "Contact me at:"}
       },
       
       Ελληνικά: {
         campusNavigation: "Σημεία Ενδιαφέροντος",
+        subtitle: "Ο βοηθός σας στην εύρεση συντομότερων μονοπατιών",
         departments: "Τμήματα",
         cafeRestaurants: "Καφέ-Εστιατόρια",
         about: "Σχετικά",
@@ -66,12 +68,15 @@ document.addEventListener('DOMContentLoaded', () => {
           "about": "Σχετικά"
         },
         aboutPage: {
-        about1:"Το SWaP είναι μια εφαρμογή πλοήγησης που βρίσκει τις συντομότερες δυνατές διαδρομές στο Πανεπιστήμιο Πατρών. Η εφαρμογή αναδεικνύει όλες τις εγκαταστάσεις του πανεπιστημίου, αυτές κατανέμονται στις τρεις διαθέσιμες σελίδες. Για την αναζήτηση της συντομότερης διαδρομής η εφαρμογή ζητάει τα εξής: Τρέχουσα Τοποθεσία και Προορισμός. Για το πεδίο Τρέχουσα Τοποθεσία, παρέχονται δύο επιλογές: είτε να συμπληρωθεί το πεδίο είτε να πατηθεί το κουμπί ΒΡΕΣ ΜΕ το οποίο εντοπίζει και εμφανίζει την τρέχουσα τοποθεσία στο χάρτη. Τέλος, πρόκειται για μια προοδευτική διαδικτυακή εφαρμογή, οπότε υπάρχει η δυνατότητα προσωρινής αποθήκευσης των πρόσφατα αναζητημένων διαδρομών, ώστε ο χρήστης να μπορεί να τις βλέπει χωρίς σύνδεση στο ίντερνετ",
-        about2: "Ως εκ τούτου, το SWaP είναι μια χρήσιμη εφαρμογή τόσο για τους πρωτοετείς όσο και για τους τελειόφοιτους φοιτητές.",
+        about1:"Το SWaP είναι ο βοηθός σας για την εύρεση των'συντομότερων μονοπατιών για πεζούς' στην πανεπιστημιούπολη της Πάτρας. Μπορείτε είτε να επιτρέψετε στο SWaP την πρόσβαση στην τοποθεσία σας μέσω της ασύρματης συσκευής σας είτε να επιλέξετε/πληκτρολογήσετε χειροκίνητα πρώτα ένα σημείο εκκίνησης και στη συνέχεια τον προορισμό σας από την αναπτυσσόμενη λίστα. Το SWap θα σας δείξει τη συντομότερη διαδρομή για να περπατήσετε μέχρι το σημείο για το οποίο ενδιαφέρεστε. Λάβετε υπόψη ότι μετά την πρώτη σας επίσκεψη, το SWaP παραμένει πλήρως λειτουργικό ακόμη και αν είστε εκτός δικτύου",
+        about2: "Απολαύστε το SWaPing στο Πανεπιστήμιο Πατρών!",
         contact: "Βρείτε με στο:"}
       }
     };
-  
+
+    var subtitleElement = document.querySelector('.subtitle');
+  if (subtitleElement) subtitleElement.textContent = translations[lang].subtitle;
+
     var about1Element = document.getElementById('about1');
     if (about1Element) {about1Element.textContent = translations[lang].aboutPage.about1;
     }
@@ -90,6 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
       } 
       if (currentUrl.includes('.html')){
       document.querySelector('#side-menu li a.subheader').textContent = translations[lang].campusNavigation;
+      updateNavLinkText('#side-menu li a[href="/index.html"]', translations[lang].home, 'home'); 
       updateNavLinkText('#side-menu li a[href="/pages/recommendation/Departments.html"]', translations[lang].departments, 'location_city');
       updateNavLinkText('#side-menu li a[href="/pages/recommendation/Cafe-restaurants.html"]', translations[lang].cafeRestaurants, 'restaurant');
       updateNavLinkText('#side-menu li a[href="/pages/recommendation/BusStations.html"]', translations[lang].BusStations, 'directions_bus');

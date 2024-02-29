@@ -31,17 +31,45 @@
   crossorigin="">
   </script>
 
-
 <body class="grey lighten-4">
-  <nav class="z-depth-0">
-     <div class="nav-wrapper container" style="width: 93%; display: flex; align-items: center;">
-         <span class="left grey-text text-darken-1" style="display: flex; align-items: center;">
-             <i class="material-icons sidenav-trigger" data-target="side-menu">menu</i>
-             <i class="material-icons">info</i>
-             <span id="pageTitle" style="font-size: 1.65rem; color: #FF8816; font-weight: bold">About</span>
-         </span>
-     </div>
- </nav>
+  <nav class="z-depth-0 bigger-nav">
+    <div class="nav-wrapper container" style="display: flex; align-items: center;">
+        <span class="left grey-text text-darken-1" style="margin-top:-45px; display: flex; align-items: center;">
+            <i class="material-icons sidenav-trigger"  data-target="side-menu">menu</i>
+            <a href="#" onclick="redirectToURL();" style="text-decoration: none; color: inherit;">
+            <span style="font-size: 1.65rem; color: #FF8816; font-weight: bold; vertical-align: middle;">SWaP</span></a>
+            <i class="material-icons" style="color: blue; vertical-align: middle;">verified</i>
+        </span>
+    </div>
+    <div style="margin-top:-25px; position: relative; width: 100%; top:1%">
+      <div class="subtitle">Ο βοηθός σας στην εύρεση συντομότερων μονοπατιών</div>
+    </div>
+
+    <div class="nav-wrapper container" style="margin-top:50px; display: flex; align-items: center;"> 
+          <i class="material-icons" style="color: rgb(0, 0, 0)">info</i>
+    <div id="pageTitle" style="font-size: 1.65rem; color: #FF8816;  font-weight: bold">Σχετικά</div>
+    </div>
+  </nav>
+
+ <script>
+  function redirectToURL() {
+    var mainURL = 'https://shortestpathapp.netlify.app/';
+    var fallbackURL = 'http://127.0.0.1:5501/index.html';
+    
+    var mainRequest = new XMLHttpRequest();
+    mainRequest.open('HEAD', mainURL);
+    mainRequest.onreadystatechange = function() {
+      if (mainRequest.readyState === 4) {
+        if (mainRequest.status === 200) {
+          window.location.href = mainURL;
+        } else {
+          window.location.href = fallbackURL;
+        }
+      }
+    };
+    mainRequest.send();
+  }
+</script>
 
  <div class="lang-menu">
   <div class="selected-lang" id="current-lang">
@@ -74,12 +102,9 @@
   <div class="container grey-text" style="padding: 2em;">
     <h5 class="center">About SWaP</h5>
     <p id="about1">
-      Το SWaP είναι μια εφαρμογή πλοήγησης που βρίσκει τις συντομότερες δυνατές διαδρομές στο Πανεπιστήμιο Πατρών. Η εφαρμογή αναδεικνύει όλες τις εγκαταστάσεις του πανεπιστημίου, αυτές κατανέμονται
-      στις τρεις διαθέσιμες σελίδες. Για την αναζήτηση της συντομότερης διαδρομής η εφαρμογή ζητάει τα εξής: Τρέχουσα Τοποθεσία και Προορισμός. Για το πεδίο Τρέχουσα Τοποθεσία,παρέχονται δύο επιλογές: 
-      είτε να συμπληρωθεί το πεδίο είτε να πατηθεί το κουμπί ΒΡΕΣ ΜΕ το οποίο εντοπίζει και εμφανίζει την τρέχουσα τοποθεσία στο χάρτη. Τέλος, πρόκειται για μια προοδευτική διαδικτυακή εφαρμογή, οπότε
-      υπάρχει η δυνατότητα προσωρινής αποθήκευσης των πρόσφατα αναζητημένων διαδρομών, ώστε ο χρήστης να μπορεί να τις βλέπει χωρίς σύνδεση στο ίντερνετ.
+      Το SWaP είναι ο βοηθός σας για την εύρεση των'συντομότερων μονοπατιών για πεζούς' στην πανεπιστημιούπολη της Πάτρας. Μπορείτε είτε να επιτρέψετε στο SWaP την πρόσβαση στην τοποθεσία σας μέσω της ασύρματης συσκευής σας είτε να επιλέξετε/πληκτρολογήσετε χειροκίνητα πρώτα ένα σημείο εκκίνησης και στη συνέχεια τον προορισμό σας από την αναπτυσσόμενη λίστα. Το SWap θα σας δείξει τη συντομότερη διαδρομή για να περπατήσετε μέχρι το σημείο για το οποίο ενδιαφέρεστε. Λάβετε υπόψη ότι μετά την πρώτη σας επίσκεψη, το SWaP παραμένει πλήρως λειτουργικό ακόμη και αν είστε εκτός δικτύου
     </p>
-    <p id="about2">Ως εκ τούτου, το SWaP είναι μια χρήσιμη εφαρμογή τόσο για τους πρωτοετείς όσο και για τους τελειόφοιτους φοιτητές.
+    <p id="about2">Απολαύστε το SWaPing στο Πανεπιστήμιο Πατρών!
     </p>
     <div class="divider"></div>
     <h6 id="contact">Βρείτε με στο:</h6>
