@@ -1,7 +1,8 @@
-const staticCacheName = "site-stativ6";
-const dynamicCacheName = "site-dynamicv6";
+const staticCacheName = "site-stativ7";
+const dynamicCacheName = "site-dynamicv7";
 const assets = [
   "",
+  "https://shortestwalkingpath.netlify.app/",
   "/index.html",
   "/js/app.js",
   "/js/ui.js",
