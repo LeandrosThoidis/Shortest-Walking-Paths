@@ -191,7 +191,7 @@ function updatePageContent(lang) {
       cafeRestaurants: "Cafe-restaurants",
       BusStations: "Bus stops",
       about: "About",
-      Αρχική: "Home",
+      home: "Home",
       pageTitle: {
         "index.html": "Home",
         "Cafe-restaurants.html": "Cafe-restaurants",
@@ -214,7 +214,7 @@ function updatePageContent(lang) {
       cafeRestaurants: "Καφέ-εστιατόρια",
       BusStations: "Στάσεις λεωφορείων",
       about: "Σχετικά",
-      Αρχική: "Αρχική",
+      home: "Αρχική",
       pageTitle: {
         "index.html": "Αρχική",
         "Cafe-restaurants.html": "Καφέ-εστιατόρια",
@@ -251,7 +251,7 @@ function updatePageContent(lang) {
   
   if (currentUrl.includes('.html')){
   document.querySelector('#side-menu li a.subheader').textContent = translations[lang].campusNavigation;
-  updateNavLinkText('#side-menu li a[href="/index.html"]', translations[lang].home, 'Αρχική');
+  updateNavLinkText('#side-menu li a[href="/index.html"]', translations[lang].home, 'home');
   updateNavLinkText('#side-menu li a[href="/pages/recommendation/Departments.html"]', translations[lang].departments, 'location_city');
   updateNavLinkText('#side-menu li a[href="/pages/recommendation/Cafe-restaurants.html"]', translations[lang].cafeRestaurants, 'restaurant');
   updateNavLinkText('#side-menu li a[href="/pages/recommendation/BusStations.html"]', translations[lang].BusStations, 'directions_bus');
@@ -259,7 +259,7 @@ function updatePageContent(lang) {
   }
   else{ 
   document.querySelector('#side-menu li a.subheader').textContent = translations[lang].campusNavigation;
-  updateNavLinkText('#side-menu li a[href*="/"]', translations[lang].home, 'Αρχική'); // Assuming home is always present, adjust if needed
+  updateNavLinkText('#side-menu li a[href*="/"]', translations[lang].home, 'home'); // Assuming home is always present, adjust if needed
   updateNavLinkText('#side-menu li a[href*="/departments"]', translations[lang].departments, 'location_city');
   updateNavLinkText('#side-menu li a[href*="/cafe-restaurants"]', translations[lang].cafeRestaurants, 'restaurant');
   updateNavLinkText('#side-menu li a[href*="/busstations"]', translations[lang].BusStations, 'directions_bus');
