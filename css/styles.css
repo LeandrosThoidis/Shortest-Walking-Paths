@@ -86,7 +86,6 @@ nav {
 }
 
 nav a {
-  text-transform: uppercase;
   color: var(--title);
   padding: 10px 20px; /* Optional: Add padding to individual links if needed */
 }
@@ -381,7 +380,7 @@ body.special-page .From-To-container {
   display: flex;
   flex-direction: row;
   padding:0;
-  box-shadow: 8px rgba(0,0,0,0.2);
+  box-shadow: 2px rgba(0,0,0,0.2);
   border: 1px solid black; 
   gap:1px;
 }
