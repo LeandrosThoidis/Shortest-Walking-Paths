@@ -208,7 +208,7 @@ function updatePageContent(lang) {
       findMe: "Δες τη θέση μου",
       currentLocation: "Τρέχουσα τοποθεσία",
       destination: "Προορισμός",
-      findShortestPath: "Βρες συντομότερο μονοπάτι",
+      findShortestPath: "Βρες το συντομότερο μονοπάτι",
       campusNavigation: "Σημεία ενδιαφέροντος",
       departments: "Τμήματα",
       cafeRestaurants: "Καφέ-εστιατόρια",
