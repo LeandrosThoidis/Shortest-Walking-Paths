@@ -191,7 +191,7 @@ function updatePageContent(lang) {
       cafeRestaurants: "Cafe-restaurants",
       BusStations: "Bus stops",
       about: "About",
-      home: "Home",
+      Αρχική: "Home",
       pageTitle: {
         "index.html": "Home",
         "Cafe-restaurants.html": "Cafe-restaurants",
@@ -214,7 +214,7 @@ function updatePageContent(lang) {
       cafeRestaurants: "Καφέ-εστιατόρια",
       BusStations: "Στάσεις λεωφορείων",
       about: "Σχετικά",
-      home: "Αρχική",
+      Αρχική: "Αρχική",
       pageTitle: {
         "index.html": "Αρχική",
         "Cafe-restaurants.html": "Καφέ-εστιατόρια",
