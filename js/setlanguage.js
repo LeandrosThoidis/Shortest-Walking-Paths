@@ -197,7 +197,7 @@ function updatePageContent(lang) {
         "Cafe-restaurants.html": "Cafe-restaurants",
         "Departments.html": "Departments",
         "BusStations.html": "Bus stops",
-        "": "SWaP",
+        "": "Home",
         "cafe-restaurants": "Cafe-restaurants",
         "departments": "Departments",
         "busstations": "Bus stops"
