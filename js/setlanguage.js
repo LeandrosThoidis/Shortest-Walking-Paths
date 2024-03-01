@@ -220,7 +220,7 @@ function updatePageContent(lang) {
         "Cafe-restaurants.html": "Καφέ-εστιατόρια",
         "Departments.html": "Τμήματα",
         "BusStations.html": "Στάσεις λεωφορείων",
-        "": "SWaP",
+        "": "Αρχική",
         "cafe-restaurants": "Καφέ-εστιατόρια",
         "departments": "Τμήματα",
         "busstations": "Στάσεις λεωφορείων"
@@ -251,7 +251,7 @@ function updatePageContent(lang) {
   
   if (currentUrl.includes('.html')){
   document.querySelector('#side-menu li a.subheader').textContent = translations[lang].campusNavigation;
-  updateNavLinkText('#side-menu li a[href="/index.html"]', translations[lang].home, 'home');
+  updateNavLinkText('#side-menu li a[href="/index.html"]', translations[lang].home, 'Αρχική');
   updateNavLinkText('#side-menu li a[href="/pages/recommendation/Departments.html"]', translations[lang].departments, 'location_city');
   updateNavLinkText('#side-menu li a[href="/pages/recommendation/Cafe-restaurants.html"]', translations[lang].cafeRestaurants, 'restaurant');
   updateNavLinkText('#side-menu li a[href="/pages/recommendation/BusStations.html"]', translations[lang].BusStations, 'directions_bus');
@@ -259,7 +259,7 @@ function updatePageContent(lang) {
   }
   else{ 
   document.querySelector('#side-menu li a.subheader').textContent = translations[lang].campusNavigation;
-  updateNavLinkText('#side-menu li a[href*="/"]', translations[lang].home, 'home'); // Assuming home is always present, adjust if needed
+  updateNavLinkText('#side-menu li a[href*="/"]', translations[lang].home, 'Αρχική'); // Assuming home is always present, adjust if needed
   updateNavLinkText('#side-menu li a[href*="/departments"]', translations[lang].departments, 'location_city');
   updateNavLinkText('#side-menu li a[href*="/cafe-restaurants"]', translations[lang].cafeRestaurants, 'restaurant');
   updateNavLinkText('#side-menu li a[href*="/busstations"]', translations[lang].BusStations, 'directions_bus');
