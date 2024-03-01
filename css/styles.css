@@ -115,9 +115,9 @@ form .input-field{
   display: flex;
   height:4.5%;
   flex-direction: column;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  box-shadow:8px rgba(0,0,0,0.2);
   border: 1px solid black; /* Add black border */
-  gap: 10px; 
+  gap:5px; 
   background-color: #984caf; 
   width:4.5%;
 }
@@ -128,7 +128,6 @@ form .input-field{
   color: white;  
   font-size: 1rem; 
   cursor: pointer; 
-  box-shadow: 0 4px 8px rgba(0,0,0,0.3); 
 }
 
 .location-container button:hover {
@@ -354,7 +353,7 @@ form .input-field{
   .display a, .From-To-container button, #toast-container .toast {
     font-size: 3.5vw; 
   }
-  .From-To-container, .location-container {
+  .From-To-container {
     top: 15.3%; 
     width: 70%; 
     left: 1%; 
@@ -375,18 +374,18 @@ body.special-page .From-To-container {
 .location-container {
   position: absolute;
   top: 16.2%; 
-  width: 21%;
+  width: 20%;
+  height: 5%;
   left: 72%; 
   z-index: 500;
   display: flex;
-  flex-direction: column;
-  gap: 1vw; 
+  flex-direction: row;
   padding:0;
+  box-shadow: 8px rgba(0,0,0,0.2);
+  border: 1px solid black; 
+  gap:1px;
 }
 
-body.special-page .location-container {
-  top: 96px; 
-}
   nav{
   background: var(--primary);
   border-bottom: 10px solid var(--secondary);
@@ -446,14 +445,6 @@ line-height: 30px; /* Center the text vertically */
 }
 .material-icons {
   margin-left: 0; 
-}
-.location-container {
-  height:4.9%;
-}
-
-.location-container,
-.location-container button {
-  font-size: 1rem; 
 }
 
 }
