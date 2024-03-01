@@ -38,13 +38,13 @@ document.addEventListener('DOMContentLoaded', () => {
   function updatePageContent2(lang) {
     var translations = {
       English: {
-        campusNavigation: "Points of Interest",
+        campusNavigation: "Points of interest",
         subtitle: "Your 'Shortest Walking-Paths' campus assistant",
         departments: "Departments",
-        cafeRestaurants: "Cafe-Restaurants",
+        cafeRestaurants: "Cafe-restaurants",
         about: "About",
         home: "Home",
-        BusStations: "Bus Stations",
+        BusStations: "Bus stops",
         pageTitle: {
           "about.html": "About",
           "about": "About"
@@ -56,13 +56,13 @@ document.addEventListener('DOMContentLoaded', () => {
       },
       
       Ελληνικά: {
-        campusNavigation: "Σημεία Ενδιαφέροντος",
+        campusNavigation: "Σημεία ενδιαφέροντος",
         subtitle: "Ο βοηθός σας στην εύρεση συντομότερων μονοπατιών",
         departments: "Τμήματα",
-        cafeRestaurants: "Καφέ-Εστιατόρια",
+        cafeRestaurants: "Καφέ-εστιατόρια",
         about: "Σχετικά",
         home: "Αρχική",
-        BusStations: "Στάσεις Λεωφορείων",
+        BusStations: "Στάσεις λεωφορείων",
         pageTitle: {
           "about.html": "Σχετικά",
           "about": "Σχετικά"

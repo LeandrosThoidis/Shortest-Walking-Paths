@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>The Shortest Path</title>
+  <title>SWaP: your 'Shortest Walking-Paths' campus assistant</title>
   <link rel="shortcut icon" href="../img/logo.png" />
   <link rel="stylesheet" href="../css/styles.css">
 
@@ -75,19 +75,26 @@
 </head>
 
 
-<body class=" special-page grey lighten-4">
-  <nav class="z-depth-0">
+<body class="grey lighten-4">
+  <nav class="z-depth-0 bigger-nav">
     <div class="nav-wrapper container" style="display: flex; align-items: center;">
-        <span class="left grey-text text-darken-1" style="display: flex; align-items: center;">
-            <i class="material-icons sidenav-trigger" data-target="side-menu">menu</i>
+        <span class="left grey-text text-darken-1" style="margin-top:-45px; display: flex; align-items: center;">
+            <i class="material-icons sidenav-trigger"  data-target="side-menu">menu</i>
             <a href="#" onclick="redirectToURL();" style="text-decoration: none; color: inherit;">
-            <span id="pageTitle" style="font-size: 1.65rem; color: #FF8816; font-weight: bold">SWaP</span></a>
-            <i class="material-icons" style="color: blue">verified</i>
+            <span style="font-size: 1.65rem; color: #FF8816; padding:10px; font-weight: bold; vertical-align: middle;">SWaP</span></a>
+            <i class="material-icons" style="color: blue; vertical-align: middle;">verified</i>
         </span>
     </div>
-    <div style="position: relative; width: 100%; top:1%">
+    <div style="margin-top:-25px; position: relative; width: 100%; top:1%">
       <div class="subtitle">Ο βοηθός σας στην εύρεση συντομότερων μονοπατιών</div>
     </div>
+
+    <div class="nav-wrapper container" style="margin-top:50px; display: flex; align-items: center;"> 
+      <i class="material-icons" style="margin-left:-1%; color: #3916ff;">home</i>
+      <div id="pageTitle" style="font-size: 1.65rem; color: #FF8816;  font-weight: bold">Αρχική</span>
+    </div>
+    </div>
+  </nav>
     
     
 </nav>
@@ -115,7 +122,7 @@
 
   
     <div class="location-container">
-      <button id="findMe" class="waves-effect waves-light btn green">Find me</button>
+      <button id="findMe" class="waves-effect font-size: 1.5rem">Δες την θέση μου</button>
     </div> 
 
     <div class="lang-menu">
@@ -142,7 +149,7 @@
       <div id="destinationLocationSuggestions" class="suggestions-dropdown"></div>
 
   
-      <button id="findShortestPath" onclick="setRoute()">Find Shortest Path</button>
+      <button id="findShortestPath" onclick="setRoute()">Find shortest walking-path</button>
   </div>
   </body>
 

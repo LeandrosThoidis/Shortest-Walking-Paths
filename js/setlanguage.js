@@ -182,48 +182,48 @@ function updatePageContent(lang) {
   var translations = {
     English: {
       subtitle: "Your 'Shortest Walking-Paths' campus assistant",
-      findMe: "Find me",
-      currentLocation: "Current Location",
+      findMe: "Get my location",
+      currentLocation: "Current location",
       destination: "Destination",
-      findShortestPath: "Find Shortest Path",
-      campusNavigation: "Points of Interest",
+      findShortestPath: "Find shortest walking-path",
+      campusNavigation: "Points of interest",
       departments: "Departments",
-      cafeRestaurants: "Cafe-Restaurants",
-      BusStations: "Bus Stations",
+      cafeRestaurants: "Cafe-restaurants",
+      BusStations: "Bus stops",
       about: "About",
       home: "Home",
       pageTitle: {
-        "index.html": "SWaP",
-        "Cafe-restaurants.html": "Cafe-Restaurants",
+        "index.html": "Home",
+        "Cafe-restaurants.html": "Cafe-restaurants",
         "Departments.html": "Departments",
-        "BusStations.html": "Bus Stations",
+        "BusStations.html": "Bus stops",
         "": "SWaP",
-        "cafe-restaurants": "Cafe-Restaurants",
+        "cafe-restaurants": "Cafe-restaurants",
         "departments": "Departments",
-        "busstations": "Bus Stations"
+        "busstations": "Bus stops"
       }
     },
     Ελληνικά: {
       subtitle: "Ο βοηθός σας στην εύρεση συντομότερων μονοπατιών",
-      findMe: "Βρες με",
-      currentLocation: "Τρέχουσα Τοποθεσία",
+      findMe: "Δες τη θέση μου",
+      currentLocation: "Τρέχουσα τοποθεσία",
       destination: "Προορισμός",
-      findShortestPath: "Εύρεση Συντομότερης Διαδρομής",
-      campusNavigation: "Σημεία Ενδιαφέροντος",
+      findShortestPath: "Βρες συντομότερο μονοπάτι",
+      campusNavigation: "Σημεία ενδιαφέροντος",
       departments: "Τμήματα",
-      cafeRestaurants: "Καφέ-Εστιατόρια",
-      BusStations: "Στάσεις Λεωφορείων",
+      cafeRestaurants: "Καφέ-εστιατόρια",
+      BusStations: "Στάσεις λεωφορείων",
       about: "Σχετικά",
       home: "Αρχική",
       pageTitle: {
-        "index.html": "SWaP",
-        "Cafe-restaurants.html": "Καφέ-Εστιατόρια",
+        "index.html": "Αρχική",
+        "Cafe-restaurants.html": "Καφέ-εστιατόρια",
         "Departments.html": "Τμήματα",
-        "BusStations.html": "Στάσεις Λεωφορείων",
+        "BusStations.html": "Στάσεις λεωφορείων",
         "": "SWaP",
-        "cafe-restaurants": "Καφέ-Εστιατόρια",
+        "cafe-restaurants": "Καφέ-εστιατόρια",
         "departments": "Τμήματα",
-        "busstations": "Στάσεις Λεωφορείων"
+        "busstations": "Στάσεις λεωφορείων"
     }
   }
 }
