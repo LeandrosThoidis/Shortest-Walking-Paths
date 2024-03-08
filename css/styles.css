@@ -360,6 +360,16 @@ form .input-field{
     left: 1%; 
   }
 
+  .display a, .location-container button, #toast-container .toast {
+    font-size: 3.5vw; 
+  }
+  .location-container {
+    top: 16%; 
+    width: 25%;; 
+    left: 72%;
+  }
+
+
   .instructions-container {
   }
     
@@ -372,20 +382,6 @@ body.special-page .From-To-container {
   top: 89px; 
 }
 
-.location-container {
-  position: absolute;
-  top: 16.2%; 
-  width: 20%;
-  height: 5%;
-  left: 72%; 
-  z-index: 500;
-  display: flex;
-  flex-direction: row;
-  padding:0;
-  box-shadow: 2px rgba(0,0,0,0.2);
-  border: 1px solid black; 
-  gap:1px;
-}
 
   nav{
   background: var(--primary);
