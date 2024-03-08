@@ -2,7 +2,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   initializeMap(); // Initialize map
 
-  var selectedLanguage = localStorage.getItem('selectedLanguage') || 'Ελληνικά';
+  var selectedLanguage = localStorage.getItem('selectedLanguage') || 'English';
   setLanguage(selectedLanguage); // Set the initial language
 
   document.getElementById('current-lang').addEventListener('click', (e) => {

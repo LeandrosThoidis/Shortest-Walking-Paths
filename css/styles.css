@@ -20,6 +20,9 @@ html, body {
   font-weight: normal;
   text-align: center;
   transform: translate(-50%, -10px);
+  z-index:501;
+  padding:0;
+  max-height:2%;
 }
  
 
@@ -68,6 +71,10 @@ nav {
   justify-content: center; 
   align-items: center; 
   height: 160vh;
+}
+
+.side-menu{
+  padding:0;
 }
 
 .nav-wrapper .container {
@@ -203,10 +210,10 @@ form .input-field{
   overflow-y: auto;
   background-color: #fff; /* White to match input fields */
   display: none; /* Initially hidden */
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Subtle shadow for depth */
-  border-radius: 0 0 8px 8px; /* Rounded corners at the bottom to match input fields */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2); 
+  border-radius: 0 0 8px 8px; 
   margin: 0 10px; /* Margin to match input fields' positioning */
-  top: 100%; /* Position right below the input field */
+  top: 100%; 
   transition: opacity 0.2s ease, visibility 0.2s ease;
 }
 
@@ -340,6 +347,8 @@ form .input-field{
       font-weight: normal;
       text-align: center;
       transform: translate(-50%, -3px);
+      z-index:501;
+      padding:0;
     }
 
   nav .sidenav-trigger {
