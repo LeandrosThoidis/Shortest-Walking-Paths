@@ -118,14 +118,11 @@ form .input-field{
   top: 140px; 
   left: 415px;  
   z-index: 500; 
-  display: flex;
-  height:4.5%;
-  flex-direction: column;
-  box-shadow:8px rgba(0,0,0,0.2);
-  border: 1px solid black; /* Add black border */
-  gap:5px; 
-  background-color: #984caf; 
-  width:4.5%;
+  background-color: #984caf;
+  padding: 5px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  font-size: 0.5rem; /* Smaller font size for the container */
 }
 
 .location-container button {
@@ -139,10 +136,6 @@ form .input-field{
 .location-container button:hover {
   background-color: #6f45a0; 
   transform: scale(0.98);
-}
-.location-container,
-.location-container button {
-  font-size: 1rem; 
 }
 
 .From-To-container {
