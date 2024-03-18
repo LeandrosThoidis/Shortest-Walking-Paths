@@ -44,7 +44,7 @@ function getPosition(position) {
   var selectedLanguage = localStorage.getItem('selectedLanguage') || 'English'; // Default to English if not set
 
   // Determine the message based on the selected language
-  var locationMessage = selectedLanguage === 'Ελληνικά' ? 'Τρέχουσα τοποθεσία' : 'Current Location';
+  var locationMessage = selectedLanguage === 'Ελληνικά' ? 'Τρέχουσα τοποθεσία' : 'Current location';
 
   // Check if the current location is within the university boundary
   if (isWithinUniversityBoundary(lat, long)) {
@@ -400,7 +400,7 @@ function drawRoute(from, to) {
     });
 
     let selectedLanguage = localStorage.getItem('selectedLanguage') || 'Ελληνικά';
-    let startPopupText = selectedLanguage === 'Ελληνικά' ? 'Τρέχουσα τοποθεσία' : 'Current Location';
+    let startPopupText = selectedLanguage === 'Ελληνικά' ? 'Τρέχουσα τοποθεσία' : 'Current location';
     let endPopupText = selectedLanguage === 'Ελληνικά' ? 'Προορισμός' : 'Destination';
   
     // Clear existing start and end markers

@@ -542,7 +542,8 @@ var blackMarkers = [
     'Department of Computer Engineering and Informatics': [38.29019, 21.79503],
     'Department of Computer Engineering & Informatics': [38.29019, 21.79503],
     'Informatics': [38.29019, 21.79503],
-    'Computer Engineering': [38.29019, 21.79503],
+    'Computer Engineering' : [38.29019, 21.79503],
+    'Computer Engineering and Informatics': [38.29019, 21.79503],
     'Ceid': [38.29019, 21.79503],
 
     'Medical School': [38.29386,21.79361],

@@ -95,7 +95,7 @@ map.on('contextmenu', function(e) {
   if (isWithinUniversityBoundary(latlng.lat, latlng.lng)) {
       var selectedLanguage = localStorage.getItem('selectedLanguage') || 'English'; // Default to English if not set
 
-      var destinationMessage = selectedLanguage === 'Ελληνικά' ? 'Προορισμός' : 'Clicked Destination';
+      var destinationMessage = selectedLanguage === 'Ελληνικά' ? 'Προορισμός' : 'Clicked destination';
 
       // Update the destination input with the message indicating a destination was clicked
       document.getElementById('destinationLocation').value = destinationMessage;

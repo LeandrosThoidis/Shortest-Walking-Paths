@@ -238,7 +238,7 @@ form .input-field{
 
 
 #customZoomControl {
-  position: absolute;
+  position: fixed;
   top: 140px; 
   right: 10px; 
   background: white;
