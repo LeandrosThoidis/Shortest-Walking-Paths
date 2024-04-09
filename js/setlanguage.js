@@ -114,7 +114,7 @@ map.on('contextmenu', function(e) {
   } else {
     Swal.fire({
       title: 'Location Alert',
-      html: 'Your current location is <b>outside</b> the University of Patras.',
+      html: 'Your destination is <b>outside</b> the University of Patras.',
       icon: 'warning',
       confirmButtonText: 'OK'
     });
