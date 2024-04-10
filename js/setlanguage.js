@@ -74,53 +74,6 @@ function updateTileLayer(lang) {
   }).addTo(map);
 }
 
-function isWithinUniversityBoundary(lat, lng) {
-  let x = lat, y = lng;
-  let inside = false;
-  for (let i = 0, j = universityBoundary.length - 1; i < universityBoundary.length; j = i++) {
-    let xi = universityBoundary[i][0], yi = universityBoundary[i][1];
-    let xj = universityBoundary[j][0], yj = universityBoundary[j][1];
-
-    let intersect = ((yi > y) != (yj > y))
-      && (x < (xj - xi) * (y - yi) / (yj - yi) + xi);
-    if (intersect) inside = !inside;
-  }
-  return inside;
-}
-
-map.on('contextmenu', function(e) {
-  var latlng = e.latlng;
-
-  // Check if the clicked location is within the university boundary
-  if (isWithinUniversityBoundary(latlng.lat, latlng.lng)) {
-      var selectedLanguage = localStorage.getItem('selectedLanguage') || 'English'; // Default to English if not set
-
-      var destinationMessage = selectedLanguage === 'Ελληνικά' ? 'Προορισμός' : 'Clicked destination';
-
-      // Update the destination input with the message indicating a destination was clicked
-      document.getElementById('destinationLocation').value = destinationMessage;
-      knownLocations['destinationLocation'] = [latlng.lat, latlng.lng];
-
-      // Check if an end marker already exists, update its position and popup text
-      if (endMarker) {
-          endMarker.setLatLng(latlng).setPopupContent(destinationMessage);
-      } else {
-          // If no end marker exists, create a new one with the appropriate popup
-          endMarker = L.marker(latlng, {icon: redIcon})
-                       .addTo(map)
-                       .bindPopup(destinationMessage)
-                       .openPopup();
-      }
-  } else {
-    Swal.fire({
-      title: 'Location Alert',
-      html: 'Your destination is <b>outside</b> the University of Patras.',
-      icon: 'warning',
-      confirmButtonText: 'OK'
-    });
-  }
-});
-
 
 // Function to set the language and update the page accordingly
 function setLanguage(lang) {

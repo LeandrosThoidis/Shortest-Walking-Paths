@@ -61,7 +61,14 @@ function getPosition(position) {
     marker = L.marker([lat, long], {icon: HumanIcon}).addTo(map);
     circle = L.circle([lat, long], {radius: accuracy}).addTo(map);
     map.setView([lat, long], 16);
-  } else {
+  } else if (selectedLanguage === 'Ελληνικά') {
+      Swal.fire({
+        title: 'Ειδοποίηση',
+        html: 'Η τρέχουσα τοποθεσία σου είναι <b>εκτός</b> του Πανεπιστημίου Πατρών.',
+        icon: 'warning',
+        confirmButtonText: 'OK'
+      });
+    }else {
     // Handle case when outside the university boundary
     Swal.fire({
       title: 'Location Alert',
@@ -417,42 +424,45 @@ function drawRoute(from, to) {
   }
 
 
-function setRoute() {
-  document.getElementById('findShortestPath').disabled = true; // Disable the button to prevent multiple submissions
-
-  document.getElementById('currentLocationSuggestions').innerHTML = '';
-  document.getElementById('destinationLocationSuggestions').innerHTML = '';
-
-  let fromCoords = knownLocations['currentLocation'] || geocodeLocation('currentLocation');
-  let toCoords =  knownLocations['destinationLocation'] ||geocodeLocation('destinationLocation');
-
-  // Check conditions and show appropriate error messages
-  if (!fromCoords && !toCoords) {
-    Swal.fire({
-      title: 'Error',
-      text: `Both current location and destination not found.`,
-      icon: 'error'
-    });
-  } else if (!fromCoords) {
-    Swal.fire({
-      title: 'Error',
-      text: `Current location not found: "${document.getElementById('currentLocation').value}"`,
-      icon: 'error'
-    });
-  } else if (!toCoords) {
-    Swal.fire({
-      title: 'Error',
-      text: `Destination not found: "${document.getElementById('destinationLocation').value}"`,
-      icon: 'error'
-    });
-  } else {
-
-    drawRoute(fromCoords, toCoords);
+  function setRoute() {
+    // Assume selectedLanguage is globally available; ensure it's defined elsewhere in your script
+    var selectedLanguage = localStorage.getItem('selectedLanguage') || 'English'; // Example of defining it here if not global
+    
+    document.getElementById('findShortestPath').disabled = true; // Disable the button to prevent multiple submissions
+  
+    document.getElementById('currentLocationSuggestions').innerHTML = '';
+    document.getElementById('destinationLocationSuggestions').innerHTML = '';
+  
+    let fromCoords = knownLocations['currentLocation'] || geocodeLocation('currentLocation');
+    let toCoords = knownLocations['destinationLocation'] || geocodeLocation('destinationLocation');
+  
+    // Check conditions and show appropriate error messages
+    if (!fromCoords && !toCoords) {
+      Swal.fire({
+        title: selectedLanguage === 'Ελληνικά' ? 'Σφάλμα' : 'Error',
+        text: selectedLanguage === 'Ελληνικά' ? `Η τρέχουσα τοποθεσία και ο προορισμός δεν βρέθηκαν.` : `Both current location and destination not found.`,
+        icon: 'error'
+      });
+    } else if (!fromCoords) {
+      Swal.fire({
+        title: selectedLanguage === 'Ελληνικά' ? 'Σφάλμα' : 'Error',
+        text: selectedLanguage === 'Ελληνικά' ? `Η τρέχουσα τοποθεσία δεν βρέθηκε: "${document.getElementById('currentLocation').value}"` : `Current location not found: "${document.getElementById('currentLocation').value}"`,
+        icon: 'error'
+      });
+    } else if (!toCoords) {
+      Swal.fire({
+        title: selectedLanguage === 'Ελληνικά' ? 'Σφάλμα' : 'Error',
+        text: selectedLanguage === 'Ελληνικά' ? `Ο προορισμός δεν βρέθηκε: "${document.getElementById('destinationLocation').value}"` : `Destination not found: "${document.getElementById('destinationLocation').value}"`,
+        icon: 'error'
+      });
+    } else {
+      // If both fromCoords and toCoords are found, draw the route
+      drawRoute(fromCoords, toCoords);
+    }
+  
+    document.getElementById('findShortestPath').disabled = false; // Re-enable the button after processing
   }
-
-  document.getElementById('findShortestPath').disabled = false; 
-}
-
+  
 
 //event listeners
 
@@ -491,3 +501,45 @@ if ("serviceWorker" in navigator) {
       );
   });
 }
+
+
+map.on('contextmenu', function(e) {
+  var latlng = e.latlng;
+  
+  // Move selectedLanguage declaration here to ensure it is accessible throughout the entire function
+  var selectedLanguage = localStorage.getItem('selectedLanguage') || 'English'; // Default to English if not set
+
+  // Check if the clicked location is within the university boundary
+  if (isWithinUniversityBoundary(latlng.lat, latlng.lng)) {
+      var destinationMessage = selectedLanguage === 'Ελληνικά' ? 'Προορισμός' : 'Clicked destination';
+
+      // Update the destination input with the message indicating a destination was clicked
+      document.getElementById('destinationLocation').value = destinationMessage;
+      knownLocations['destinationLocation'] = [latlng.lat, latlng.lng];
+
+      // Check if an end marker already exists, update its position and popup text
+      if (endMarker) {
+          endMarker.setLatLng(latlng).setPopupContent(destinationMessage);
+      } else {
+          // If no end marker exists, create a new one with the appropriate popup
+          endMarker = L.marker(latlng, {icon: redIcon})
+                       .addTo(map)
+                       .bindPopup(destinationMessage)
+                       .openPopup();
+      }
+  } else if (selectedLanguage === 'Ελληνικά') {
+    Swal.fire({
+      title: 'Προειδοποίηση',
+      html: 'Ο προορισμός σου βρίσκεται <b>εκτός</b> της περιοχής του Πανεπιστημίου.',
+      icon: 'warning',
+      confirmButtonText: 'OK'
+    });
+  } else {
+    Swal.fire({
+      title: 'Location Alert',
+      html: 'Your destination is <b>outside</b> the University of Patras.',
+      icon: 'warning',
+      confirmButtonText: 'OK'
+    });
+  }
+});
