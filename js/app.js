@@ -74,7 +74,7 @@ function getPosition(position) {
     // Handle case when outside the university boundary
     Swal.fire({
       title: 'Location Alert',
-      html: 'Your current location is <b>outside</b> the University of Patras.',
+      html: 'Your current location is <b>outside</b> the university of Patras.',
       icon: 'warning',
       confirmButtonText: 'OK'
     });
@@ -539,7 +539,7 @@ map.on('contextmenu', function(e) {
   } else {
     Swal.fire({
       title: 'Location Alert',
-      html: 'Your destination is <b>outside</b> the University of Patras.',
+      html: 'Your destination is <b>outside</b> the university of Patras.',
       icon: 'warning',
       confirmButtonText: 'OK'
     });
