@@ -1,5 +1,5 @@
-const staticCacheName = "site-stativ8";
-const dynamicCacheName = "site-dynamicv8";
+const staticCacheName = "site-stativ1";
+const dynamicCacheName = "site-dynamicv1";
 const assets = [
   "",
   "https://shortestwalkingpath.netlify.app/",
