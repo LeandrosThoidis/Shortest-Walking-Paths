@@ -19,6 +19,8 @@ const universityBoundary = [
   [38.2871,21.7772]  
 ];
 
+var selectedLanguage = localStorage.getItem('selectedLanguage') || 'English'; // Default to English if not set
+
 // Check if the point is within the university boundary
 function isWithinUniversityBoundary(lat, lng) {
   let x = lat, y = lng;
@@ -64,7 +66,7 @@ function getPosition(position) {
   } else if (selectedLanguage === 'Ελληνικά') {
       Swal.fire({
         title: 'Ειδοποίηση',
-        html: 'Η τρέχουσα τοποθεσία σου είναι <b>εκτός</b> του Πανεπιστημίου Πατρών.',
+        html: 'Η τρέχουσα τοποθεσία σου είναι <b>εκτός</b> του πανεπιστημίου Πατρών.',
         icon: 'warning',
         confirmButtonText: 'OK'
       });
@@ -530,7 +532,7 @@ map.on('contextmenu', function(e) {
   } else if (selectedLanguage === 'Ελληνικά') {
     Swal.fire({
       title: 'Προειδοποίηση',
-      html: 'Ο προορισμός σου βρίσκεται <b>εκτός</b> της περιοχής του Πανεπιστημίου.',
+      html: 'Ο προορισμός σου βρίσκεται <b>εκτός</b> της περιοχής του πανεπιστημίου Πατρών.',
       icon: 'warning',
       confirmButtonText: 'OK'
     });
