@@ -1,4 +1,4 @@
-# EDULEARN24 – Smart Campus Navigation 
+# EDULEARN24 – Shortest Walking Path
 
 **EDULEARN24** is a web-based pedestrian navigation system built for the **University of Patras**. It calculates the most efficient walking routes across the campus using advanced pathfinding algorithms like **Dijkstra’s** and **A\***, with real-time routing support from the **GraphHopper Directions API**.
 
