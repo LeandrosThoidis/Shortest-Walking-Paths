@@ -1,36 +1,18 @@
-# EDULEARN24 – Shortest Walking Path
+# SWaP – Shortest Walking Paths
 
-**EDULEARN24** is a web-based pedestrian navigation system built for the **University of Patras**. It calculates the most efficient walking routes across the campus using advanced pathfinding algorithms like **Dijkstra’s** and **A\***, with real-time routing support from the **GraphHopper Directions API**.
+**SWaP** is a **Progressive Web App (PWA)** developed and published in **EDULEARN24**. It provides optimized walking directions across university campuses using efficient routing algorithms such as **Dijkstra’s**, **A\***, and their **bidirectional variants**.
+
+Once added to the user’s home screen, **SWaP** launches in full-screen mode and works **offline**, acting as a smart e-assistant for campus navigation.
 
 ---
 
 ## 📌 Features
 
-- 🚶 **Optimized Campus Routing**  
-  Calculates the shortest walking paths between any two campus locations.
-
-- 🧠 **Algorithms Implemented**  
-  - Dijkstra's Algorithm  
-  - A* (A-star) Search Algorithm
-
-- 🌍 **GraphHopper API Integration**  
-  Utilizes GraphHopper's open-source routing engine for map data and real-world navigation support.
-
-- 💻 **Web-Based Interface**  
-  Built using **HTML**, **CSS**, and **JavaScript**.
-
-- 📄 **Detailed Technical Documentation**  
-  Written and formatted in **LaTeX** for clarity and professional presentation.
-
----
-
-## 🧰 Technologies Used
-
-| Category         | Tools/Libraries            |
-|------------------|----------------------------|
-| **Routing Engine** | [GraphHopper API](https://www.graphhopper.com/) |
-| **Algorithms**     | Dijkstra’s, A* Search |
-| **Frontend**       | HTML5, CSS3, JavaScript |
-| **Documentation**  | LaTeX |
-
-
+- 🗺️ Optimized walking routes using Dijkstra and A* algorithms
+- 🌍 Real-world map data from **OpenStreetMap**
+- 🔁 Supports **bidirectional routing algorithms**
+- ⚡ **Progressive Web App (PWA)**: installable, offline-capable, full-screen
+- 📱 Mobile-first and responsive design using **Materialize CSS**
+- 🧭 Built-in route visualization via **Leaflet.js**
+- 💬 Interactive alerts and messages using **SweetAlert2**
+- 🧩 Easily customizable for any university campus
